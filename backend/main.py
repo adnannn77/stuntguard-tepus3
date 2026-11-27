@@ -319,6 +319,15 @@ def serve_root_css():
 def serve_root_js():
     return FileResponse(FRONTEND_DIR / "app.js")
 
+@app.get("/favicon.svg", include_in_schema=False)
+@app.get("/favicon.ico", include_in_schema=False)
+def serve_favicon():
+    return FileResponse(FRONTEND_DIR / "favicon.svg")
+
+@app.get("/og-image.png", include_in_schema=False)
+def serve_og_image():
+    return FileResponse(FRONTEND_DIR / "og-image.png")
+
 @app.post("/api/predict", response_model=PredictionResponse, tags=["Inference"])
 def predict_stunting_risk(data: BalitaInput):
     """Eksekusi inferensi model Decision Tree & Z-score untuk balita baru."""

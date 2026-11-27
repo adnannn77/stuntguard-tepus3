@@ -30,13 +30,29 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 # Inisialisasi Path Artefak & Database SQLite
+import os
+import shutil
+
 BASE_DIR = Path(__file__).resolve().parent
 ARTIFACTS_DIR = BASE_DIR / "artifacts"
 ARTIFACTS_DIR.mkdir(exist_ok=True)
 MODEL_PATH = ARTIFACTS_DIR / "decision_tree_stunting.pkl"
 META_PATH = ARTIFACTS_DIR / "feature_meta.json"
-DB_PATH = ARTIFACTS_DIR / "posyandu_tepus3.db"
 FRONTEND_DIR = BASE_DIR.parent / "frontend"
+
+# Deteksi Serverless Vercel: /tmp adalah satu-satunya direktori dengan izin tulis
+IS_VERCEL = "VERCEL" in os.environ
+if IS_VERCEL:
+    TMP_DIR = Path("/tmp")
+    DB_PATH = TMP_DIR / "posyandu_tepus3.db"
+    SOURCE_DB = ARTIFACTS_DIR / "posyandu_tepus3.db"
+    if not DB_PATH.exists() and SOURCE_DB.exists():
+        try:
+            shutil.copy2(SOURCE_DB, DB_PATH)
+        except Exception:
+            pass
+else:
+    DB_PATH = ARTIFACTS_DIR / "posyandu_tepus3.db"
 
 FEATURE_COLS = [
     "usia_bulan", "is_laki", "tinggi_cm", "berat_kg", 

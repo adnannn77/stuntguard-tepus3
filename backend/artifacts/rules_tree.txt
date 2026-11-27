@@ -1,0 +1,42 @@
+=== ATURAN POHON KEPUTUSAN STUNT-GUARD TEPUS 3 ===
+Akurasi Model: 82.00%
+Kriteria: Entropy (Gain Ratio / C4.5)
+==================================================
+
+|--- tinggi_cm <= 101.75
+|   |--- riwayat_bblr <= 0.50
+|   |   |--- asi_eksklusif <= 0.50
+|   |   |   |--- air_karst_kapur <= 0.50
+|   |   |   |   |--- tinggi_cm <= 94.25
+|   |   |   |   |   |--- class: Normal (Optimal)
+|   |   |   |   |--- tinggi_cm >  94.25
+|   |   |   |   |   |--- class: Normal (Optimal)
+|   |   |   |--- air_karst_kapur >  0.50
+|   |   |   |   |--- tinggi_cm <= 77.15
+|   |   |   |   |   |--- class: Normal (Optimal)
+|   |   |   |   |--- tinggi_cm >  77.15
+|   |   |   |   |   |--- class: Normal (Optimal)
+|   |   |--- asi_eksklusif >  0.50
+|   |   |   |--- berat_kg <= 15.15
+|   |   |   |   |--- tinggi_cm <= 95.15
+|   |   |   |   |   |--- class: Normal (Optimal)
+|   |   |   |   |--- tinggi_cm >  95.15
+|   |   |   |   |   |--- class: Normal (Optimal)
+|   |   |   |--- berat_kg >  15.15
+|   |   |   |   |--- class: Normal (Optimal)
+|   |--- riwayat_bblr >  0.50
+|   |   |--- lila_cm <= 14.45
+|   |   |   |--- tinggi_cm <= 93.15
+|   |   |   |   |--- berat_kg <= 10.05
+|   |   |   |   |   |--- class: Normal (Optimal)
+|   |   |   |   |--- berat_kg >  10.05
+|   |   |   |   |   |--- class: Waspada (Faltering Growth)
+|   |   |   |--- tinggi_cm >  93.15
+|   |   |   |   |--- usia_bulan <= 44.00
+|   |   |   |   |   |--- class: Normal (Optimal)
+|   |   |   |   |--- usia_bulan >  44.00
+|   |   |   |   |   |--- class: Waspada (Faltering Growth)
+|   |   |--- lila_cm >  14.45
+|   |   |   |--- class: Normal (Optimal)
+|--- tinggi_cm >  101.75
+|   |--- class: Normal (Optimal)

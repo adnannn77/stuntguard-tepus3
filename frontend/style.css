@@ -1,0 +1,759 @@
+/* ==========================================================================
+   STUNT-GUARD TEPUS 3 - Custom Stylesheet
+   Dirancang khusus untuk Posyandu Padukuhan Tepus 3 & Evaluasi DPL FIKOM UDB
+   Palet: Emerald/Teal Medis Modern + Amber Peringatan + Red Flag Rujukan
+   ========================================================================== */
+
+:root {
+  --latar: #f8fafc;
+  --kartu: #ffffff;
+  --garis: #e2e8f0;
+  --garis-tebal: #cbd5e1;
+  --teks: #0f172a;
+  --teks-redup: #64748b;
+  --teks-terang: #94a3b8;
+  
+  /* Aksen Identitas Klinis */
+  --utama: #0d9488;          /* Teal 600 */
+  --utama-hover: #0f766e;    /* Teal 700 */
+  --utama-muda: #f0fdfa;     /* Teal 50 */
+  --utama-ring: rgba(13, 148, 136, 0.2);
+  
+  /* Tri-Warna Klasifikasi Risiko */
+  --normal: #16a34a;         /* Hijau Sukses */
+  --normal-muda: #f0fdf4;
+  --normal-border: #bbf7d0;
+  
+  --waspada: #d97706;        /* Kuning / Amber Waspada */
+  --waspada-muda: #fffbeb;
+  --waspada-border: #fde68a;
+  
+  --stunted: #dc2626;        /* Merah Bahaya / Stunted */
+  --stunted-muda: #fef2f2;
+  --stunted-border: #fecaca;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --jarak: 1.25rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--latar);
+  color: var(--teks);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.kerangka {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 var(--jarak) 3rem;
+}
+
+/* Header & Navigasi */
+header {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 0;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--garis);
+}
+
+.merek {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.tanda {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, var(--utama), #0284c7);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: -0.02em;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 4px rgba(13, 148, 136, 0.25);
+}
+
+.nama strong {
+  display: block;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+  color: var(--teks);
+}
+
+.nama small {
+  display: block;
+  color: var(--teks-redup);
+  font-size: 0.76rem;
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+nav button {
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--teks-redup);
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+nav button:hover {
+  background: #f1f5f9;
+  color: var(--teks);
+}
+
+nav button.aktif {
+  background: var(--utama-muda);
+  color: var(--utama);
+  border-color: #ccfbf1;
+  font-weight: 600;
+}
+
+/* Badge Status & Tags */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fde68a;
+  padding: 0.35rem 0.8rem;
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+}
+
+.label-sub {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--utama);
+  display: block;
+  margin-bottom: 0.35rem;
+}
+
+/* Kartu & Wadah */
+.kartu {
+  background: var(--kartu);
+  border: 1px solid var(--garis);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  margin-bottom: var(--jarak);
+  box-shadow: var(--shadow-sm);
+}
+
+h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  color: var(--teks);
+}
+
+h2 {
+  margin: 0 0 0.6rem;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.subjudul {
+  margin: 0 0 1.5rem;
+  color: var(--teks-redup);
+  font-size: 0.94rem;
+  max-width: 70ch;
+}
+
+/* Tombol */
+.tombol {
+  padding: 0.65rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid var(--utama);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.15s ease;
+  font-family: inherit;
+}
+
+.tombol.utama {
+  background: var(--utama);
+  color: #ffffff;
+  border-color: var(--utama);
+}
+
+.tombol.utama:hover {
+  background: var(--utama-hover);
+}
+
+.tombol.sekunder {
+  background: #ffffff;
+  color: var(--utama);
+  border-color: var(--garis-tebal);
+}
+
+.tombol.sekunder:hover {
+  background: var(--utama-muda);
+  border-color: var(--utama);
+}
+
+.tombol.bahaya {
+  background: #ffffff;
+  color: var(--stunted);
+  border-color: var(--stunted-border);
+}
+
+.tombol.bahaya:hover {
+  background: var(--stunted-muda);
+}
+
+/* Hero Section */
+.hero {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2rem;
+  align-items: center;
+  padding: 0.5rem 0 2rem;
+}
+
+.hero h1 {
+  font-size: clamp(1.75rem, 3.8vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.lead {
+  margin: 0.85rem 0 0;
+  color: var(--teks-redup);
+  font-size: 1rem;
+}
+
+.aksi-hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.4rem;
+}
+
+.ringkas-metrik {
+  margin: 0;
+  padding: 1.35rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  background: var(--kartu);
+  border: 1px solid var(--garis);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.ringkas-metrik dt {
+  font-size: 1.9rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--utama);
+}
+
+.ringkas-metrik dd {
+  margin: 0.3rem 0 0;
+  font-size: 0.82rem;
+  color: var(--teks-redup);
+  font-weight: 500;
+}
+
+/* Bagian Beranda & Dua Kolom */
+.bagian {
+  padding: 2.2rem 0;
+  border-top: 1px solid var(--garis);
+}
+
+.dua-kolom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+/* Timeline Tahapan CRISP-DM */
+.tahap {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: t;
+}
+
+.tahap li {
+  position: relative;
+  padding: 0 0 1.6rem 3.4rem;
+  counter-increment: t;
+}
+
+.tahap li::before {
+  content: counter(t);
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--utama);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+
+.tahap li::after {
+  content: '';
+  position: absolute;
+  left: 1.1rem;
+  top: 2.2rem;
+  bottom: 0;
+  width: 2px;
+  background: var(--garis-tebal);
+}
+
+.tahap li:last-child::after {
+  display: none;
+}
+
+.tahap h3 {
+  margin: 0 0 0.25rem;
+  font-size: 1.05rem;
+}
+
+.tahap p {
+  margin: 0;
+  color: var(--teks-redup);
+  font-size: 0.9rem;
+}
+
+/* Kartu Tri-Klasifikasi Risiko */
+.kartu-risiko-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+  margin-top: 1.2rem;
+}
+
+.kartu-risiko {
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid;
+}
+
+.r-normal {
+  background: var(--normal-muda);
+  color: var(--normal);
+  border-color: var(--normal-border);
+}
+
+.r-waspada {
+  background: var(--waspada-muda);
+  color: var(--waspada);
+  border-color: var(--waspada-border);
+}
+
+.r-stunted {
+  background: var(--stunted-muda);
+  color: var(--stunted);
+  border-color: var(--stunted-border);
+}
+
+.kartu-risiko h4 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.kartu-risiko .kriteria {
+  font-size: 0.8rem;
+  margin: 0.3rem 0 0.6rem;
+  opacity: 0.9;
+}
+
+.kartu-risiko p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--teks);
+}
+
+/* Layout Form Prediksi & Hasil */
+.tata-prediksi {
+  display: grid;
+  grid-template-columns: minmax(320px, 460px) 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.grup-form {
+  margin-bottom: 1.15rem;
+}
+
+.grup-form label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.86rem;
+  margin-bottom: 0.35rem;
+  color: var(--teks);
+}
+
+.grup-form label small {
+  color: var(--teks-redup);
+  font-weight: normal;
+}
+
+.input-text, .pilihan {
+  width: 100%;
+  padding: 0.62rem 0.85rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--garis-tebal);
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: #ffffff;
+  color: var(--teks);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input-text:focus, .pilihan:focus {
+  outline: none;
+  border-color: var(--utama);
+  box-shadow: 0 0 0 3px var(--utama-ring);
+}
+
+.baris-input-ganda {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+/* Segmented Buttons (Gender & Usia) */
+.grup-segmen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+}
+
+.grup-segmen button {
+  padding: 0.55rem;
+  border: 1px solid var(--garis-tebal);
+  background: #ffffff;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.grup-segmen button.aktif {
+  background: var(--utama);
+  color: #ffffff;
+  border-color: var(--utama);
+  font-weight: 600;
+}
+
+/* Checkbox Modern */
+.kotak-centang {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+
+.kotak-centang input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--utama);
+  cursor: pointer;
+}
+
+/* Kartu Hasil Deteksi */
+.kartu-hasil-header {
+  border-bottom: 1px solid var(--garis);
+  padding-bottom: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.badge-hasil-besar {
+  display: inline-block;
+  font-size: 1.55rem;
+  font-weight: 800;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-md);
+  margin-top: 0.4rem;
+}
+
+.badge-hasil-besar.Normal {
+  background: var(--normal-muda);
+  color: var(--normal);
+  border: 1px solid var(--normal-border);
+}
+
+.badge-hasil-besar.Waspada {
+  background: var(--waspada-muda);
+  color: var(--waspada);
+  border: 1px solid var(--waspada-border);
+}
+
+.badge-hasil-besar.Stunted {
+  background: var(--stunted-muda);
+  color: var(--stunted);
+  border: 1px solid var(--stunted-border);
+}
+
+dl.daftar-metrik-hasil {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.4rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--garis);
+}
+
+dl.daftar-metrik-hasil dt {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  color: var(--teks-redup);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+dl.daftar-metrik-hasil dd {
+  margin: 0.2rem 0 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--teks);
+}
+
+.box-rule-tree {
+  background: #1e293b;
+  color: #38bdf8;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8rem;
+  padding: 0.9rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.25rem;
+  overflow-x: auto;
+}
+
+.box-rekomendasi {
+  background: var(--utama-muda);
+  border-left: 4px solid var(--utama);
+  padding: 1rem 1.2rem;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.box-rekomendasi h4 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+  color: var(--utama);
+}
+
+.box-rekomendasi ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.88rem;
+  color: var(--teks);
+}
+
+.box-rekomendasi li {
+  margin-bottom: 0.35rem;
+}
+
+/* Dashboard KPI Cards */
+.grid-kpi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.kpi-card {
+  background: var(--kartu);
+  border: 1px solid var(--garis);
+  border-radius: var(--radius-md);
+  padding: 1.15rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.kpi-judul {
+  font-size: 0.78rem;
+  color: var(--teks-redup);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.kpi-angka {
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin: 0.3rem 0 0.1rem;
+  color: var(--teks);
+  line-height: 1.1;
+}
+
+.kpi-sub {
+  font-size: 0.76rem;
+  color: var(--teks-redup);
+}
+
+/* Tabel Database Posyandu */
+.wadah-tabel {
+  overflow-x: auto;
+  border: 1px solid var(--garis);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+th {
+  background: #f8fafc;
+  color: var(--teks-redup);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--garis);
+}
+
+td {
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--garis);
+  vertical-align: middle;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: #fbfcfe;
+}
+
+.badge-tabel {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 99px;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.badge-tabel.Normal {
+  background: var(--normal-muda);
+  color: var(--normal);
+}
+
+.badge-tabel.Waspada {
+  background: var(--waspada-muda);
+  color: var(--waspada);
+}
+
+.badge-tabel.Stunted {
+  background: var(--stunted-muda);
+  color: var(--stunted);
+}
+
+/* Filter Bar */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.filter-kiri {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+/* Tab Management */
+.halaman-tab {
+  display: none;
+}
+
+.halaman-tab.aktif {
+  display: block;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+footer {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--garis);
+  color: var(--teks-redup);
+  font-size: 0.84rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Responsivitas Layar */
+@media (max-width: 860px) {
+  .hero, .dua-kolom, .tata-prediksi {
+    grid-template-columns: 1fr;
+  }
+  .kartu-risiko-grid {
+    grid-template-columns: 1fr;
+  }
+}

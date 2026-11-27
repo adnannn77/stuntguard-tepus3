@@ -1,0 +1,36 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "StuntGuard: Jalankan Backend FastAPI (Port 8000)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "main:app",
+        "--reload",
+        "--port",
+        "8000"
+      ],
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "StuntGuard: Uji Smoke Test Suite",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/smoke_test.py",
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "StuntGuard: Pelatihan Ulang Model CRISP-DM",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/backend/train_model.py",
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal"
+    }
+  ]
+}

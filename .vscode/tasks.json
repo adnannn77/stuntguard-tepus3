@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "StuntGuard: Buka Antarmuka Frontend di Browser",
+      "type": "shell",
+      "command": "start ${workspaceFolder}/frontend/index.html",
+      "windows": {
+        "command": "start ${workspaceFolder}/frontend/index.html"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent"
+      }
+    },
+    {
+      "label": "StuntGuard: Jalankan Server FastAPI di Terminal",
+      "type": "shell",
+      "command": "cd backend && python -m uvicorn main:app --reload --port 8000",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    }
+  ]
+}

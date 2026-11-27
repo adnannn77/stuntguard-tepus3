@@ -1,0 +1,24 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# SQLite database (di-generate saat runtime, tidak perlu di-track)
+# Uncomment baris di bawah jika ingin mengecualikan DB dari repo:
+# backend/artifacts/posyandu_tepus3.db
+
+# IDE
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Misc
+*.log

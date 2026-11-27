@@ -1,0 +1,81 @@
+{
+  "model_name": "Decision Tree C4.5 Stunting Detector",
+  "algorithm": "DecisionTreeClassifier",
+  "accuracy": 0.82,
+  "target_classes": [
+    "Normal (Optimal)",
+    "Risiko Tinggi (Stunted)",
+    "Waspada (Faltering Growth)"
+  ],
+  "feature_names": [
+    "usia_bulan",
+    "is_laki",
+    "tinggi_cm",
+    "berat_kg",
+    "lila_cm",
+    "riwayat_bblr",
+    "asi_eksklusif",
+    "air_karst_kapur",
+    "jamban_sehat"
+  ],
+  "feature_importances": {
+    "usia_bulan": 0.0767,
+    "is_laki": 0.0,
+    "tinggi_cm": 0.4146,
+    "berat_kg": 0.0711,
+    "lila_cm": 0.0314,
+    "riwayat_bblr": 0.2092,
+    "asi_eksklusif": 0.146,
+    "air_karst_kapur": 0.051,
+    "jamban_sehat": 0.0
+  },
+  "who_reference_table": {
+    "months": [
+      0.0,
+      6.0,
+      12.0,
+      24.0,
+      36.0,
+      48.0,
+      60.0
+    ],
+    "boys_median": [
+      49.9,
+      67.6,
+      75.7,
+      87.8,
+      96.1,
+      103.3,
+      110.0
+    ],
+    "boys_sd": [
+      1.89,
+      2.35,
+      2.65,
+      3.25,
+      3.65,
+      4.05,
+      4.45
+    ],
+    "girls_median": [
+      49.1,
+      65.7,
+      74.0,
+      86.4,
+      95.1,
+      102.7,
+      109.4
+    ],
+    "girls_sd": [
+      1.85,
+      2.3,
+      2.6,
+      3.2,
+      3.6,
+      4.0,
+      4.4
+    ]
+  },
+  "lokasi": "Posyandu Padukuhan Tepus 3, Kapanewon Tepus, Gunungkidul",
+  "author": "Kelompok 39 Tim A KKNT UDB 2026"
+}

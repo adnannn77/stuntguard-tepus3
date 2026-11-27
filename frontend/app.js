@@ -1,6 +1,6 @@
 /**
  * STUNT-GUARD TEPUS 3 - Frontend Application Logic
- * Layanan Skrining Deteksi Dini & Antropometri Posyandu Padukuhan Tepus 3
+ * Layanan Konsultasi & Skrining Balita Posyandu Padukuhan Tepus 3
  * Standar: Permenkes No. 2/2020 & WHO Child Growth Standards
  * Kelompok 39 Tim 1 KKNT UDB 2026
  */
@@ -23,7 +23,7 @@ const WHO_CURVES = {
   }
 };
 
-// State Aplikasi
+// State Pangkalan Data Posyandu
 let appState = {
   isBackendConnected: false,
   balitaData: [
@@ -141,7 +141,7 @@ function interpolate(x, xArr, yArr) {
   return yArr[0];
 }
 
-// Fallback Mesin Inferensi Standar WHO
+// Fallback Mesin Inferensi Standar Baku WHO Anthro
 function hitungWHOFallback(usia, gender, tinggi, lila, bblr, asi, karst) {
   const curve = (gender === "L") ? WHO_CURVES.boys : WHO_CURVES.girls;
   const med_h = interpolate(usia, WHO_CURVES.months, curve.median);
@@ -198,7 +198,7 @@ function hitungWHOFallback(usia, gender, tinggi, lila, bblr, asi, karst) {
 // Navigasi Tab Layanan
 function gantiTab(tabId) {
   document.querySelectorAll(".halaman-tab").forEach(el => el.classList.remove("aktif"));
-  document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("aktif"));
+  document.querySelectorAll(".nav-link").forEach(btn => btn.classList.remove("aktif"));
 
   const targetTab = document.getElementById("tab-" + tabId);
   const targetBtn = document.getElementById("btn-" + tabId);
@@ -214,6 +214,7 @@ function gantiTab(tabId) {
     updateKPICards();
     renderAnalisisWilayah();
   }
+
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -221,16 +222,22 @@ function gantiTab(tabId) {
 let selectedGender = "L";
 function setGender(g) {
   selectedGender = g;
-  document.getElementById("btn-gender-l").classList.toggle("aktif", g === "L");
-  document.getElementById("btn-gender-p").classList.toggle("aktif", g === "P");
+  const btnL = document.getElementById("btn-gender-l");
+  const btnP = document.getElementById("btn-gender-p");
+  if (btnL) btnL.classList.toggle("aktif", g === "L");
+  if (btnP) btnP.classList.toggle("aktif", g === "P");
   eksekusiPrediksiLive();
 }
 
 // Sinkronisasi Usia Slider & Input
 function syncUsia(val) {
-  document.getElementById("in-usia").value = val;
-  document.getElementById("range-usia").value = val;
-  document.getElementById("label-usia-bln").innerText = val + " Bulan";
+  const inUsia = document.getElementById("in-usia");
+  const rngUsia = document.getElementById("range-usia");
+  const lblUsia = document.getElementById("label-usia-bln");
+
+  if (inUsia) inUsia.value = val;
+  if (rngUsia) rngUsia.value = val;
+  if (lblUsia) lblUsia.innerText = val + " Bulan";
   eksekusiPrediksiLive();
 }
 
@@ -307,7 +314,7 @@ async function eksekusiPrediksiLive() {
   const katRisiko = resData.status_risiko;
   if (badgeEl) {
     badgeEl.innerText = katRisiko;
-    badgeEl.className = "badge-status-klinis";
+    badgeEl.className = "badge-status-triage";
     if (katRisiko.includes("Normal")) badgeEl.classList.add("Normal");
     else if (katRisiko.includes("Waspada")) badgeEl.classList.add("Waspada");
     else badgeEl.classList.add("Stunted");
@@ -338,7 +345,7 @@ async function eksekusiPrediksiLive() {
     elRiskScore.style.color = warna;
   }
 
-  // Interpretasi Klinis Bahasa Medis Manusia
+  // Interpretasi Klinis Bahasa Medis Manusia yang Menenangkan
   const elInterpretasi = document.getElementById("res-interpretasi");
   if (elInterpretasi) {
     elInterpretasi.innerText = resData.interpretasi_klinis || 
@@ -473,9 +480,9 @@ function renderTabelBalita() {
       <td>${b.tinggi_cm} cm / ${b.berat_kg} kg</td>
       <td>${b.lila_cm} cm</td>
       <td><span style="font-weight:700; color:${b.zscore_tb < -2 ? 'var(--stunted)' : (b.zscore_tb < -1.5 ? 'var(--waspada)' : 'var(--normal)')}">${b.zscore_tb > 0 ? '+' : ''}${b.zscore_tb} SD</span></td>
-      <td><span class="badge-tabel ${statusClass}">${b.status_risiko}</span></td>
+      <td><span class="badge-status-tabel ${statusClass}">${b.status_risiko}</span></td>
       <td style="text-align:center;">
-        <button class="tombol bahaya" style="padding:0.25rem 0.55rem; font-size:0.75rem;" onclick="hapusBalita(${b.id})">Hapus</button>
+        <button class="tombol-pill bahaya" onclick="hapusBalita(${b.id})">Hapus</button>
       </td>
     `;
     tbody.appendChild(tr);
@@ -519,11 +526,11 @@ function renderAnalisisWilayah() {
     const row = document.createElement("div");
     row.style.marginBottom = "1.2rem";
     row.innerHTML = `
-      <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem; font-size:0.86rem;">
+      <div style="display:flex; justify-content:space-between; margin-bottom:0.4rem; font-size:0.86rem;">
         <strong>${rt} Padukuhan Tepus 3</strong>
         <span>${totalRT} Balita (${pctRisk}% Berisiko: ${stuntedRT} Prioritas, ${waspadaRT} Waspada)</span>
       </div>
-      <div style="height:12px; background:#e2e8f0; border-radius:99px; overflow:hidden; display:flex;">
+      <div style="height:12px; background:#ebdcd4; border-radius:99px; overflow:hidden; display:flex;">
         <div style="width:${totalRT > 0 ? (normalRT/totalRT*100) : 100}%; background:var(--normal);" title="Normal: ${normalRT}"></div>
         <div style="width:${totalRT > 0 ? (waspadaRT/totalRT*100) : 0}%; background:var(--waspada);" title="Waspada: ${waspadaRT}"></div>
         <div style="width:${totalRT > 0 ? (stuntedRT/totalRT*100) : 0}%; background:var(--stunted);" title="Stunted: ${stuntedRT}"></div>
@@ -569,12 +576,9 @@ async function cekKoneksiBackend() {
       appState.isBackendConnected = true;
       if (badgeKoneksi) {
         badgeKoneksi.innerHTML = `
-          <span class="dot-status" style="background:#10b981;"></span>
-          <span><strong>Layanan Posyandu Aktif</strong> &bull; Terhubung Basis Data & Standar WHO Anthro</span>
+          <span class="dot-status-live" style="background:var(--normal);"></span>
+          <span><strong>Layanan Posyandu Aktif</strong> &bull; Terhubung Basis Data & Standar Baku WHO Anthro</span>
         `;
-        badgeKoneksi.style.background = "#ffffff";
-        badgeKoneksi.style.color = "#0f172a";
-        badgeKoneksi.style.borderColor = "var(--border-light)";
       }
       const dataRes = await fetch(API_BASE_URL + "/api/balita");
       if (dataRes.ok) {
@@ -592,12 +596,9 @@ async function cekKoneksiBackend() {
   appState.isBackendConnected = false;
   if (badgeKoneksi) {
     badgeKoneksi.innerHTML = `
-      <span class="dot-status" style="background:#0284c7;"></span>
+      <span class="dot-status-live" style="background:var(--sekunder);"></span>
       <span><strong>Mode Mandiri (Stand-Alone Offline)</strong> &bull; Mesin Antropometri WHO Anthro Aktif</span>
     `;
-    badgeKoneksi.style.background = "#ffffff";
-    badgeKoneksi.style.color = "#0f172a";
-    badgeKoneksi.style.borderColor = "var(--border-light)";
   }
 }
 

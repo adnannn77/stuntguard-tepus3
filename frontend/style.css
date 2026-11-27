@@ -1,61 +1,68 @@
 /* ==========================================================================
-   STUNT-GUARD TEPUS 3 - Bespoke Healthcare Consulting Design System
-   Inspirasi UX: Relasi Consulting Healthcare Screening Platform
-   Standar: Agency-Grade, 100% Responsive, Zero Academic Clutter
+   STUNT-GUARD TEPUS 3 - Warm Healthcare Consulting Design System
+   Inspirasi Visual: Relasi Consulting (https://www.relasiconsulting.com)
+   Estetika: Hangat, Humanis, Bersih, Profesional, Bebas Desain Ala AI Kaku
    ========================================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 :root {
-  /* Surface & Background */
-  --bg-page: #f8fafc;
+  /* Warm Earthy & Pastel Palette (Relasi Consulting Identity) */
+  --bg-page: #faf6f2;
   --bg-surface: #ffffff;
-  --bg-subtle: #f1f5f9;
+  --bg-subtle: #f6f0ea;
+  --bg-warm-tint: #fcf9f6;
   
-  /* Borders & Dividers */
-  --border-light: rgba(226, 232, 240, 0.9);
-  --border-strong: #cbd5e1;
-  --border-focus: rgba(13, 148, 136, 0.4);
+  /* Borders */
+  --border-light: #ece3dc;
+  --border-strong: #dbc9bd;
+  --border-focus: rgba(194, 109, 83, 0.35);
   
   /* Typography Colors */
-  --text-main: #0f172a;        /* Deep Slate 900 */
-  --text-body: #334155;        /* Slate 700 */
-  --text-muted: #64748b;       /* Slate 500 */
-  --text-light: #94a3b8;       /* Slate 400 */
+  --text-main: #282422;        /* Warm Deep Charcoal */
+  --text-body: #59524e;        /* Soft Charcoal */
+  --text-muted: #847a75;       /* Warm Gray */
+  --text-light: #ab9f99;
   
-  /* Healthcare Primary & Accent Palette */
-  --utama: #0d9488;            /* Teal 600 */
-  --utama-hover: #0f766e;      /* Teal 700 */
-  --utama-active: #115e59;     /* Teal 800 */
-  --utama-light: #f0fdfa;      /* Teal 50 */
-  --utama-ring: rgba(13, 148, 136, 0.2);
-  --sekunder: #0284c7;         /* Sky 600 */
-  --sekunder-hover: #0369a1;   /* Sky 700 */
-  --sekunder-light: #f0f9ff;   /* Sky 50 */
+  /* Brand Primary: Warm Terracotta / Dusty Coral */
+  --utama: #c26d53;
+  --utama-hover: #ad5940;
+  --utama-active: #964a34;
+  --utama-light: #fbf0ec;
+  --utama-border: #f2d4c9;
+  --utama-ring: rgba(194, 109, 83, 0.22);
   
-  /* Clinical Tri-Color Triage */
-  --normal: #16a34a;           /* Emerald 600 */
-  --normal-bg: #f0fdf4;
-  --normal-border: #bbf7d0;
+  /* Brand Secondary: Muted Sage Green / Slate Eucalyptus */
+  --sekunder: #5d7b73;
+  --sekunder-hover: #4d6861;
+  --sekunder-light: #eef4f2;
+  --sekunder-border: #d0e0db;
   
-  --waspada: #d97706;          /* Amber 600 */
-  --waspada-bg: #fffbeb;
-  --waspada-border: #fde68a;
+  /* Clinical Status Tri-Color (Soft Human Healthcare) */
+  --normal: #3b7e5b;           /* Warm Forest Emerald */
+  --normal-bg: #f0f7f3;
+  --normal-border: #cbe5d5;
   
-  --stunted: #dc2626;          /* Rose/Red 600 */
-  --stunted-bg: #fef2f2;
-  --stunted-border: #fecaca;
+  --waspada: #c4732a;          /* Warm Amber Terracotta */
+  --waspada-bg: #fdf6ec;
+  --waspada-border: #fadbbe;
+  
+  --stunted: #ba473b;          /* Soft Crimson Rose */
+  --stunted-bg: #fdf1f0;
+  --stunted-border: #f8d1ce;
   
   /* Radii */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
   --radius-pill: 9999px;
   
-  /* Soft Consulting Shadows */
-  --shadow-subtle: 0 1px 3px 0 rgba(15, 23, 42, 0.04);
-  --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
-  --shadow-hover: 0 16px 36px -8px rgba(13, 148, 136, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
-  --shadow-elevated: 0 20px 40px -10px rgba(15, 23, 42, 0.08);
+  /* Soft Organic Warm Shadows */
+  --shadow-subtle: 0 2px 8px rgba(120, 90, 75, 0.04);
+  --shadow-card: 0 8px 24px -4px rgba(120, 90, 75, 0.06), 0 2px 8px -2px rgba(120, 90, 75, 0.03);
+  --shadow-hover: 0 16px 36px -4px rgba(194, 109, 83, 0.14), 0 4px 12px -2px rgba(120, 90, 75, 0.04);
+  --shadow-elevated: 0 20px 40px -8px rgba(100, 70, 55, 0.1);
   
   /* Transitions */
   --trans-fast: 0.15s ease;
@@ -77,18 +84,18 @@ body {
   margin: 0;
   background-color: var(--bg-page);
   background-image: 
-    radial-gradient(circle at 10% 15%, rgba(13, 148, 136, 0.03) 0%, transparent 40%),
-    radial-gradient(circle at 90% 85%, rgba(2, 132, 199, 0.03) 0%, transparent 40%);
+    radial-gradient(circle at 85% 12%, rgba(217, 155, 130, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 10% 85%, rgba(93, 123, 115, 0.1) 0%, transparent 40%);
   background-attachment: fixed;
   color: var(--text-body);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* ================= Sticky Glassmorphic Header ================= */
+/* ================= Sticky Header (Relasi Consulting Style) ================= */
 .header-utama {
   position: sticky;
   top: 0;
@@ -96,29 +103,28 @@ body {
   width: 100%;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(251, 246, 242, 0.94);
   border-bottom: 1px solid var(--border-light);
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
   transition: box-shadow var(--trans-smooth), background var(--trans-smooth);
 }
 
 .header-utama.scrolled {
   background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 8px 25px -4px rgba(15, 23, 42, 0.07);
+  box-shadow: 0 6px 20px -3px rgba(120, 90, 75, 0.08);
 }
 
 .wadah-header {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.85rem 1.5rem;
+  padding: 0.9rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
-/* Logo & Branding */
+/* Brand & Logo Relasi Style */
 .merek {
   display: flex;
   align-items: center;
@@ -126,20 +132,15 @@ body {
   text-decoration: none;
   cursor: pointer;
   user-select: none;
-  transition: transform var(--trans-fast);
-}
-
-.merek:active {
-  transform: scale(0.98);
 }
 
 .emblem-logo {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
   transition: transform var(--trans-spring);
 }
 
@@ -150,7 +151,7 @@ body {
 .emblem-logo svg {
   width: 100%;
   height: 100%;
-  filter: drop-shadow(0 4px 8px rgba(13, 148, 136, 0.25));
+  filter: drop-shadow(0 3px 6px rgba(194, 109, 83, 0.25));
 }
 
 .nama-merek {
@@ -174,12 +175,13 @@ body {
 
 .badge-wilayah {
   display: inline-block;
-  background: linear-gradient(135deg, var(--utama), var(--sekunder));
-  color: #ffffff;
+  background: var(--utama-light);
+  color: var(--utama);
+  border: 1px solid var(--utama-border);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  padding: 0.15rem 0.5rem;
+  padding: 0.12rem 0.5rem;
   border-radius: var(--radius-pill);
   text-transform: uppercase;
 }
@@ -191,109 +193,339 @@ body {
   margin-top: 0.1rem;
 }
 
-/* Navigasi Segmen Pill (Relasi Consulting Style) */
-.wadah-nav-scroll {
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  max-width: 100%;
-}
-
-.wadah-nav-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-nav {
-  display: inline-flex;
+/* Navigasi Relasi Consulting Style */
+.nav-tengah {
+  display: flex;
   align-items: center;
-  gap: 0.25rem;
-  background: var(--bg-subtle);
-  padding: 0.25rem;
-  border-radius: var(--radius-pill);
-  border: 1px solid rgba(226, 232, 240, 0.75);
+  gap: 0.35rem;
 }
 
-nav button {
-  padding: 0.5rem 1rem;
+.nav-link {
+  padding: 0.55rem 0.95rem;
   border-radius: var(--radius-pill);
-  border: 1px solid transparent;
   background: transparent;
-  color: var(--text-muted);
-  font-size: 0.86rem;
-  font-weight: 500;
+  border: none;
+  color: var(--text-body);
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
   font-family: inherit;
   transition: all var(--trans-smooth);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
-nav button:hover:not(.aktif) {
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.75);
-  transform: translateY(-1px);
-}
-
-nav button.aktif {
-  background: var(--bg-surface);
+.nav-link:hover {
   color: var(--utama);
+  background: rgba(194, 109, 83, 0.08);
+}
+
+.nav-link.aktif {
+  color: var(--utama);
+  background: #ffffff;
+  box-shadow: var(--shadow-subtle);
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
 }
 
-nav button:active {
-  transform: scale(0.96);
+.nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
 }
 
-/* ================= Kontainer Presisi Rata Layar ================= */
+/* ================= Tombol Pill Konsultasi ================= */
+.tombol-pill {
+  padding: 0.68rem 1.45rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all var(--trans-smooth);
+  font-family: inherit;
+  border: 1px solid transparent;
+  user-select: none;
+}
+
+.tombol-pill:active {
+  transform: scale(0.97) !important;
+}
+
+.tombol-pill.terracotta {
+  background: var(--utama);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(194, 109, 83, 0.28);
+}
+
+.tombol-pill.terracotta:hover {
+  background: var(--utama-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(194, 109, 83, 0.36);
+}
+
+.tombol-pill.sage {
+  background: var(--sekunder);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(93, 123, 115, 0.25);
+}
+
+.tombol-pill.sage:hover {
+  background: var(--sekunder-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(93, 123, 115, 0.32);
+}
+
+.tombol-pill.outline-warm {
+  background: #ffffff;
+  color: var(--utama);
+  border: 1px solid var(--utama-border);
+  box-shadow: var(--shadow-subtle);
+}
+
+.tombol-pill.outline-warm:hover {
+  background: var(--utama-light);
+  transform: translateY(-2px);
+}
+
+.tombol-pill.bahaya {
+  background: #ffffff;
+  color: var(--stunted);
+  border: 1px solid var(--stunted-border);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+}
+
+.tombol-pill.bahaya:hover {
+  background: var(--stunted-bg);
+}
+
+/* ================= Kontainer Konten Utama ================= */
 .kerangka {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem 5rem;
+  padding: 1.5rem 1.5rem 5rem;
 }
 
-/* Status Koneksi API (Subtle Healthcare Pill) */
-.badge-status {
+/* Status Koneksi Halus */
+.badge-status-koneksi {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
   background: #ffffff;
   color: var(--text-body);
   border: 1px solid var(--border-light);
-  padding: 0.45rem 1rem;
+  padding: 0.4rem 0.95rem;
   border-radius: var(--radius-pill);
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 2rem;
   box-shadow: var(--shadow-subtle);
-  transition: all var(--trans-smooth);
 }
 
-.dot-status {
+.dot-status-live {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #10b981;
+  background: var(--normal);
+}
+
+/* ================= HERO BERANDA (RELASI CONSULTING LOOK) ================= */
+.hero-relasi {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 2.5rem 0 3.5rem;
+}
+
+.hero-teks-kiri {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tag-layanan-beranda {
+  display: inline-block;
+  background: var(--utama-light);
+  color: var(--utama);
+  border: 1px solid var(--utama-border);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.32rem 0.85rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 1.25rem;
+}
+
+.hero-relasi h1 {
+  font-size: clamp(2.1rem, 3.8vw, 3rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+  margin: 0 0 1.25rem;
+}
+
+.hero-relasi .lead {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text-body);
+  margin: 0 0 2rem;
+  max-width: 65ch;
+}
+
+.hero-aksi-grup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+.trust-badges-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.trust-item span.centang {
+  color: var(--normal);
+  font-weight: 800;
+}
+
+/* Sisi Kanan: Ilustrasi Lingkaran Hangat Relasi Consulting */
+.hero-visual-kanan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
 }
 
-.dot-status::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
+.lingkaran-backdrop {
+  width: 100%;
+  max-width: 440px;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
-  background: inherit;
-  animation: pulseLive 2s infinite;
+  background: radial-gradient(circle, #f5ded3 0%, #faede7 65%, transparent 72%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 12px 36px -8px rgba(217, 155, 130, 0.22);
 }
 
-@keyframes pulseLive {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  70% { transform: scale(2.4); opacity: 0; }
-  100% { transform: scale(0.95); opacity: 0; }
+.svg-ilustrasi-faskes {
+  width: 90%;
+  height: 90%;
+  filter: drop-shadow(0 8px 16px rgba(120, 80, 65, 0.12));
 }
 
-/* ================= Tab Fade In Transitions ================= */
+/* ================= 3 KARTU LAYANAN UNGGULAN BERANDA ================= */
+.seksi-layanan-unggulan {
+  padding: 3rem 0;
+  border-top: 1px solid var(--border-light);
+}
+
+.judul-bagian-tengah {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.judul-bagian-tengah h2 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+}
+
+.judul-bagian-tengah p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.grid-layanan-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+.kartu-layanan-item {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 2rem;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--trans-smooth), box-shadow var(--trans-smooth), border-color var(--trans-smooth);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.kartu-layanan-item:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--utama-border);
+}
+
+.ikon-layanan-lingkaran {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--utama-light);
+  border: 1px solid var(--utama-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.kartu-layanan-item h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 0.75rem;
+}
+
+.kartu-layanan-item p {
+  font-size: 0.92rem;
+  color: var(--text-body);
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+
+.link-aksi-layanan {
+  margin-top: auto;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--utama);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ================= TAB SYSTEM & TRANSISI ================= */
 .halaman-tab {
   display: none;
 }
@@ -314,131 +546,55 @@ nav button:active {
   }
 }
 
-/* ================= HERO LAYANAN (MODUL 1) ================= */
-.hero-layanan {
-  background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xl);
-  padding: 2.25rem 2.5rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-card);
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-layanan::after {
-  content: '';
-  position: absolute;
-  top: -40px;
-  right: -40px;
-  width: 180px;
-  height: 180px;
-  background: radial-gradient(circle, rgba(13, 148, 136, 0.08) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.tag-faskes {
-  display: inline-block;
-  background: var(--utama-light);
-  border: 1px solid rgba(13, 148, 136, 0.2);
-  color: var(--utama);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 0.3rem 0.8rem;
-  border-radius: var(--radius-pill);
-  margin-bottom: 0.85rem;
-}
-
-.hero-layanan h1 {
-  font-size: clamp(1.65rem, 3.2vw, 2.25rem);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  color: var(--text-main);
-  line-height: 1.25;
-  margin: 0 0 0.85rem;
-}
-
-.hero-lead {
-  font-size: 1rem;
-  line-height: 1.65;
-  color: var(--text-body);
-  max-width: 80ch;
-  margin: 0 0 1.5rem;
-}
-
-.badge-standar-grup {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-}
-
-.badge-fitur {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  padding: 0.35rem 0.85rem;
-  border-radius: var(--radius-pill);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-body);
-  box-shadow: var(--shadow-subtle);
-}
-
-/* ================= TATA SKRINING (FORM + SERTIFIKAT MEDIS) ================= */
-.tata-skrining {
+/* ================= MODUL 1: SKRINING BALITA & LEMBAR HASIL ================= */
+.tata-skrining-relasi {
   display: grid;
   grid-template-columns: 1.08fr 0.92fr;
-  gap: 2rem;
+  gap: 2.25rem;
   align-items: start;
 }
 
-/* Kartu Formulir Pengukuran */
-.kartu-form {
+.kartu-form-relasi {
   background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-xl);
-  padding: 2rem;
+  padding: 2.25rem;
   box-shadow: var(--shadow-card);
 }
 
-.kartu-form-header {
+.kartu-header-judul {
   border-bottom: 1px solid var(--border-light);
   padding-bottom: 1.25rem;
   margin-bottom: 1.5rem;
 }
 
-.kartu-form-header h3 {
+.kartu-header-judul h3 {
   margin: 0 0 0.35rem;
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 800;
   color: var(--text-main);
 }
 
-.kartu-form-header p {
+.kartu-header-judul p {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
   color: var(--text-muted);
 }
 
-.seksi-form {
+.seksi-input {
   margin-bottom: 1.75rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+  border-bottom: 1px solid var(--bg-subtle);
 }
 
-.seksi-form:last-of-type {
+.seksi-input:last-of-type {
   border-bottom: none;
   margin-bottom: 1rem;
   padding-bottom: 0;
 }
 
-.judul-seksi-form {
-  font-size: 0.88rem;
+.subjudul-langkah {
+  font-size: 0.86rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -456,7 +612,7 @@ nav button:active {
 
 .grup-form label {
   display: block;
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--text-main);
   margin-bottom: 0.4rem;
@@ -467,12 +623,12 @@ nav button:active {
   font-weight: normal;
 }
 
-.input-text, .pilihan {
+.input-relasi, .select-relasi {
   width: 100%;
-  padding: 0.72rem 0.95rem;
+  padding: 0.75rem 1rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-strong);
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   font-family: inherit;
   background: #ffffff;
   color: var(--text-main);
@@ -480,68 +636,68 @@ nav button:active {
   box-shadow: var(--shadow-subtle);
 }
 
-.input-text:focus, .pilihan:focus {
+.input-relasi:focus, .select-relasi:focus {
   outline: none;
   border-color: var(--utama);
   box-shadow: 0 0 0 3px var(--utama-ring);
 }
 
-.baris-input-ganda {
+.baris-dua-input {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-/* Segmen Gender */
-.grup-segmen {
+/* Segmen Gender Relasi */
+.grup-segmen-gender {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
 }
 
-.grup-segmen button {
-  padding: 0.65rem;
+.grup-segmen-gender button {
+  padding: 0.7rem;
   border: 1px solid var(--border-strong);
   background: #ffffff;
   border-radius: var(--radius-md);
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   font-weight: 600;
   cursor: pointer;
   font-family: inherit;
   transition: all var(--trans-fast);
 }
 
-.grup-segmen button:hover:not(.aktif) {
+.grup-segmen-gender button:hover:not(.aktif) {
   background: var(--bg-subtle);
 }
 
-.grup-segmen button.aktif {
-  background: linear-gradient(135deg, var(--utama), #0f766e);
+.grup-segmen-gender button.aktif {
+  background: var(--utama);
   color: #ffffff;
   border-color: var(--utama);
-  box-shadow: 0 3px 8px rgba(13, 148, 136, 0.2);
+  box-shadow: 0 4px 10px rgba(194, 109, 83, 0.25);
 }
 
-/* Sinkronisasi Usia Slider & Input */
-.label-baris-antara {
+/* Slider Usia Relasi */
+.slider-sync-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
 }
 
-.input-angka-kecil {
-  width: 70px;
+.input-usia-badge {
+  width: 75px;
   padding: 0.35rem 0.5rem;
   text-align: center;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-sm);
-  font-weight: 700;
-  font-size: 0.9rem;
+  font-weight: 800;
+  font-size: 0.92rem;
   color: var(--text-main);
 }
 
-.slider-usia {
+.slider-range-relasi {
   width: 100%;
   accent-color: var(--utama);
   cursor: pointer;
@@ -549,62 +705,56 @@ nav button:active {
   border-radius: 3px;
 }
 
-/* Checkbox Faktor Risiko */
-.kotak-faktor {
+/* Checkbox Faktor Perinatal */
+.kotak-centang-grup {
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-  background: var(--bg-subtle);
-  padding: 1rem;
+  background: var(--bg-warm-tint);
+  padding: 1.1rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-light);
 }
 
-.kotak-centang {
+.label-centang {
   display: flex;
   align-items: flex-start;
-  gap: 0.6rem;
-  font-size: 0.86rem;
+  gap: 0.65rem;
+  font-size: 0.88rem;
   cursor: pointer;
   user-select: none;
   line-height: 1.45;
 }
 
-.kotak-centang input[type="checkbox"] {
+.label-centang input[type="checkbox"] {
   margin-top: 0.15rem;
   accent-color: var(--utama);
-  width: 1rem;
-  height: 1rem;
+  width: 1.05rem;
+  height: 1.05rem;
   cursor: pointer;
 }
 
-.baris-tombol-form {
-  display: flex;
-  gap: 0.85rem;
-  margin-top: 1.5rem;
-}
-
-/* ================= KARTU LAPORAN HASIL KLINIS ================= */
-.area-hasil-skrining {
+/* ================= LEMBAR HASIL EVALUASI KLINIS (CERTIFICATE) ================= */
+.area-sertifikat-skrining {
   position: sticky;
-  top: 5rem;
+  top: 5.5rem;
 }
 
-.kartu-laporan-medis {
+.kartu-sertifikat-medis {
   background: #ffffff;
   border: 1px solid var(--border-light);
   border-top: 5px solid var(--utama);
   border-radius: var(--radius-xl);
-  padding: 2rem;
+  padding: 2.25rem;
   box-shadow: var(--shadow-card);
   transition: transform var(--trans-smooth), box-shadow var(--trans-smooth);
 }
 
-.kartu-laporan-medis:hover {
+.kartu-sertifikat-medis:hover {
   box-shadow: var(--shadow-hover);
 }
 
-.laporan-header {
+.sertifikat-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -614,72 +764,72 @@ nav button:active {
   margin-bottom: 1.5rem;
 }
 
-.laporan-instansi {
+.sertifikat-instansi {
   display: flex;
   flex-direction: column;
 }
 
-.laporan-title {
-  font-size: 0.88rem;
+.sertifikat-judul {
+  font-size: 0.92rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   color: var(--text-main);
   text-transform: uppercase;
 }
 
-.laporan-sub {
-  font-size: 0.74rem;
+.sertifikat-sub {
+  font-size: 0.76rem;
   color: var(--text-muted);
   margin-top: 0.2rem;
 }
 
-.badge-status-klinis {
-  padding: 0.5rem 1rem;
+.badge-status-triage {
+  padding: 0.5rem 1.15rem;
   border-radius: var(--radius-pill);
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   font-weight: 800;
   letter-spacing: -0.01em;
   white-space: nowrap;
 }
 
-.badge-status-klinis.Normal {
+.badge-status-triage.Normal {
   background: var(--normal-bg);
   color: var(--normal);
   border: 1px solid var(--normal-border);
 }
 
-.badge-status-klinis.Waspada {
+.badge-status-triage.Waspada {
   background: var(--waspada-bg);
   color: var(--waspada);
   border: 1px solid var(--waspada-border);
 }
 
-.badge-status-klinis.Stunted {
+.badge-status-triage.Stunted {
   background: var(--stunted-bg);
   color: var(--stunted);
   border: 1px solid var(--stunted-border);
 }
 
-/* Grid Metrik Pertumbuhan */
-.grid-metrik-laporan {
+/* 3 Metrik Hasil Pengukuran */
+.grid-tiga-metrik {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.85rem;
   margin-bottom: 1.5rem;
 }
 
-.kartu-metrik-kecil {
-  background: var(--bg-subtle);
+.kartu-metrik-box {
+  background: var(--bg-warm-tint);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 0.95rem;
+  padding: 1rem 0.75rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.judul-metrik {
+.metrik-label {
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -687,7 +837,7 @@ nav button:active {
   color: var(--text-muted);
 }
 
-.nilai-metrik {
+.metrik-nilai {
   font-size: 1.35rem;
   font-weight: 800;
   color: var(--text-main);
@@ -695,22 +845,22 @@ nav button:active {
   line-height: 1.2;
 }
 
-.sub-metrik {
+.metrik-keterangan {
   font-size: 0.74rem;
   color: var(--text-muted);
-  font-weight: 500;
+  font-weight: 600;
 }
 
-/* Kotak Interpretasi Medis & Rekomendasi */
-.kotak-interpretasi {
-  background: #f8fafc;
+/* Narasi Interpretasi Klinis Bahasa Manusia */
+.kotak-narasi-klinis {
+  background: #fdfbf9;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 1.15rem 1.25rem;
+  padding: 1.2rem 1.35rem;
   margin-bottom: 1.25rem;
 }
 
-.judul-interpretasi {
+.judul-kotak-narasi {
   font-size: 0.82rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -719,22 +869,23 @@ nav button:active {
   margin-bottom: 0.4rem;
 }
 
-.teks-interpretasi {
+.teks-narasi-klinis {
   margin: 0;
-  font-size: 0.88rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  line-height: 1.65;
   color: var(--text-body);
 }
 
-.kotak-rekomendasi-asuhan {
+/* Kotak Rekomendasi Asuhan */
+.kotak-asuhan-posyandu {
   background: var(--utama-light);
-  border: 1px solid rgba(13, 148, 136, 0.25);
+  border: 1px solid var(--utama-border);
   border-radius: var(--radius-lg);
-  padding: 1.15rem 1.25rem;
+  padding: 1.2rem 1.35rem;
   margin-bottom: 1.5rem;
 }
 
-.judul-rekomendasi {
+.judul-asuhan {
   font-size: 0.82rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -743,86 +894,20 @@ nav button:active {
   margin-bottom: 0.5rem;
 }
 
-.daftar-rekomendasi {
+.daftar-asuhan-list {
   margin: 0;
   padding-left: 1.2rem;
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   line-height: 1.6;
   color: var(--text-body);
 }
 
-.daftar-rekomendasi li {
+.daftar-asuhan-list li {
   margin-bottom: 0.35rem;
 }
 
-.daftar-rekomendasi li:last-child {
-  margin-bottom: 0;
-}
-
-.aksi-laporan {
-  margin-top: 1rem;
-}
-
-/* ================= TOMBOL UTAMA & SEKUNDER ================= */
-.tombol {
-  padding: 0.72rem 1.35rem;
-  border-radius: var(--radius-md);
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  transition: all var(--trans-smooth);
-  font-family: inherit;
-  border: 1px solid transparent;
-}
-
-.tombol:active {
-  transform: scale(0.97) !important;
-}
-
-.tombol.utama {
-  background: linear-gradient(135deg, var(--utama), #0f766e);
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
-}
-
-.tombol.utama:hover {
-  background: linear-gradient(135deg, var(--utama-hover), #115e59);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.35);
-}
-
-.tombol.sekunder {
-  background: #ffffff;
-  color: var(--utama);
-  border: 1px solid var(--border-strong);
-  box-shadow: var(--shadow-subtle);
-}
-
-.tombol.sekunder:hover {
-  background: var(--utama-light);
-  border-color: var(--utama);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.05);
-}
-
-.tombol.bahaya {
-  background: #ffffff;
-  color: var(--stunted);
-  border: 1px solid var(--stunted-border);
-}
-
-.tombol.bahaya:hover {
-  background: var(--stunted-bg);
-  transform: translateY(-1px);
-}
-
-/* ================= MODUL 2: DATA POSYANDU ================= */
-.kartu-rekap-header {
+/* ================= MODUL 2: REKAM POSYANDU ================= */
+.header-bagian-modul {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -831,58 +916,35 @@ nav button:active {
   margin-bottom: 2rem;
 }
 
-.kartu-rekap-header h2 {
-  font-size: 1.65rem;
+.header-bagian-modul h2 {
+  font-size: 1.85rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-main);
   margin: 0 0 0.35rem;
 }
 
-.subjudul {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  max-width: 75ch;
-  line-height: 1.6;
-}
-
-.kartu {
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-xl);
-  padding: 2rem;
-  margin-bottom: 2rem;
-  box-shadow: var(--shadow-card);
-  transition: transform var(--trans-smooth), box-shadow var(--trans-smooth);
-}
-
-.kartu:hover {
-  box-shadow: var(--shadow-hover);
-}
-
-.grid-kpi {
+.grid-kpi-4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
 
-.kpi-card {
+.kartu-kpi-relasi {
   background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 1.35rem;
+  padding: 1.4rem;
   box-shadow: var(--shadow-card);
-  transition: transform var(--trans-smooth), box-shadow var(--trans-smooth);
+  transition: transform var(--trans-smooth);
 }
 
-.kpi-card:hover {
+.kartu-kpi-relasi:hover {
   transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
 }
 
-.kpi-judul {
+.kpi-judul-teks {
   font-size: 0.74rem;
   color: var(--text-muted);
   font-weight: 700;
@@ -890,7 +952,7 @@ nav button:active {
   letter-spacing: 0.05em;
 }
 
-.kpi-angka {
+.kpi-angka-besar {
   font-size: 2.1rem;
   font-weight: 800;
   margin: 0.35rem 0 0.15rem;
@@ -899,12 +961,12 @@ nav button:active {
   letter-spacing: -0.02em;
 }
 
-.kpi-sub {
+.kpi-sub-teks {
   font-size: 0.78rem;
   color: var(--text-muted);
 }
 
-.filter-bar {
+.toolbar-tabel-relasi {
   display: flex;
   flex-wrap: wrap;
   gap: 0.85rem;
@@ -913,14 +975,14 @@ nav button:active {
   margin-bottom: 1.25rem;
 }
 
-.filter-kiri {
+.grup-filter-kiri {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   align-items: center;
 }
 
-.wadah-tabel {
+.wadah-tabel-relasi {
   overflow-x: auto;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
@@ -936,18 +998,18 @@ table {
 }
 
 th {
-  background: var(--bg-subtle);
+  background: var(--bg-warm-tint);
   color: var(--text-muted);
   font-size: 0.74rem;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-weight: 700;
-  padding: 0.85rem 1rem;
+  padding: 0.9rem 1rem;
   border-bottom: 1px solid var(--border-light);
 }
 
 td {
-  padding: 0.9rem 1rem;
+  padding: 0.95rem 1rem;
   border-bottom: 1px solid var(--border-light);
   vertical-align: middle;
 }
@@ -957,10 +1019,10 @@ tr:last-child td {
 }
 
 tr:hover td {
-  background: #fbfcfe;
+  background: #fdfcfb;
 }
 
-.badge-tabel {
+.badge-status-tabel {
   display: inline-block;
   padding: 0.22rem 0.65rem;
   border-radius: var(--radius-pill);
@@ -969,46 +1031,34 @@ tr:hover td {
   white-space: nowrap;
 }
 
-.badge-tabel.Normal { background: var(--normal-bg); color: var(--normal); }
-.badge-tabel.Waspada { background: var(--waspada-bg); color: var(--waspada); }
-.badge-tabel.Stunted { background: var(--stunted-bg); color: var(--stunted); }
+.badge-status-tabel.Normal { background: var(--normal-bg); color: var(--normal); }
+.badge-status-tabel.Waspada { background: var(--waspada-bg); color: var(--waspada); }
+.badge-status-tabel.Stunted { background: var(--stunted-bg); color: var(--stunted); }
 
-/* ================= MODUL 3: PANDUAN PMT LOKAL ================= */
-.kartu-pmt-header {
-  margin-bottom: 2rem;
-}
-
-.kartu-pmt-header h2 {
-  font-size: 1.65rem;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--text-main);
-  margin: 0 0 0.35rem;
-}
-
-.grid-resep-pmt {
+/* ================= MODUL 3: PANDUAN GIZI PMT ================= */
+.grid-resep-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 1.75rem;
 }
 
-.kartu-resep {
+.kartu-resep-relasi {
   background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-xl);
-  padding: 1.75rem;
+  padding: 2rem;
   box-shadow: var(--shadow-card);
   transition: transform var(--trans-smooth), box-shadow var(--trans-smooth);
   display: flex;
   flex-direction: column;
 }
 
-.kartu-resep:hover {
+.kartu-resep-relasi:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
 }
 
-.tag-resep {
+.tag-kategori-resep {
   font-size: 0.74rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -1017,215 +1067,239 @@ tr:hover td {
   margin-bottom: 0.5rem;
 }
 
-.kartu-resep h3 {
-  font-size: 1.2rem;
+.kartu-resep-relasi h3 {
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text-main);
   margin: 0 0 0.65rem;
   line-height: 1.3;
 }
 
-.deskripsi-resep {
-  font-size: 0.88rem;
+.deskripsi-resep-teks {
+  font-size: 0.9rem;
   color: var(--text-body);
-  line-height: 1.55;
+  line-height: 1.6;
   margin: 0 0 1.25rem;
 }
 
-.komposisi-box {
-  background: var(--bg-subtle);
+.wadah-komposisi {
+  background: var(--bg-warm-tint);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 1rem;
+  padding: 1.1rem;
   margin-top: auto;
-  margin-bottom: 1rem;
+  margin-bottom: 1.1rem;
 }
 
-.komposisi-box strong {
+.wadah-komposisi strong {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   color: var(--text-main);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.45rem;
 }
 
-.komposisi-box ul {
+.wadah-komposisi ul {
   margin: 0;
   padding-left: 1.15rem;
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   color: var(--text-body);
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
-.anjuran-pemberian {
-  font-size: 0.82rem;
+.box-anjuran-saji {
+  font-size: 0.84rem;
   color: var(--utama-hover);
   background: var(--utama-light);
-  padding: 0.65rem 0.85rem;
+  padding: 0.7rem 0.95rem;
   border-radius: var(--radius-md);
   border-left: 3px solid var(--utama);
 }
 
 /* ================= MODUL 4: PROFIL FASKES & TIM KKNT ================= */
-.dua-kolom {
+.layout-dua-kolom-profil {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
 }
 
-.dua-kolom h3 {
-  font-size: 1.15rem;
+.layout-dua-kolom-profil h3 {
+  font-size: 1.2rem;
   font-weight: 800;
   color: var(--text-main);
-  margin: 0 0 1rem;
+  margin: 0 0 1.15rem;
 }
 
-.kotak-faskes-info {
+.kotak-faskes-item {
   background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 1.15rem;
+  padding: 1.25rem;
   margin-bottom: 1rem;
   box-shadow: var(--shadow-subtle);
 }
 
-.kotak-faskes-info strong {
+.kotak-faskes-item strong {
   display: block;
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   color: var(--text-main);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
 
-.kotak-faskes-info p {
+.kotak-faskes-item p {
   margin: 0;
-  font-size: 0.85rem;
+  font-size: 0.86rem;
   color: var(--text-muted);
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
-.kartu-anggota {
+.kartu-anggota-item {
   background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
-  padding: 0.85rem 1.1rem;
+  padding: 0.9rem 1.15rem;
   margin-bottom: 0.75rem;
   box-shadow: var(--shadow-subtle);
 }
 
-.kartu-anggota strong {
+.kartu-anggota-item strong {
   display: block;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--text-main);
 }
 
-.kartu-anggota span {
+.kartu-anggota-item span {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
   margin-top: 0.15rem;
 }
 
-.kartu-dpl {
+.kotak-dpl-khusus {
   background: var(--utama-light);
-  border: 1px solid rgba(13, 148, 136, 0.3);
+  border: 1px solid var(--utama-border);
   border-radius: var(--radius-md);
-  padding: 1rem 1.15rem;
+  padding: 1.1rem 1.25rem;
   margin-top: 1.25rem;
 }
 
-.kartu-dpl strong {
+.kotak-dpl-khusus strong {
   display: block;
   font-size: 0.88rem;
   color: var(--utama);
 }
 
-.kartu-dpl span {
+.kotak-dpl-khusus span {
   display: block;
-  font-size: 0.86rem;
+  font-size: 0.88rem;
   color: var(--text-main);
-  font-weight: 600;
+  font-weight: 700;
   margin-top: 0.2rem;
 }
 
 /* ================= FOOTER RESMI ================= */
 footer {
-  margin-top: 4.5rem;
-  padding-top: 2rem;
+  margin-top: 5rem;
+  padding-top: 2.25rem;
   border-top: 1px solid var(--border-light);
   color: var(--text-muted);
-  font-size: 0.84rem;
+  font-size: 0.86rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 /* ================= RESPONSIVITAS MULTI-DEVICE ================= */
 @media (max-width: 1024px) {
-  .tata-skrining {
+  .hero-relasi {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .hero-visual-kanan {
+    order: -1;
+  }
+  .lingkaran-backdrop {
+    max-width: 340px;
+  }
+  .grid-layanan-3 {
+    grid-template-columns: 1fr;
+  }
+  .tata-skrining-relasi {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .area-hasil-skrining {
+  .area-sertifikat-skrining {
     position: static;
   }
-  .grid-kpi {
+  .grid-kpi-4 {
     grid-template-columns: repeat(2, 1fr);
   }
-  .grid-resep-pmt {
-    grid-template-columns: repeat(2, 1fr);
+  .grid-resep-3 {
+    grid-template-columns: 1fr;
   }
-  .dua-kolom {
+  .layout-dua-kolom-profil {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
   .wadah-header {
     flex-direction: column;
-    align-items: flex-start;
-    padding: 0.75rem 1rem;
-    gap: 0.75rem;
+    align-items: stretch;
+    padding: 0.85rem 1rem;
+    gap: 0.85rem;
   }
-  .wadah-nav-scroll {
+  .nav-tengah {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.25rem;
+  }
+  .nav-tengah::-webkit-scrollbar {
+    display: none;
+  }
+  .nav-cta {
+    width: 100%;
+  }
+  .nav-cta .tombol-pill {
     width: 100%;
   }
   .kerangka {
     padding: 1.25rem 1rem 4rem;
   }
-  .hero-layanan {
-    padding: 1.5rem 1.25rem;
+  .hero-relasi h1 {
+    font-size: 1.95rem;
   }
-  .hero-layanan h1 {
-    font-size: 1.55rem;
-  }
-  .kartu-form {
-    padding: 1.35rem;
-  }
-  .baris-input-ganda {
-    grid-template-columns: 1fr;
-  }
-  .grid-metrik-laporan {
-    grid-template-columns: 1fr;
-  }
-  .grid-kpi {
-    grid-template-columns: 1fr;
-  }
-  .grid-resep-pmt {
-    grid-template-columns: 1fr;
-  }
-  .baris-tombol-form {
-    flex-direction: column;
-  }
-  .filter-bar {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .filter-kiri {
+  .hero-aksi-grup {
     flex-direction: column;
     width: 100%;
   }
-  .filter-kiri input, .filter-kiri select {
+  .hero-aksi-grup .tombol-pill {
+    width: 100%;
+  }
+  .kartu-form-relasi {
+    padding: 1.35rem;
+  }
+  .baris-dua-input {
+    grid-template-columns: 1fr;
+  }
+  .grid-tiga-metrik {
+    grid-template-columns: 1fr;
+  }
+  .grid-kpi-4 {
+    grid-template-columns: 1fr;
+  }
+  .toolbar-tabel-relasi {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .grup-filter-kiri {
+    flex-direction: column;
+    width: 100%;
+  }
+  .grup-filter-kiri input, .grup-filter-kiri select {
     width: 100% !important;
   }
 }
@@ -1237,13 +1311,14 @@ footer {
     color: #000000 !important;
   }
   .header-utama,
-  .badge-status,
-  .hero-layanan,
-  .kartu-form,
+  .badge-status-koneksi,
+  .hero-relasi,
+  .seksi-layanan-unggulan,
+  .kartu-form-relasi,
   .no-print,
-  .aksi-laporan,
   footer,
   nav,
+  #tab-beranda,
   #tab-rekap,
   #tab-pmt,
   #tab-tentang {
@@ -1253,19 +1328,19 @@ footer {
     padding: 0 !important;
     max-width: 100% !important;
   }
-  .tata-skrining {
+  .tata-skrining-relasi {
     display: block !important;
   }
-  .area-hasil-skrining {
+  .area-sertifikat-skrining {
     position: static !important;
   }
-  .kartu-laporan-medis {
+  .kartu-sertifikat-medis {
     border: 2px solid #000000 !important;
     box-shadow: none !important;
     padding: 2.5cm !important;
     border-radius: 0 !important;
   }
-  .badge-status-klinis {
+  .badge-status-triage {
     border: 1px solid #000000 !important;
     color: #000000 !important;
     background: none !important;

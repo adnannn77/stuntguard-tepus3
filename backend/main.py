@@ -188,6 +188,7 @@ class PredictionResponse(BaseModel):
     status_risiko: str
     risk_score: float
     decision_rule: str
+    interpretasi_klinis: Optional[str] = None
     rekomendasi: List[str]
 
 # --- HELPER FUNCTIONS ---
@@ -245,10 +246,12 @@ def run_decision_tree_engine(inp: BalitaInput):
             
     # 2. Aturan Pohon Keputusan Transparan (C4.5 Rules Permenkes 2/2020)
     rekomendasi = []
+    interpretasi = ""
     if z_tb < -2.0 or (z_tb < -1.8 and inp.lila_cm < 11.5) or pred_class == "Risiko Tinggi (Stunted)":
         status_risiko = "Risiko Tinggi (Stunted)"
         risk_score = 0.88
         rule = "RULE-03: IF (Z_TB < -2.0) OR (Z_TB < -1.8 AND LiLA < 11.5cm) THEN 'Risiko Tinggi'"
+        interpretasi = "Pertumbuhan fisik balita berada di bawah ambang batas standar baku WHO (Z-score < -2.0 SD) atau terindikasi malnutrisi akut berdasarkan lingkar lengan atas. Balita memerlukan evaluasi klinis segera oleh Bidan Desa / Puskesmas dan intervensi gizi terpadu."
         rekomendasi.append("⚠️ Rujukan Segera: Laporkan dan rujuk balita ke Bidan Desa / Puskesmas Pembantu Tepus.")
         rekomendasi.append("🥩 Terapi Nutrisi: Asupan protein hewani harian (1 butir telur/hari, ikan laut lumat Tepus).")
         rekomendasi.append("💧 Sanitasi Air: Pastikan air minum balita bebas endapan kapur dan direbus mendidih.")
@@ -256,14 +259,16 @@ def run_decision_tree_engine(inp: BalitaInput):
         status_risiko = "Waspada (Faltering Growth)"
         risk_score = 0.52
         rule = "RULE-02: IF (Z_TB < -1.5) OR (Z_TB < -1.2 AND (BBLR == True OR ASI == False)) THEN 'Waspada'"
+        interpretasi = "Balita menunjukkan perlambatan laju pertumbuhan (growth faltering) atau mendekati batas defisit nutrisi. Diperlukan intervensi makanan tambahan (PMT) kaya protein lokal serta pemantauan kenaikan berat/tinggi badan berkala 14 hari."
         rekomendasi.append("🟡 Intervensi PMT Lokal: Berikan PMT fortifikasi olahan singkong & daun kelor atau nugget ikan.")
         rekomendasi.append("⚖️ Pemantauan Ulang: Timbang ulang berat dan tinggi badan dalam 14 hari di Posyandu.")
     else:
         status_risiko = "Normal (Optimal)"
         risk_score = 0.12
         rule = "RULE-01: IF (Z_TB >= -1.5 AND LiLA >= 12.5cm) THEN 'Normal (Optimal)'"
-        rekomendasi.append("✅ Pertahankan Pola Asuh: Tumbuh kembang balita sesuai kurva standar WHO.")
-        rekomendasi.append("🥦 Diversifikasi Pangan: Lanjutkan pola makan gizi seimbang berbasis pangan lokal.")
+        interpretasi = "Pertumbuhan tinggi badan dan lingkar lengan atas balita berada pada rentang ideal sesuai kurva baku WHO Anthro. Anak menunjukkan pertumbuhan fisik proporsional sesuai usianya tanpa indikasi faltering growth."
+        rekomendasi.append("✅ Pertahankan Pola Asuh: Tumbuh kembang balita sesuai kurva standar baku WHO Anthro.")
+        rekomendasi.append("🥦 Diversifikasi Pangan: Lanjutkan pola makan gizi seimbang dengan prinsip Isi Piringku.")
         
     return {
         "nama_balita": inp.nama_balita,
@@ -279,6 +284,7 @@ def run_decision_tree_engine(inp: BalitaInput):
         "status_risiko": status_risiko,
         "risk_score": risk_score,
         "decision_rule": rule,
+        "interpretasi_klinis": interpretasi,
         "rekomendasi": rekomendasi
     }
 

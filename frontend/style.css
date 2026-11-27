@@ -1,36 +1,37 @@
 /* ==========================================================================
-   STUNT-GUARD TEPUS 3 - Bespoke Healthcare Design System
-   Dirancang khusus untuk Posyandu Padukuhan Tepus 3 & Evaluasi DPL FIKOM UDB
-   Standar: Agency-Grade / Healthcare Consulting (Relasi Consulting Style)
+   STUNT-GUARD TEPUS 3 - Bespoke Healthcare Consulting Design System
+   Inspirasi UX: Relasi Consulting Healthcare Screening Platform
+   Standar: Agency-Grade, 100% Responsive, Zero Academic Clutter
    ========================================================================== */
 
 :root {
   /* Surface & Background */
   --bg-page: #f8fafc;
   --bg-surface: #ffffff;
-  --bg-surface-elevated: #ffffff;
   --bg-subtle: #f1f5f9;
   
   /* Borders & Dividers */
-  --border-light: rgba(226, 232, 240, 0.85);
-  --border-focus: rgba(13, 148, 136, 0.35);
+  --border-light: rgba(226, 232, 240, 0.9);
   --border-strong: #cbd5e1;
+  --border-focus: rgba(13, 148, 136, 0.4);
   
-  /* Text & Typography */
-  --text-main: #0f172a;        /* Slate 900 */
+  /* Typography Colors */
+  --text-main: #0f172a;        /* Deep Slate 900 */
   --text-body: #334155;        /* Slate 700 */
   --text-muted: #64748b;       /* Slate 500 */
   --text-light: #94a3b8;       /* Slate 400 */
   
-  /* Primary Healthcare Brand: Deep Teal & Sky Blue */
+  /* Healthcare Primary & Accent Palette */
   --utama: #0d9488;            /* Teal 600 */
   --utama-hover: #0f766e;      /* Teal 700 */
   --utama-active: #115e59;     /* Teal 800 */
   --utama-light: #f0fdfa;      /* Teal 50 */
   --utama-ring: rgba(13, 148, 136, 0.2);
   --sekunder: #0284c7;         /* Sky 600 */
+  --sekunder-hover: #0369a1;   /* Sky 700 */
+  --sekunder-light: #f0f9ff;   /* Sky 50 */
   
-  /* Clinical Triage Tri-Color */
+  /* Clinical Tri-Color Triage */
   --normal: #16a34a;           /* Emerald 600 */
   --normal-bg: #f0fdf4;
   --normal-border: #bbf7d0;
@@ -44,25 +45,25 @@
   --stunted-border: #fecaca;
   
   /* Radii */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 24px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-pill: 9999px;
   
-  /* Soft Shadows (Consulting Grade) */
+  /* Soft Consulting Shadows */
   --shadow-subtle: 0 1px 3px 0 rgba(15, 23, 42, 0.04);
   --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
   --shadow-hover: 0 16px 36px -8px rgba(13, 148, 136, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
   --shadow-elevated: 0 20px 40px -10px rgba(15, 23, 42, 0.08);
   
-  /* Smooth Transitions */
+  /* Transitions */
   --trans-fast: 0.15s ease;
   --trans-smooth: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   --trans-spring: 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ================= Global Reset & Smooth Scroll ================= */
+/* ================= Global Reset & Foundations ================= */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -76,8 +77,8 @@ body {
   margin: 0;
   background-color: var(--bg-page);
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(13, 148, 136, 0.04) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(2, 132, 199, 0.04) 0%, transparent 40%);
+    radial-gradient(circle at 10% 15%, rgba(13, 148, 136, 0.03) 0%, transparent 40%),
+    radial-gradient(circle at 90% 85%, rgba(2, 132, 199, 0.03) 0%, transparent 40%);
   background-attachment: fixed;
   color: var(--text-body);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -87,7 +88,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ================= Sticky Glassmorphic Header (Full Width) ================= */
+/* ================= Sticky Glassmorphic Header ================= */
 .header-utama {
   position: sticky;
   top: 0;
@@ -95,20 +96,20 @@ body {
   width: 100%;
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  background: rgba(255, 255, 255, 0.88);
+  background: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid var(--border-light);
-  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.02);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.02);
   transition: box-shadow var(--trans-smooth), background var(--trans-smooth);
 }
 
 .header-utama.scrolled {
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.07);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 8px 25px -4px rgba(15, 23, 42, 0.07);
 }
 
 .wadah-header {
   width: 100%;
-  max-width: 1240px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0.85rem 1.5rem;
   display: flex;
@@ -117,7 +118,7 @@ body {
   gap: 1.25rem;
 }
 
-/* Brand & Logo Vector */
+/* Logo & Branding */
 .merek {
   display: flex;
   align-items: center;
@@ -164,7 +165,7 @@ body {
 }
 
 .judul-merek strong {
-  font-size: 1.18rem;
+  font-size: 1.15rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-main);
@@ -190,7 +191,7 @@ body {
   margin-top: 0.1rem;
 }
 
-/* Navigasi Pill Segmen Modern (Horizontal Scroll di HP) */
+/* Navigasi Segmen Pill (Relasi Consulting Style) */
 .wadah-nav-scroll {
   overflow-x: auto;
   white-space: nowrap;
@@ -206,15 +207,15 @@ body {
 nav {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.25rem;
   background: var(--bg-subtle);
-  padding: 0.3rem;
+  padding: 0.25rem;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(226, 232, 240, 0.7);
+  border: 1px solid rgba(226, 232, 240, 0.75);
 }
 
 nav button {
-  padding: 0.48rem 0.95rem;
+  padding: 0.5rem 1rem;
   border-radius: var(--radius-pill);
   border: 1px solid transparent;
   background: transparent;
@@ -228,7 +229,7 @@ nav button {
 
 nav button:hover:not(.aktif) {
   color: var(--text-main);
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.75);
   transform: translateY(-1px);
 }
 
@@ -243,15 +244,15 @@ nav button:active {
   transform: scale(0.96);
 }
 
-/* ================= Kontainer Konten Utama (Presisi Rata Layar) ================= */
+/* ================= Kontainer Presisi Rata Layar ================= */
 .kerangka {
   width: 100%;
-  max-width: 1240px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 1.5rem 1.5rem 5rem;
+  padding: 2rem 1.5rem 5rem;
 }
 
-/* Status Badge API Live Pulse */
+/* Status Koneksi API (Subtle Healthcare Pill) */
 .badge-status {
   display: inline-flex;
   align-items: center;
@@ -292,93 +293,481 @@ nav button:active {
   100% { transform: scale(0.95); opacity: 0; }
 }
 
-/* ================= Hero Section (Modern Balanced Grid) ================= */
-.hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: 3rem;
-  align-items: stretch;
-  margin-bottom: 3rem;
+/* ================= Tab Fade In Transitions ================= */
+.halaman-tab {
+  display: none;
 }
 
-.label-sub {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+.halaman-tab.aktif {
+  display: block;
+  animation: tabFadeUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes tabFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= HERO LAYANAN (MODUL 1) ================= */
+.hero-layanan {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-layanan::after {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.tag-faskes {
+  display: inline-block;
   background: var(--utama-light);
   border: 1px solid rgba(13, 148, 136, 0.2);
   color: var(--utama);
-  font-size: 0.74rem;
+  font-size: 0.76rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 0.35rem 0.85rem;
+  padding: 0.3rem 0.8rem;
   border-radius: var(--radius-pill);
-  margin-bottom: 1.1rem;
+  margin-bottom: 0.85rem;
 }
 
-.hero h1 {
-  font-size: clamp(2rem, 3.8vw, 2.75rem);
-  line-height: 1.18;
-  letter-spacing: -0.025em;
+.hero-layanan h1 {
+  font-size: clamp(1.65rem, 3.2vw, 2.25rem);
   font-weight: 800;
+  letter-spacing: -0.025em;
   color: var(--text-main);
-  margin: 0 0 1rem;
+  line-height: 1.25;
+  margin: 0 0 0.85rem;
 }
 
-.lead {
-  font-size: 1.05rem;
+.hero-lead {
+  font-size: 1rem;
   line-height: 1.65;
   color: var(--text-body);
-  margin: 0 0 1.85rem;
+  max-width: 80ch;
+  margin: 0 0 1.5rem;
 }
 
-.aksi-hero {
+.badge-standar-grup {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.85rem;
+  gap: 0.65rem;
 }
 
-/* Ringkas Metrik Card Hero */
-.ringkas-metrik {
-  margin: 0;
-  padding: 2rem;
+.badge-fitur {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-body);
+  box-shadow: var(--shadow-subtle);
+}
+
+/* ================= TATA SKRINING (FORM + SERTIFIKAT MEDIS) ================= */
+.tata-skrining {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.75rem;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Kartu Formulir Pengukuran */
+.kartu-form {
   background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.kartu-form-header {
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.kartu-form-header h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.kartu-form-header p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.seksi-form {
+  margin-bottom: 1.75rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.seksi-form:last-of-type {
+  border-bottom: none;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
+}
+
+.judul-seksi-form {
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--utama);
+  margin-bottom: 1.1rem;
+}
+
+.grup-form {
+  margin-bottom: 1.15rem;
+}
+
+.grup-form:last-child {
+  margin-bottom: 0;
+}
+
+.grup-form label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
+}
+
+.grup-form label small {
+  color: var(--text-muted);
+  font-weight: normal;
+}
+
+.input-text, .pilihan {
+  width: 100%;
+  padding: 0.72rem 0.95rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  font-size: 0.92rem;
+  font-family: inherit;
+  background: #ffffff;
+  color: var(--text-main);
+  transition: all var(--trans-fast);
+  box-shadow: var(--shadow-subtle);
+}
+
+.input-text:focus, .pilihan:focus {
+  outline: none;
+  border-color: var(--utama);
+  box-shadow: 0 0 0 3px var(--utama-ring);
+}
+
+.baris-input-ganda {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Segmen Gender */
+.grup-segmen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.grup-segmen button {
+  padding: 0.65rem;
+  border: 1px solid var(--border-strong);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all var(--trans-fast);
+}
+
+.grup-segmen button:hover:not(.aktif) {
+  background: var(--bg-subtle);
+}
+
+.grup-segmen button.aktif {
+  background: linear-gradient(135deg, var(--utama), #0f766e);
+  color: #ffffff;
+  border-color: var(--utama);
+  box-shadow: 0 3px 8px rgba(13, 148, 136, 0.2);
+}
+
+/* Sinkronisasi Usia Slider & Input */
+.label-baris-antara {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.input-angka-kecil {
+  width: 70px;
+  padding: 0.35rem 0.5rem;
+  text-align: center;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.slider-usia {
+  width: 100%;
+  accent-color: var(--utama);
+  cursor: pointer;
+  height: 6px;
+  border-radius: 3px;
+}
+
+/* Checkbox Faktor Risiko */
+.kotak-faktor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  background: var(--bg-subtle);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+}
+
+.kotak-centang {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.86rem;
+  cursor: pointer;
+  user-select: none;
+  line-height: 1.45;
+}
+
+.kotak-centang input[type="checkbox"] {
+  margin-top: 0.15rem;
+  accent-color: var(--utama);
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.baris-tombol-form {
+  display: flex;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+}
+
+/* ================= KARTU LAPORAN HASIL KLINIS ================= */
+.area-hasil-skrining {
+  position: sticky;
+  top: 5rem;
+}
+
+.kartu-laporan-medis {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-top: 5px solid var(--utama);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
   box-shadow: var(--shadow-card);
   transition: transform var(--trans-smooth), box-shadow var(--trans-smooth);
 }
 
-.ringkas-metrik:hover {
-  transform: translateY(-4px);
+.kartu-laporan-medis:hover {
   box-shadow: var(--shadow-hover);
 }
 
-.ringkas-metrik dt {
-  font-size: 2.2rem;
-  font-weight: 800;
-  line-height: 1.1;
-  color: var(--utama);
-  letter-spacing: -0.02em;
+.laporan-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
-.ringkas-metrik dd {
-  margin: 0.35rem 0 0;
-  font-size: 0.85rem;
+.laporan-instansi {
+  display: flex;
+  flex-direction: column;
+}
+
+.laporan-title {
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--text-main);
+  text-transform: uppercase;
+}
+
+.laporan-sub {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  margin-top: 0.2rem;
+}
+
+.badge-status-klinis {
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.84rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.badge-status-klinis.Normal {
+  background: var(--normal-bg);
+  color: var(--normal);
+  border: 1px solid var(--normal-border);
+}
+
+.badge-status-klinis.Waspada {
+  background: var(--waspada-bg);
+  color: var(--waspada);
+  border: 1px solid var(--waspada-border);
+}
+
+.badge-status-klinis.Stunted {
+  background: var(--stunted-bg);
+  color: var(--stunted);
+  border: 1px solid var(--stunted-border);
+}
+
+/* Grid Metrik Pertumbuhan */
+.grid-metrik-laporan {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.kartu-metrik-kecil {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 0.95rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.judul-metrik {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.nilai-metrik {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0.2rem 0;
+  line-height: 1.2;
+}
+
+.sub-metrik {
+  font-size: 0.74rem;
   color: var(--text-muted);
   font-weight: 500;
-  line-height: 1.45;
 }
 
-/* ================= Tombol & Aksi Interaktif ================= */
+/* Kotak Interpretasi Medis & Rekomendasi */
+.kotak-interpretasi {
+  background: #f8fafc;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.15rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.judul-interpretasi {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--utama);
+  margin-bottom: 0.4rem;
+}
+
+.teks-interpretasi {
+  margin: 0;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+.kotak-rekomendasi-asuhan {
+  background: var(--utama-light);
+  border: 1px solid rgba(13, 148, 136, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 1.15rem 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.judul-rekomendasi {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--utama);
+  margin-bottom: 0.5rem;
+}
+
+.daftar-rekomendasi {
+  margin: 0;
+  padding-left: 1.2rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+.daftar-rekomendasi li {
+  margin-bottom: 0.35rem;
+}
+
+.daftar-rekomendasi li:last-child {
+  margin-bottom: 0;
+}
+
+.aksi-laporan {
+  margin-top: 1rem;
+}
+
+/* ================= TOMBOL UTAMA & SEKUNDER ================= */
 .tombol {
-  padding: 0.75rem 1.4rem;
+  padding: 0.72rem 1.35rem;
   border-radius: var(--radius-md);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
@@ -398,13 +787,13 @@ nav button:active {
 .tombol.utama {
   background: linear-gradient(135deg, var(--utama), #0f766e);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(13, 148, 136, 0.25);
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.25);
 }
 
 .tombol.utama:hover {
   background: linear-gradient(135deg, var(--utama-hover), #115e59);
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(13, 148, 136, 0.35);
+  box-shadow: 0 8px 20px rgba(13, 148, 136, 0.35);
 }
 
 .tombol.sekunder {
@@ -432,24 +821,28 @@ nav button:active {
   transform: translateY(-1px);
 }
 
-/* ================= Kartu & Struktur Bagian ================= */
-.bagian {
-  padding: 3rem 0;
-  border-top: 1px solid var(--border-light);
+/* ================= MODUL 2: DATA POSYANDU ================= */
+.kartu-rekap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
 }
 
-.bagian h2 {
+.kartu-rekap-header h2 {
   font-size: 1.65rem;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: var(--text-main);
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.35rem;
 }
 
 .subjudul {
-  margin: 0 0 2rem;
+  margin: 0;
   color: var(--text-muted);
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   max-width: 75ch;
   line-height: 1.6;
 }
@@ -461,344 +854,16 @@ nav button:active {
   padding: 2rem;
   margin-bottom: 2rem;
   box-shadow: var(--shadow-card);
-  transition: transform var(--trans-smooth), box-shadow var(--trans-smooth), border-color var(--trans-smooth);
-}
-
-.kartu:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
-  border-color: rgba(13, 148, 136, 0.25);
-}
-
-.dua-kolom {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2.5rem;
-}
-
-/* ================= Kartu Tri-Klasifikasi Risiko (Modern Triage) ================= */
-.kartu-risiko-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.kartu-risiko {
-  background: #ffffff;
-  padding: 1.75rem;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-light);
-  box-shadow: var(--shadow-card);
-  position: relative;
-  overflow: hidden;
   transition: transform var(--trans-smooth), box-shadow var(--trans-smooth);
 }
 
-.kartu-risiko:hover {
-  transform: translateY(-4px);
+.kartu:hover {
   box-shadow: var(--shadow-hover);
 }
 
-.kartu-risiko::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 5px; height: 100%;
-}
-
-.r-normal::before { background: var(--normal); }
-.r-waspada::before { background: var(--waspada); }
-.r-stunted::before { background: var(--stunted); }
-
-.kartu-risiko h4 {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 800;
-}
-
-.r-normal h4 { color: var(--normal); }
-.r-waspada h4 { color: var(--waspada); }
-.r-stunted h4 { color: var(--stunted); }
-
-.kartu-risiko .kriteria {
-  font-size: 0.82rem;
-  font-weight: 600;
-  margin: 0.4rem 0 0.85rem;
-  color: var(--text-muted);
-}
-
-.kartu-risiko p {
-  margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: var(--text-body);
-}
-
-/* ================= Timeline CRISP-DM (Refined Line) ================= */
-.tahap {
-  margin: 2rem 0 0;
-  padding: 0;
-  list-style: none;
-  counter-reset: t;
-}
-
-.tahap li {
-  position: relative;
-  padding: 0 0 2rem 3.8rem;
-  counter-increment: t;
-}
-
-.tahap li::before {
-  content: counter(t);
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: grid;
-  place-items: center;
-  width: 2.4rem;
-  height: 2.4rem;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--utama), var(--sekunder));
-  color: #fff;
-  font-weight: 800;
-  font-size: 0.95rem;
-  box-shadow: 0 4px 10px rgba(13, 148, 136, 0.25);
-  z-index: 1;
-}
-
-.tahap li::after {
-  content: '';
-  position: absolute;
-  left: 1.2rem;
-  top: 2.4rem;
-  bottom: 0;
-  width: 2px;
-  background: var(--border-light);
-}
-
-.tahap li:last-child::after {
-  display: none;
-}
-
-.tahap h3 {
-  margin: 0 0 0.3rem;
-  font-size: 1.12rem;
-  font-weight: 700;
-  color: var(--text-main);
-}
-
-.tahap p {
-  margin: 0;
-  color: var(--text-body);
-  font-size: 0.94rem;
-  line-height: 1.6;
-}
-
-/* ================= Form Skrining & Preview Hasil ================= */
-.tata-prediksi {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  gap: 2rem;
-  align-items: start;
-}
-
-.grup-form {
-  margin-bottom: 1.25rem;
-}
-
-.grup-form label {
-  display: block;
-  font-weight: 600;
-  font-size: 0.88rem;
-  margin-bottom: 0.4rem;
-  color: var(--text-main);
-}
-
-.grup-form label small {
-  color: var(--text-muted);
-  font-weight: normal;
-}
-
-.input-text, .pilihan {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border-strong);
-  font-size: 0.94rem;
-  font-family: inherit;
-  background: #ffffff;
-  color: var(--text-main);
-  transition: all var(--trans-fast);
-  box-shadow: var(--shadow-subtle);
-}
-
-.input-text:focus, .pilihan:focus {
-  outline: none;
-  border-color: var(--utama);
-  box-shadow: 0 0 0 4px var(--utama-ring);
-  transform: translateY(-1px);
-}
-
-.baris-input-ganda {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-/* Segmented Buttons */
-.grup-segmen {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.5rem;
-}
-
-.grup-segmen button {
-  padding: 0.65rem;
-  border: 1px solid var(--border-strong);
-  background: #ffffff;
-  border-radius: var(--radius-md);
-  font-size: 0.88rem;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: inherit;
-  transition: all var(--trans-fast);
-}
-
-.grup-segmen button:hover:not(.aktif) {
-  background: var(--bg-subtle);
-}
-
-.grup-segmen button.aktif {
-  background: linear-gradient(135deg, var(--utama), #0f766e);
-  color: #ffffff;
-  border-color: var(--utama);
-  box-shadow: 0 4px 10px rgba(13, 148, 136, 0.2);
-}
-
-.kotak-centang {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-size: 0.9rem;
-  margin-top: 0.6rem;
-  cursor: pointer;
-}
-
-.kotak-centang input[type="checkbox"] {
-  width: 1.15rem;
-  height: 1.15rem;
-  accent-color: var(--utama);
-  cursor: pointer;
-}
-
-/* Hasil Deteksi Sticky Card */
-.kartu-hasil-sticky {
-  position: sticky;
-  top: 5.5rem;
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-top: 5px solid var(--utama);
-  border-radius: var(--radius-xl);
-  padding: 1.85rem;
-  box-shadow: var(--shadow-card);
-}
-
-.badge-hasil-besar {
-  display: inline-block;
-  font-size: 1.55rem;
-  font-weight: 800;
-  padding: 0.5rem 1.25rem;
-  border-radius: var(--radius-lg);
-  margin-top: 0.5rem;
-  letter-spacing: -0.01em;
-}
-
-.badge-hasil-besar.Normal {
-  background: var(--normal-bg);
-  color: var(--normal);
-  border: 1px solid var(--normal-border);
-}
-
-.badge-hasil-besar.Waspada {
-  background: var(--waspada-bg);
-  color: var(--waspada);
-  border: 1px solid var(--waspada-border);
-}
-
-.badge-hasil-besar.Stunted {
-  background: var(--stunted-bg);
-  color: var(--stunted);
-  border: 1px solid var(--stunted-border);
-}
-
-dl.daftar-metrik-hasil {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 1rem;
-  margin: 1.25rem 0 1.5rem;
-  padding: 1.2rem;
-  background: var(--bg-subtle);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--border-light);
-}
-
-dl.daftar-metrik-hasil dt {
-  font-size: 0.74rem;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-  font-weight: 700;
-}
-
-dl.daftar-metrik-hasil dd {
-  margin: 0.25rem 0 0;
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--text-main);
-}
-
-.box-rule-tree {
-  background: #0f172a;
-  color: #38bdf8;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.82rem;
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-  overflow-x: auto;
-}
-
-.box-rekomendasi {
-  background: var(--utama-light);
-  border-left: 4px solid var(--utama);
-  padding: 1.15rem 1.35rem;
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-}
-
-.box-rekomendasi h4 {
-  margin: 0 0 0.6rem;
-  font-size: 0.98rem;
-  color: var(--utama);
-  font-weight: 700;
-}
-
-.box-rekomendasi ul {
-  margin: 0;
-  padding-left: 1.2rem;
-  font-size: 0.9rem;
-  line-height: 1.6;
-}
-
-.box-rekomendasi li {
-  margin-bottom: 0.4rem;
-}
-
-/* ================= Dashboard KPI Cards ================= */
 .grid-kpi {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
   margin-bottom: 2rem;
 }
@@ -807,7 +872,7 @@ dl.daftar-metrik-hasil dd {
   background: #ffffff;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 1.4rem;
+  padding: 1.35rem;
   box-shadow: var(--shadow-card);
   transition: transform var(--trans-smooth), box-shadow var(--trans-smooth);
 }
@@ -818,7 +883,7 @@ dl.daftar-metrik-hasil dd {
 }
 
 .kpi-judul {
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   color: var(--text-muted);
   font-weight: 700;
   text-transform: uppercase;
@@ -828,71 +893,17 @@ dl.daftar-metrik-hasil dd {
 .kpi-angka {
   font-size: 2.1rem;
   font-weight: 800;
-  margin: 0.4rem 0 0.15rem;
+  margin: 0.35rem 0 0.15rem;
   color: var(--text-main);
   line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 .kpi-sub {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--text-muted);
 }
 
-/* ================= Tabel Rekapitulasi Data ================= */
-.wadah-tabel {
-  overflow-x: auto;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  background: #ffffff;
-  box-shadow: var(--shadow-subtle);
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-  text-align: left;
-}
-
-th {
-  background: var(--bg-subtle);
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-weight: 700;
-  padding: 0.9rem 1.1rem;
-  border-bottom: 1px solid var(--border-light);
-}
-
-td {
-  padding: 0.95rem 1.1rem;
-  border-bottom: 1px solid var(--border-light);
-  vertical-align: middle;
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-tr:hover td {
-  background: #fbfcfe;
-}
-
-.badge-tabel {
-  display: inline-block;
-  padding: 0.25rem 0.7rem;
-  border-radius: var(--radius-pill);
-  font-size: 0.76rem;
-  font-weight: 700;
-}
-
-.badge-tabel.Normal { background: var(--normal-bg); color: var(--normal); }
-.badge-tabel.Waspada { background: var(--waspada-bg); color: var(--waspada); }
-.badge-tabel.Stunted { background: var(--stunted-bg); color: var(--stunted); }
-
-/* Filter Bar */
 .filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -909,62 +920,267 @@ tr:hover td {
   align-items: center;
 }
 
-/* ================= Tab Transitions ================= */
-.halaman-tab {
-  display: none;
+.wadah-tabel {
+  overflow-x: auto;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+  box-shadow: var(--shadow-subtle);
 }
 
-.halaman-tab.aktif {
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  text-align: left;
+}
+
+th {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+td {
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  vertical-align: middle;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: #fbfcfe;
+}
+
+.badge-tabel {
+  display: inline-block;
+  padding: 0.22rem 0.65rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.badge-tabel.Normal { background: var(--normal-bg); color: var(--normal); }
+.badge-tabel.Waspada { background: var(--waspada-bg); color: var(--waspada); }
+.badge-tabel.Stunted { background: var(--stunted-bg); color: var(--stunted); }
+
+/* ================= MODUL 3: PANDUAN PMT LOKAL ================= */
+.kartu-pmt-header {
+  margin-bottom: 2rem;
+}
+
+.kartu-pmt-header h2 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin: 0 0 0.35rem;
+}
+
+.grid-resep-pmt {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.kartu-resep {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--trans-smooth), box-shadow var(--trans-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.kartu-resep:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.tag-resep {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--utama);
+  margin-bottom: 0.5rem;
+}
+
+.kartu-resep h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 0.65rem;
+  line-height: 1.3;
+}
+
+.deskripsi-resep {
+  font-size: 0.88rem;
+  color: var(--text-body);
+  line-height: 1.55;
+  margin: 0 0 1.25rem;
+}
+
+.komposisi-box {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-top: auto;
+  margin-bottom: 1rem;
+}
+
+.komposisi-box strong {
   display: block;
-  animation: tabFadeUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  font-size: 0.82rem;
+  color: var(--text-main);
+  margin-bottom: 0.4rem;
 }
 
-@keyframes tabFadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.komposisi-box ul {
+  margin: 0;
+  padding-left: 1.15rem;
+  font-size: 0.82rem;
+  color: var(--text-body);
+  line-height: 1.55;
 }
 
-/* ================= Footer ================= */
+.anjuran-pemberian {
+  font-size: 0.82rem;
+  color: var(--utama-hover);
+  background: var(--utama-light);
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--utama);
+}
+
+/* ================= MODUL 4: PROFIL FASKES & TIM KKNT ================= */
+.dua-kolom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.dua-kolom h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 0 0 1rem;
+}
+
+.kotak-faskes-info {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 1.15rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.kotak-faskes-info strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.kotak-faskes-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.kartu-anggota {
+  background: #ffffff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.kartu-anggota strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.kartu-anggota span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.kartu-dpl {
+  background: var(--utama-light);
+  border: 1px solid rgba(13, 148, 136, 0.3);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.15rem;
+  margin-top: 1.25rem;
+}
+
+.kartu-dpl strong {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--utama);
+}
+
+.kartu-dpl span {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--text-main);
+  font-weight: 600;
+  margin-top: 0.2rem;
+}
+
+/* ================= FOOTER RESMI ================= */
 footer {
   margin-top: 4.5rem;
   padding-top: 2rem;
   border-top: 1px solid var(--border-light);
   color: var(--text-muted);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 1.25rem;
 }
 
-/* ================= Responsivitas Presisi Multi-Device ================= */
-@media (max-width: 960px) {
-  .hero {
+/* ================= RESPONSIVITAS MULTI-DEVICE ================= */
+@media (max-width: 1024px) {
+  .tata-skrining {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .tata-prediksi {
-    grid-template-columns: 1fr;
-  }
-  .kartu-hasil-sticky {
+  .area-hasil-skrining {
     position: static;
+  }
+  .grid-kpi {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-resep-pmt {
+    grid-template-columns: repeat(2, 1fr);
   }
   .dua-kolom {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
-  .kartu-risiko-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 680px) {
   .wadah-header {
     flex-direction: column;
     align-items: flex-start;
@@ -975,17 +1191,31 @@ footer {
     width: 100%;
   }
   .kerangka {
-    padding: 1rem 1rem 4rem;
+    padding: 1.25rem 1rem 4rem;
   }
-  .hero h1 {
-    font-size: 1.85rem;
+  .hero-layanan {
+    padding: 1.5rem 1.25rem;
   }
-  .ringkas-metrik {
-    grid-template-columns: 1fr;
+  .hero-layanan h1 {
+    font-size: 1.55rem;
+  }
+  .kartu-form {
     padding: 1.35rem;
   }
   .baris-input-ganda {
     grid-template-columns: 1fr;
+  }
+  .grid-metrik-laporan {
+    grid-template-columns: 1fr;
+  }
+  .grid-kpi {
+    grid-template-columns: 1fr;
+  }
+  .grid-resep-pmt {
+    grid-template-columns: 1fr;
+  }
+  .baris-tombol-form {
+    flex-direction: column;
   }
   .filter-bar {
     flex-direction: column;
@@ -997,5 +1227,47 @@ footer {
   }
   .filter-kiri input, .filter-kiri select {
     width: 100% !important;
+  }
+}
+
+/* ================= CETAK / PRINT STYLESHEET ================= */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .header-utama,
+  .badge-status,
+  .hero-layanan,
+  .kartu-form,
+  .no-print,
+  .aksi-laporan,
+  footer,
+  nav,
+  #tab-rekap,
+  #tab-pmt,
+  #tab-tentang {
+    display: none !important;
+  }
+  .kerangka {
+    padding: 0 !important;
+    max-width: 100% !important;
+  }
+  .tata-skrining {
+    display: block !important;
+  }
+  .area-hasil-skrining {
+    position: static !important;
+  }
+  .kartu-laporan-medis {
+    border: 2px solid #000000 !important;
+    box-shadow: none !important;
+    padding: 2.5cm !important;
+    border-radius: 0 !important;
+  }
+  .badge-status-klinis {
+    border: 1px solid #000000 !important;
+    color: #000000 !important;
+    background: none !important;
   }
 }

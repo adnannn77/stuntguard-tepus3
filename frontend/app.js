@@ -1,15 +1,16 @@
 /**
  * STUNT-GUARD TEPUS 3 - Frontend Application Logic
- * Sistem Deteksi Dini & Antropometri Balita Posyandu Padukuhan Tepus 3
- * Kelompok 39 Tim A KKNT UDB 2026
+ * Layanan Skrining Deteksi Dini & Antropometri Posyandu Padukuhan Tepus 3
+ * Standar: Permenkes No. 2/2020 & WHO Child Growth Standards
+ * Kelompok 39 Tim 1 KKNT UDB 2026
  */
 
 // Auto-detect API Base URL:
-// - Dibuka via server hosting / IP LAN Wi-Fi / localhost: gunakan relative path ""
-// - Dibuka via double-click file://: fallback ke http://localhost:8000
+// - Hosting Vercel / server web: gunakan relative path ""
+// - Localhost file:/// fallback: "http://localhost:8000"
 const API_BASE_URL = window.location.protocol.startsWith("http") ? "" : "http://localhost:8000";
 
-// WHO Piecewise Reference Standard
+// WHO Piecewise Reference Standard (WHO Anthro 2006)
 const WHO_CURVES = {
   months: [0, 6, 12, 24, 36, 48, 60],
   boys: {
@@ -140,7 +141,7 @@ function interpolate(x, xArr, yArr) {
   return yArr[0];
 }
 
-// Fallback Mesin Inferensi WHO & Decision Tree
+// Fallback Mesin Inferensi Standar WHO
 function hitungWHOFallback(usia, gender, tinggi, lila, bblr, asi, karst) {
   const curve = (gender === "L") ? WHO_CURVES.boys : WHO_CURVES.girls;
   const med_h = interpolate(usia, WHO_CURVES.months, curve.median);
@@ -159,12 +160,14 @@ function hitungWHOFallback(usia, gender, tinggi, lila, bblr, asi, karst) {
   let status_risiko = "Normal (Optimal)";
   let risk_score = 0.12;
   let rule = "RULE-01: IF (Z_TB >= -1.5 AND LiLA >= 12.5cm) THEN 'Normal (Optimal)'";
+  let interpretasi = "Pertumbuhan tinggi badan dan lingkar lengan atas balita berada pada rentang ideal sesuai kurva baku WHO Anthro. Anak menunjukkan pertumbuhan fisik proporsional sesuai usianya tanpa indikasi faltering growth.";
   const rekomendasi = [];
 
   if (z_tb < -2.0 || (z_tb < -1.8 && lila < 11.5)) {
     status_risiko = "Risiko Tinggi (Stunted)";
     risk_score = 0.88;
     rule = "RULE-03: IF (Z_TB < -2.0) OR (Z_TB < -1.8 AND LiLA < 11.5cm) THEN 'Risiko Tinggi'";
+    interpretasi = "Pertumbuhan fisik balita berada di bawah ambang batas standar baku WHO (Z-score < -2.0 SD) atau terindikasi malnutrisi akut berdasarkan lingkar lengan atas. Balita memerlukan evaluasi klinis segera oleh Bidan Desa / Puskesmas dan intervensi gizi terpadu.";
     rekomendasi.push("⚠️ Rujukan Segera: Laporkan dan rujuk balita ke Bidan Desa / Puskesmas Pembantu Tepus.");
     rekomendasi.push("🥩 Terapi Nutrisi: Asupan protein hewani harian (1 butir telur/hari, ikan laut lumat Tepus).");
     rekomendasi.push("💧 Sanitasi Air: Pastikan air minum balita bebas endapan kapur dan direbus mendidih.");
@@ -172,11 +175,12 @@ function hitungWHOFallback(usia, gender, tinggi, lila, bblr, asi, karst) {
     status_risiko = "Waspada (Faltering Growth)";
     risk_score = 0.52;
     rule = "RULE-02: IF (Z_TB < -1.5) OR (Z_TB < -1.2 AND (BBLR == True OR ASI == False)) THEN 'Waspada'";
+    interpretasi = "Balita menunjukkan perlambatan laju pertumbuhan (growth faltering) atau mendekati batas defisit nutrisi. Diperlukan intervensi makanan tambahan (PMT) kaya protein lokal serta pemantauan kenaikan berat/tinggi badan berkala 14 hari.";
     rekomendasi.push("🟡 Intervensi PMT Lokal: Berikan PMT fortifikasi olahan singkong & daun kelor atau nugget ikan.");
     rekomendasi.push("⚖️ Pemantauan Ulang: Timbang ulang berat dan tinggi badan dalam 14 hari di Posyandu.");
   } else {
-    rekomendasi.push("✅ Pertahankan Pola Asuh: Tumbuh kembang balita sesuai kurva standar WHO.");
-    rekomendasi.push("🥦 Diversifikasi Pangan: Lanjutkan pola makan gizi seimbang berbasis pangan lokal.");
+    rekomendasi.push("✅ Pertahankan Pola Asuh: Tumbuh kembang balita sesuai kurva standar baku WHO Anthro.");
+    rekomendasi.push("🥦 Diversifikasi Pangan: Lanjutkan pola makan gizi seimbang dengan prinsip Isi Piringku.");
   }
 
   return {
@@ -186,11 +190,12 @@ function hitungWHOFallback(usia, gender, tinggi, lila, bblr, asi, karst) {
     status_risiko: status_risiko,
     risk_score: risk_score,
     decision_rule: rule,
+    interpretasi_klinis: interpretasi,
     rekomendasi: rekomendasi
   };
 }
 
-// Navigasi Tab
+// Navigasi Tab Layanan
 function gantiTab(tabId) {
   document.querySelectorAll(".halaman-tab").forEach(el => el.classList.remove("aktif"));
   document.querySelectorAll("nav button").forEach(btn => btn.classList.remove("aktif"));
@@ -201,16 +206,18 @@ function gantiTab(tabId) {
   if (targetTab) targetTab.classList.add("aktif");
   if (targetBtn) {
     targetBtn.classList.add("aktif");
-    // Geser otomatis pill navigation ke tengah saat diklik di layar HP
     targetBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
   }
 
-  if (tabId === "rekap") renderTabelBalita();
-  if (tabId === "analisis") renderAnalisisWilayah();
+  if (tabId === "rekap") {
+    renderTabelBalita();
+    updateKPICards();
+    renderAnalisisWilayah();
+  }
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Pilih Gender Segmen
+// Pilih Gender Balita
 let selectedGender = "L";
 function setGender(g) {
   selectedGender = g;
@@ -227,19 +234,33 @@ function syncUsia(val) {
   eksekusiPrediksiLive();
 }
 
-// Eksekusi Prediksi
+// Eksekusi Prediksi & Skrining Real-Time
 async function eksekusiPrediksiLive() {
-  const nama = document.getElementById("in-nama-balita").value || "Balita Posyandu";
-  const ibu = document.getElementById("in-nama-ibu").value || "-";
-  const rt = document.getElementById("in-rt").value;
-  const usia = parseInt(document.getElementById("in-usia").value, 10);
-  const tinggi = parseFloat(document.getElementById("in-tinggi").value);
-  const berat = parseFloat(document.getElementById("in-berat").value);
-  const lila = parseFloat(document.getElementById("in-lila").value);
-  const sumberAir = document.getElementById("in-air").value;
-  const bblr = document.getElementById("in-bblr").checked;
-  const asi = document.getElementById("in-asi").checked;
-  const jamban = document.getElementById("in-jamban").checked;
+  const elNama = document.getElementById("in-nama-balita");
+  const elIbu = document.getElementById("in-nama-ibu");
+  const elRT = document.getElementById("in-rt");
+  const elUsia = document.getElementById("in-usia");
+  const elTinggi = document.getElementById("in-tinggi");
+  const elBerat = document.getElementById("in-berat");
+  const elLila = document.getElementById("in-lila");
+  const elAir = document.getElementById("in-air");
+  const elBblr = document.getElementById("in-bblr");
+  const elAsi = document.getElementById("in-asi");
+  const elJamban = document.getElementById("in-jamban");
+
+  if (!elUsia || !elTinggi || !elBerat || !elLila) return null;
+
+  const nama = elNama ? (elNama.value.trim() || "Balita Posyandu") : "Balita Posyandu";
+  const ibu = elIbu ? (elIbu.value.trim() || "-") : "-";
+  const rt = elRT ? elRT.value : "RT 02";
+  const usia = parseInt(elUsia.value, 10) || 0;
+  const tinggi = parseFloat(elTinggi.value) || 0;
+  const berat = parseFloat(elBerat.value) || 0;
+  const lila = parseFloat(elLila.value) || 0;
+  const sumberAir = elAir ? elAir.value : "Sumur Karst Kapur";
+  const bblr = elBblr ? elBblr.checked : false;
+  const asi = elAsi ? elAsi.checked : true;
+  const jamban = elJamban ? elJamban.checked : true;
 
   const payload = {
     nama_balita: nama,
@@ -269,12 +290,11 @@ async function eksekusiPrediksiLive() {
         resData = await resp.json();
       }
     } catch (err) {
-      console.warn("Backend offline, menggunakan Fallback Engine WHO:", err);
+      console.warn("Backend API tidak merespons, beralih ke Fallback WHO Engine:", err);
     }
   }
 
   if (!resData) {
-    // Fallback Client-side Engine
     const fb = hitungWHOFallback(usia, selectedGender, tinggi, lila, bblr, asi, sumberAir === "Sumur Karst Kapur");
     resData = {
       ...payload,
@@ -282,29 +302,63 @@ async function eksekusiPrediksiLive() {
     };
   }
 
-  // Tampilkan Hasil ke DOM
+  // Perbarui UI Lembar Hasil Skrining
   const badgeEl = document.getElementById("badge-hasil-risiko");
   const katRisiko = resData.status_risiko;
-  badgeEl.innerText = katRisiko;
+  if (badgeEl) {
+    badgeEl.innerText = katRisiko;
+    badgeEl.className = "badge-status-klinis";
+    if (katRisiko.includes("Normal")) badgeEl.classList.add("Normal");
+    else if (katRisiko.includes("Waspada")) badgeEl.classList.add("Waspada");
+    else badgeEl.classList.add("Stunted");
+  }
 
-  badgeEl.className = "badge-hasil-besar";
-  if (katRisiko.includes("Normal")) badgeEl.classList.add("Normal");
-  else if (katRisiko.includes("Waspada")) badgeEl.classList.add("Waspada");
-  else badgeEl.classList.add("Stunted");
+  const elZscore = document.getElementById("res-zscore");
+  if (elZscore) elZscore.innerText = `${resData.zscore_tb > 0 ? "+" : ""}${resData.zscore_tb} SD`;
 
-  document.getElementById("res-zscore").innerText = `${resData.zscore_tb > 0 ? "+" : ""}${resData.zscore_tb} SD`;
-  document.getElementById("res-kategori-tb").innerText = resData.kategori_zscore;
-  document.getElementById("res-lila-status").innerText = resData.status_lila;
-  document.getElementById("res-risk-score").innerText = `${Math.round(resData.risk_score * 100)}%`;
-  document.getElementById("res-decision-rule").innerText = resData.decision_rule;
+  const elKatTB = document.getElementById("res-kategori-tb");
+  if (elKatTB) elKatTB.innerText = resData.kategori_zscore;
 
+  const elLilaStatus = document.getElementById("res-lila-status");
+  if (elLilaStatus) elLilaStatus.innerText = resData.status_lila;
+
+  const elRiskScore = document.getElementById("res-risk-score");
+  if (elRiskScore) {
+    const pct = Math.round(resData.risk_score * 100);
+    let label = "Rendah";
+    let warna = "var(--normal)";
+    if (pct > 70) {
+      label = "Tinggi";
+      warna = "var(--stunted)";
+    } else if (pct > 35) {
+      label = "Sedang";
+      warna = "var(--waspada)";
+    }
+    elRiskScore.innerText = `${label} (${pct}%)`;
+    elRiskScore.style.color = warna;
+  }
+
+  // Interpretasi Klinis Bahasa Medis Manusia
+  const elInterpretasi = document.getElementById("res-interpretasi");
+  if (elInterpretasi) {
+    elInterpretasi.innerText = resData.interpretasi_klinis || 
+      (katRisiko.includes("Normal") 
+        ? "Pertumbuhan tinggi badan dan lingkar lengan atas balita berada pada rentang ideal sesuai kurva baku WHO Anthro. Anak menunjukkan pertumbuhan fisik proporsional sesuai usianya tanpa indikasi faltering growth."
+        : (katRisiko.includes("Waspada")
+          ? "Balita menunjukkan perlambatan laju pertumbuhan (growth faltering) atau mendekati batas defisit nutrisi. Diperlukan intervensi makanan tambahan (PMT) kaya protein lokal serta pemantauan kenaikan berat/tinggi badan berkala 14 hari."
+          : "Pertumbuhan fisik balita berada di bawah ambang batas standar baku WHO (Z-score < -2.0 SD) atau terindikasi malnutrisi akut berdasarkan lingkar lengan atas. Balita memerlukan evaluasi klinis segera oleh Bidan Desa / Puskesmas dan intervensi gizi terpadu."));
+  }
+
+  // Rencana Asuhan & Rekomendasi
   const listRekom = document.getElementById("list-rekomendasi");
-  listRekom.innerHTML = "";
-  resData.rekomendasi.forEach(item => {
-    const li = document.createElement("li");
-    li.innerText = item;
-    listRekom.appendChild(li);
-  });
+  if (listRekom && resData.rekomendasi) {
+    listRekom.innerHTML = "";
+    resData.rekomendasi.forEach(item => {
+      const li = document.createElement("li");
+      li.innerText = item;
+      listRekom.appendChild(li);
+    });
+  }
 
   return resData;
 }
@@ -312,10 +366,11 @@ async function eksekusiPrediksiLive() {
 // Simpan Data Baru ke Rekapitulasi
 async function simpanHasilKeRekap() {
   const currentResult = await eksekusiPrediksiLive();
-  const nama = document.getElementById("in-nama-balita").value.trim();
+  const namaInput = document.getElementById("in-nama-balita");
+  const nama = namaInput ? namaInput.value.trim() : "";
   if (!nama) {
-    alert("Silakan masukkan Nama Balita terlebih dahulu.");
-    document.getElementById("in-nama-balita").focus();
+    alert("Silakan masukkan Nama Balita terlebih dahulu sebelum menyimpan data.");
+    if (namaInput) namaInput.focus();
     return;
   }
 
@@ -329,7 +384,7 @@ async function simpanHasilKeRekap() {
       if (resp.ok) {
         const saved = await resp.json();
         appState.balitaData.unshift(saved.record);
-        alert(`Data balita ${nama} berhasil disimpan ke Database Posyandu Tepus 3!`);
+        alert(`Data balita ${nama} berhasil disimpan ke Rekam Medis Posyandu Tepus 3!`);
         updateKPICards();
         gantiTab("rekap");
         return;
@@ -347,14 +402,14 @@ async function simpanHasilKeRekap() {
     tanggal_periksa: new Date().toISOString().split("T")[0]
   };
   appState.balitaData.unshift(localRecord);
-  alert(`Data balita ${nama} berhasil disimpan ke Rekap Posyandu (Penyimpanan Lokal)!`);
+  alert(`Data balita ${nama} berhasil disimpan ke Rekapitulasi Posyandu (Penyimpanan Lokal)!`);
   updateKPICards();
   gantiTab("rekap");
 }
 
-// Hapus Data Balita
+// Hapus Catatan Balita
 async function hapusBalita(id) {
-  if (!confirm("Apakah Anda yakin ingin menghapus catatan balita ini?")) return;
+  if (!confirm("Apakah Anda yakin ingin menghapus data pemeriksaan balita ini?")) return;
 
   if (appState.isBackendConnected) {
     try {
@@ -367,6 +422,7 @@ async function hapusBalita(id) {
   appState.balitaData = appState.balitaData.filter(b => b.id !== id);
   renderTabelBalita();
   updateKPICards();
+  renderAnalisisWilayah();
 }
 
 // Render Tabel Balita
@@ -398,7 +454,7 @@ function renderTabelBalita() {
   tbody.innerHTML = "";
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding: 2rem; color: var(--teks-redup);">Tidak ada data balita yang sesuai filter.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding: 2rem; color: var(--text-muted);">Tidak ada data balita yang sesuai filter pencarian.</td></tr>`;
     return;
   }
 
@@ -411,14 +467,14 @@ function renderTabelBalita() {
 
     tr.innerHTML = `
       <td>${idx + 1}</td>
-      <td><strong>${b.nama_balita}</strong><br><small style="color:var(--teks-redup)">Ibu: ${b.nama_ibu || '-'}</small></td>
+      <td><strong>${b.nama_balita}</strong><br><small style="color:var(--text-muted)">Ibu: ${b.nama_ibu || '-'}</small></td>
       <td>${b.rt_wilayah}</td>
       <td>${b.usia_bulan} Bln (${b.gender})</td>
       <td>${b.tinggi_cm} cm / ${b.berat_kg} kg</td>
       <td>${b.lila_cm} cm</td>
-      <td><span style="font-weight:600; color:${b.zscore_tb < -2 ? 'var(--stunted)' : (b.zscore_tb < -1.5 ? 'var(--waspada)' : 'var(--normal)')}">${b.zscore_tb > 0 ? '+' : ''}${b.zscore_tb} SD</span></td>
+      <td><span style="font-weight:700; color:${b.zscore_tb < -2 ? 'var(--stunted)' : (b.zscore_tb < -1.5 ? 'var(--waspada)' : 'var(--normal)')}">${b.zscore_tb > 0 ? '+' : ''}${b.zscore_tb} SD</span></td>
       <td><span class="badge-tabel ${statusClass}">${b.status_risiko}</span></td>
-      <td>
+      <td style="text-align:center;">
         <button class="tombol bahaya" style="padding:0.25rem 0.55rem; font-size:0.75rem;" onclick="hapusBalita(${b.id})">Hapus</button>
       </td>
     `;
@@ -426,28 +482,25 @@ function renderTabelBalita() {
   });
 }
 
-// Update KPI Cards di Dashboard
+// Update KPI Cards di Modul Data Posyandu
 function updateKPICards() {
   const total = appState.balitaData.length;
   const normal = appState.balitaData.filter(b => b.status_risiko.includes("Normal")).length;
   const waspada = appState.balitaData.filter(b => b.status_risiko.includes("Waspada")).length;
   const stunted = appState.balitaData.filter(b => b.status_risiko.includes("Tinggi") || b.status_risiko.includes("Stunted")).length;
-  const prevalensi = total > 0 ? Math.round(((waspada + stunted) / total) * 100) : 0;
 
   const kpiTot = document.getElementById("kpi-total-balita");
   const kpiNorm = document.getElementById("kpi-normal");
   const kpiWasp = document.getElementById("kpi-waspada");
   const kpiStunt = document.getElementById("kpi-stunted");
-  const kpiPrev = document.getElementById("kpi-prevalensi");
 
   if (kpiTot) kpiTot.innerText = total;
   if (kpiNorm) kpiNorm.innerText = normal;
   if (kpiWasp) kpiWasp.innerText = waspada;
   if (kpiStunt) kpiStunt.innerText = stunted;
-  if (kpiPrev) kpiPrev.innerText = `${prevalensi}%`;
 }
 
-// Render Analisis Wilayah (Per RT 01 s/d RT 04)
+// Render Analisis Distribusi Balita per RT Padukuhan Tepus 3
 function renderAnalisisWilayah() {
   const container = document.getElementById("wadah-chart-rt");
   if (!container) return;
@@ -466,11 +519,11 @@ function renderAnalisisWilayah() {
     const row = document.createElement("div");
     row.style.marginBottom = "1.2rem";
     row.innerHTML = `
-      <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem; font-size:0.88rem;">
+      <div style="display:flex; justify-content:space-between; margin-bottom:0.35rem; font-size:0.86rem;">
         <strong>${rt} Padukuhan Tepus 3</strong>
-        <span>${totalRT} Balita (${pctRisk}% Berisiko: ${stuntedRT} Stunted, ${waspadaRT} Waspada)</span>
+        <span>${totalRT} Balita (${pctRisk}% Berisiko: ${stuntedRT} Prioritas, ${waspadaRT} Waspada)</span>
       </div>
-      <div style="height:14px; background:#e2e8f0; border-radius:99px; overflow:hidden; display:flex;">
+      <div style="height:12px; background:#e2e8f0; border-radius:99px; overflow:hidden; display:flex;">
         <div style="width:${totalRT > 0 ? (normalRT/totalRT*100) : 100}%; background:var(--normal);" title="Normal: ${normalRT}"></div>
         <div style="width:${totalRT > 0 ? (waspadaRT/totalRT*100) : 0}%; background:var(--waspada);" title="Waspada: ${waspadaRT}"></div>
         <div style="width:${totalRT > 0 ? (stuntedRT/totalRT*100) : 0}%; background:var(--stunted);" title="Stunted: ${stuntedRT}"></div>
@@ -480,14 +533,13 @@ function renderAnalisisWilayah() {
   });
 }
 
-// Ekspor CSV
+// Ekspor Data Rekapitulasi ke File CSV
 function eksporCSV() {
   if (appState.isBackendConnected) {
     window.location.href = `${API_BASE_URL}/api/export-csv`;
     return;
   }
 
-  // Ekspor CSV Lokal
   const headers = ["ID", "Nama Balita", "Nama Ibu", "RT", "Usia (Bulan)", "Gender", "TB (cm)", "BB (kg)", "LiLA (cm)", "Z-Score TB/U", "Status Risiko", "Tanggal Periksa"];
   const rows = appState.balitaData.map(b => [
     b.id, `"${b.nama_balita}"`, `"${b.nama_ibu || '-'}"`, b.rt_wilayah, b.usia_bulan, b.gender, b.tinggi_cm, b.berat_kg, b.lila_cm, b.zscore_tb, `"${b.status_risiko}"`, b.tanggal_periksa
@@ -503,6 +555,11 @@ function eksporCSV() {
   document.body.removeChild(link);
 }
 
+// Cetak Lembar Hasil Skrining Klinis (Cetak / Simpan PDF)
+function cetakLembarHasil() {
+  window.print();
+}
+
 // Cek Status Koneksi Backend
 async function cekKoneksiBackend() {
   const badgeKoneksi = document.getElementById("badge-koneksi-api");
@@ -513,23 +570,23 @@ async function cekKoneksiBackend() {
       if (badgeKoneksi) {
         badgeKoneksi.innerHTML = `
           <span class="dot-status" style="background:#10b981;"></span>
-          <span><strong>FastAPI Backend Aktif</strong> &bull; Decision Tree & Artefak Model Terhubung</span>
+          <span><strong>Layanan Posyandu Aktif</strong> &bull; Terhubung Basis Data & Standar WHO Anthro</span>
         `;
         badgeKoneksi.style.background = "#ffffff";
         badgeKoneksi.style.color = "#0f172a";
         badgeKoneksi.style.borderColor = "var(--border-light)";
       }
-      // Ambil data terbaru dari backend
       const dataRes = await fetch(API_BASE_URL + "/api/balita");
       if (dataRes.ok) {
         appState.balitaData = await dataRes.json();
         renderTabelBalita();
         updateKPICards();
+        renderAnalisisWilayah();
       }
       return;
     }
   } catch (e) {
-    // Backend offline
+    // Offline
   }
 
   appState.isBackendConnected = false;
@@ -550,6 +607,7 @@ document.addEventListener("DOMContentLoaded", () => {
   eksekusiPrediksiLive();
   renderTabelBalita();
   updateKPICards();
+  renderAnalisisWilayah();
 
   // Dynamic Header Elevation on Scroll (Relasi Consulting Style)
   const mainHeader = document.getElementById("main-header");
@@ -563,7 +621,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, { passive: true });
 
-  // Event Listeners Form Inputs
+  // Event Listeners Form Pengukuran (Live Calculation)
   const liveInputs = [
     "in-tinggi", "in-berat", "in-lila", "in-air", "in-bblr", "in-asi", "in-jamban"
   ];
@@ -572,7 +630,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (el) el.addEventListener("input", eksekusiPrediksiLive);
   });
 
-  // Filter RT & Status Listeners
+  // Filter Listeners
   const selRT = document.getElementById("filter-rt");
   if (selRT) {
     selRT.addEventListener("change", (e) => {

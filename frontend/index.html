@@ -3,45 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>STUNT-GUARD TEPUS 3 — Sistem Deteksi Dini & Antropometri Balita</title>
-  <meta name="description" content="Sistem Deteksi Dini & Klasifikasi Risiko Stunting Berbasis Antropometri WHO Anthro (Permenkes No. 2/2020) & Decision Tree C4.5. Produk TTG KKNT UDB 2026 Padukuhan Tepus 3.">
-  <meta name="author" content="Kelompok 39 Tim A KKNT UDB 2026 (Ahmadi Adnan, dkk.)">
+  <title>STUNT-GUARD TEPUS 3 — Layanan Deteksi Dini & Antropometri Posyandu</title>
+  <meta name="description" content="Layanan Deteksi Dini & Antropometri Balita Posyandu Padukuhan Tepus 3. Standar Permenkes No. 2/2020 & WHO Child Growth Standards.">
+  <meta name="author" content="Kelompok 39 Tim 1 KKNT UDB 2026">
 
-  <!-- Favicon Tab Browser -->
+  <!-- Favicon & Touch Icons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="alternate icon" href="favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#0d9488">
 
   <!-- Open Graph / WhatsApp / Facebook / Telegram Card Preview -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://stuntguard-tepus3.vercel.app/">
-  <meta property="og:title" content="STUNT-GUARD TEPUS 3 — Deteksi Dini Stunting Posyandu">
-  <meta property="og:description" content="Sistem Deteksi Dini & Antropometri Balita Berbasis WHO Anthro (Permenkes No. 2/2020) & Decision Tree C4.5. Produk TTG KKNT UDB 2026 Padukuhan Tepus 3, Gunungkidul.">
+  <meta property="og:title" content="STUNT-GUARD TEPUS 3 — Layanan Skrining Tumbuh Kembang Balita">
+  <meta property="og:description" content="Sistem Antropometri & Deteksi Dini Stunting Posyandu Padukuhan Tepus 3, Kapanewon Tepus, Gunungkidul. Standar Kemenkes RI & WHO Anthro.">
   <meta property="og:image" content="https://stuntguard-tepus3.vercel.app/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="STUNT-GUARD TEPUS 3 — Deteksi Dini Stunting Posyandu">
-  <meta name="twitter:description" content="Sistem Deteksi Dini & Antropometri Balita Berbasis WHO Anthro & Decision Tree C4.5.">
+  <meta name="twitter:title" content="STUNT-GUARD TEPUS 3 — Skrining Posyandu Digital">
+  <meta name="twitter:description" content="Layanan Deteksi Dini Stunting Standar Kemenkes RI & WHO Anthro.">
   <meta name="twitter:image" content="https://stuntguard-tepus3.vercel.app/og-image.png">
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- STICKY TOP HEADER FULL-WIDTH (RELASI CONSULTING STYLE) -->
+<!-- STICKY TOP HEALTHCARE HEADER (RELASI CONSULTING STYLE) -->
 <header id="main-header" class="header-utama">
   <div class="wadah-header">
-    <div class="merek" onclick="gantiTab('beranda')">
+    <div class="merek" onclick="gantiTab('skrining')">
       <div class="emblem-logo">
         <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
           <rect width="44" height="44" rx="12" fill="url(#brandGrad)" />
-          <!-- Medical Shield Contour -->
           <path d="M22 8L33 13V23C33 30 27.5 35.5 22 37.5C16.5 35.5 11 30 11 23V13L22 8Z" fill="rgba(255,255,255,0.18)" />
-          <!-- White Medical Cross -->
           <path d="M22 15V27M16 21H28" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
-          <!-- Pulse line -->
           <path d="M13 29L17 29L19.5 25L22 32L24.5 26.5L27 29L31 29" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
           <defs>
             <linearGradient id="brandGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
@@ -57,148 +57,72 @@
           <strong>STUNT-GUARD</strong>
           <span class="badge-wilayah">TEPUS 3</span>
         </div>
-        <small>Sistem Antropometri & Deteksi Dini Stunting WHO Anthro</small>
+        <small>Posyandu Balita &bull; Kalurahan Tepus, Gunungkidul</small>
       </div>
     </div>
 
-    <!-- NAVIGASI PILL DENGAN SCROLL HALUS DI MOBILE -->
+    <!-- NAVIGASI LAYANAN UTAMA -->
     <div class="wadah-nav-scroll">
       <nav id="nav-tabs">
-        <button id="btn-beranda" class="aktif" onclick="gantiTab('beranda')">Beranda</button>
-        <button id="btn-prediksi" onclick="gantiTab('prediksi')">Prediksi & Skrining</button>
-        <button id="btn-rekap" onclick="gantiTab('rekap')">Rekapitulasi Data</button>
-        <button id="btn-analisis" onclick="gantiTab('analisis')">Analisis Wilayah</button>
-        <button id="btn-pmt" onclick="gantiTab('pmt')">Panduan PMT</button>
-        <button id="btn-metodologi" onclick="gantiTab('metodologi')">CRISP-DM</button>
-        <button id="btn-glosarium" onclick="gantiTab('glosarium')">Glosarium & Tim</button>
+        <button id="btn-skrining" class="aktif" onclick="gantiTab('skrining')">🩺 Skrining Balita</button>
+        <button id="btn-rekap" onclick="gantiTab('rekap')">📋 Data Posyandu</button>
+        <button id="btn-pmt" onclick="gantiTab('pmt')">🍲 Panduan Gizi PMT</button>
+        <button id="btn-tentang" onclick="gantiTab('tentang')">🏥 Profil & Layanan Faskes</button>
       </nav>
     </div>
   </div>
 </header>
 
 <div class="kerangka">
-  <!-- BADGE STATUS KONEKSI BACKEND FASTAPI -->
+  <!-- STATUS KONEKSI SISTEM -->
   <div id="badge-koneksi-api" class="badge-status">
     <span class="dot-status"></span>
-    <span id="teks-status-koneksi">Memeriksa status koneksi backend FastAPI...</span>
+    <span id="teks-status-koneksi">Sistem Posyandu Terhubung &bull; Standar Baku WHO Anthro Aktif</span>
   </div>
 
-  <!-- ================= TAB 1: BERANDA ================= -->
-  <main id="tab-beranda" class="halaman-tab aktif">
-    <section class="hero">
-      <div>
-        <span class="label-sub">Teknologi Tepat Guna (TTG) KKNT UDB 2026</span>
-        <h1>Deteksi Dini & Klasifikasi Risiko Stunting Berbasis Antropometri WHO</h1>
-        <p class="lead">
-          STUNT-GUARD mengintegrasikan standar baku Z-score WHO Anthro (Permenkes No. 2/2020) dengan algoritma 
-          pohon keputusan (Decision Tree C4.5) untuk memetakan balita berisiko stunting dan faltering growth di Posyandu Padukuhan Tepus 3.
+  <!-- ================= MODUL 1: LAYANAN SKRINING BALITA (UTAMA) ================= -->
+  <main id="tab-skrining" class="halaman-tab aktif">
+    <!-- Hero Banner Konsultasi -->
+    <section class="hero-layanan">
+      <div class="hero-layanan-konten">
+        <span class="tag-faskes">Layanan Kesehatan Ibu & Anak &bull; Padukuhan Tepus 3</span>
+        <h1>Skrining Tumbuh Kembang & Deteksi Dini Risiko Stunting</h1>
+        <p class="hero-lead">
+          Pemeriksaan antropometri berkala untuk memantau laju pertumbuhan balita usia 0–59 bulan. 
+          Hasil evaluasi mengacu pada standar baku <strong>Kemenkes RI (Permenkes No. 2/2020)</strong> dan <strong>WHO Child Growth Standards</strong>.
         </p>
-        <div class="aksi-hero">
-          <button class="tombol utama" onclick="gantiTab('prediksi')">🩺 Mulai Skrining Balita</button>
-          <button class="tombol sekunder" onclick="gantiTab('rekap')">📊 Buka Rekap Posyandu</button>
-        </div>
-      </div>
-      <dl class="ringkas-metrik">
-        <div>
-          <dt>4 RT</dt>
-          <dd>Wilayah Layanan Tepus 3 (RT 01 s/d RT 04)</dd>
-        </div>
-        <div>
-          <dt>Permenkes</dt>
-          <dd>No. 2 Th 2020 Standar Antropometri Anak</dd>
-        </div>
-        <div>
-          <dt>C4.5</dt>
-          <dd>Decision Tree Transparan & Terverifikasi</dd>
-        </div>
-        <div>
-          <dt>100%</dt>
-          <dd>Akurasi Medis Tanpa Black-Box ML</dd>
-        </div>
-      </dl>
-    </section>
-
-    <!-- TIGA TINGKAT KLASIFIKASI RISIKO -->
-    <section class="bagian">
-      <span class="label-sub">Stratifikasi Klinis</span>
-      <h2>Tiga Kategori Risiko Tumbuh Kembang Balita</h2>
-      <p class="subjudul">
-        Klasifikasi multi-parameter yang menggabungkan Z-Score Tinggi Badan menurut Umur (TB/U), Lingkar Lengan Atas (LiLA), 
-        dan riwayat sanitasi lingkungan perdesaan karst.
-      </p>
-      <div class="kartu-risiko-grid">
-        <div class="kartu-risiko r-normal">
-          <h4>Normal (Optimal)</h4>
-          <div class="kriteria">Z-Score TB/U &ge; -1.5 SD &bull; LiLA &ge; 12.5 cm</div>
-          <p>Pertumbuhan anak berada pada lintasan kurva baku WHO. Nutrisi dan pola asuh optimal, intervensi difokuskan pada pemeliharaan gizi seimbang.</p>
-        </div>
-        <div class="kartu-risiko r-waspada">
-          <h4>Waspada (Faltering Growth)</h4>
-          <div class="kriteria">-2.0 SD &le; Z-Score &lt; -1.5 SD &bull; Faktor BBLR / Non-ASI</div>
-          <p>Terjadi perlambatan laju pertumbuhan (growth faltering). Wajib mendapatkan intervensi Pemberian Makanan Tambahan (PMT) lokal selama 14 hari.</p>
-        </div>
-        <div class="kartu-risiko r-stunted">
-          <h4>Risiko Tinggi (Stunted)</h4>
-          <div class="kriteria">Z-Score TB/U &lt; -2.0 SD atau LiLA &lt; 11.5 cm</div>
-          <p>Indikasi gangguan pertumbuhan kronis atau wasting akut. Membutuhkan rujukan segera ke Bidan Desa atau Puskesmas Pembantu Tepus.</p>
+        <div class="badge-standar-grup">
+          <span class="badge-fitur">🛡️ Standar Baku Kemenkes RI</span>
+          <span class="badge-fitur">📊 Kalkulasi Z-Score TB/U Presisi</span>
+          <span class="badge-fitur">🌱 Rekomendasi Gizi Pangan Lokal</span>
         </div>
       </div>
     </section>
 
-    <!-- ENAM TAHAP CRISP-DM -->
-    <section class="bagian">
-      <span class="label-sub">Metodologi Data Mining</span>
-      <h2>Implementasi Siklus CRISP-DM di Padukuhan Tepus 3</h2>
-      <ol class="tahap">
-        <li>
-          <h3>1. Business Understanding</h3>
-          <p>Mengidentifikasi prevalensi stunting di perdesaan karst Gunungkidul dan merumuskan kebutuhan kader Posyandu akan alat bantu skrining antropometri yang cepat dan akurat.</p>
-        </li>
-        <li>
-          <h3>2. Data Understanding</h3>
-          <p>Analisis variabel antropometri standar Kemenkes RI (Usia, TB, BB, LiLA) dikombinasikan dengan faktor determinan lokal Tepus 3 (air sumur kapur karst & riwayat BBLR).</p>
-        </li>
-        <li>
-          <h3>3. Data Preparation</h3>
-          <p>Normalisasi kurva pertumbuhan piecewise linier WHO Anthro 0-60 bulan, penanganan outlier pengukuran kader, dan kalkulasi Z-Score TB/U.</p>
-        </li>
-        <li>
-          <h3>4. Modeling (Decision Tree C4.5)</h3>
-          <p>Pelatihan pohon keputusan dengan Information Gain / Entropy untuk menghasilkan aturan klinis (rules) yang transparan dan dapat diaudit secara medis.</p>
-        </li>
-        <li>
-          <h3>5. Evaluation</h3>
-          <p>Validasi aturan keputusan terhadap Permenkes No. 2 Tahun 2020 dengan pengujian smoke test pada seluruh boundary kasus klinis balita.</p>
-        </li>
-        <li>
-          <h3>6. Deployment (Produk TTG KKN)</h3>
-          <p>Penyebaran sistem mandiri berbasis FastAPI dan Web UI lokal yang dapat dijalankan tanpa ketergantungan koneksi internet oleh operator Posyandu.</p>
-        </li>
-      </ol>
-    </section>
-  </main>
+    <!-- Formulir Skrining & Lembar Hasil Klinis -->
+    <div class="tata-skrining">
+      <!-- SISI KIRI: FORMULIR PEMERIKSAAN -->
+      <div class="kartu-form">
+        <div class="kartu-form-header">
+          <h3>Formulir Pemeriksaan Balita</h3>
+          <p>Masukkan data pengukuran posyandu secara teliti untuk mendapatkan analisis status gizi anak.</p>
+        </div>
 
-  <!-- ================= TAB 2: PREDIKSI & SKRINING ================= -->
-  <main id="tab-prediksi" class="halaman-tab">
-    <div class="kartu">
-      <h2>Formulir Pemeriksaan & Skrining Balita Posyandu</h2>
-      <p class="subjudul">Masukkan data pengukuran antropometri anak. Sistem akan menghitung deviasi Z-score dan mengevaluasi pohon keputusan secara otomatis.</p>
-
-      <div class="tata-prediksi">
-        <!-- FORMULIR INPUT -->
-        <div>
+        <!-- 1. Identitas Anak & Keluarga -->
+        <div class="seksi-form">
+          <div class="judul-seksi-form">1. Identitas Anak & Orang Tua</div>
           <div class="grup-form">
             <label for="in-nama-balita">Nama Lengkap Balita</label>
-            <input type="text" id="in-nama-balita" class="input-text" placeholder="Contoh: Muhammad Rizki" value="Muhammad Rizki">
+            <input type="text" id="in-nama-balita" class="input-text" placeholder="Masukkan nama balita" value="Muhammad Rizki">
           </div>
 
           <div class="baris-input-ganda grup-form">
             <div>
               <label for="in-nama-ibu">Nama Ibu / Wali</label>
-              <input type="text" id="in-nama-ibu" class="input-text" placeholder="Contoh: Ibu Siti" value="Ibu Siti">
+              <input type="text" id="in-nama-ibu" class="input-text" placeholder="Nama ibu kandung" value="Ibu Siti Aminah">
             </div>
             <div>
-              <label for="in-rt">Wilayah RT</label>
+              <label for="in-rt">Wilayah Domisili</label>
               <select id="in-rt" class="pilihan">
                 <option value="RT 01">RT 01 Padukuhan Tepus 3</option>
                 <option value="RT 02" selected>RT 02 Padukuhan Tepus 3</option>
@@ -207,7 +131,11 @@
               </select>
             </div>
           </div>
+        </div>
 
+        <!-- 2. Parameter Antropometri -->
+        <div class="seksi-form">
+          <div class="judul-seksi-form">2. Pengukuran Antropometri</div>
           <div class="grup-form">
             <label>Jenis Kelamin</label>
             <div class="grup-segmen">
@@ -217,11 +145,11 @@
           </div>
 
           <div class="grup-form">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.35rem;">
-              <label style="margin:0;">Usia Anak: <span id="label-usia-bln" style="color:var(--utama); font-weight:700;">24 Bulan</span></label>
-              <input type="number" id="in-usia" class="input-text" style="width:75px; padding:0.3rem 0.5rem; text-align:center;" min="0" max="59" value="24" oninput="syncUsia(this.value)">
+            <div class="label-baris-antara">
+              <label style="margin:0;">Usia Saat Ini: <strong id="label-usia-bln" style="color:var(--utama);">24 Bulan</strong></label>
+              <input type="number" id="in-usia" class="input-angka-kecil" min="0" max="59" value="24" oninput="syncUsia(this.value)">
             </div>
-            <input type="range" id="range-usia" min="0" max="59" value="24" style="width:100%; accent-color:var(--utama);" oninput="syncUsia(this.value)">
+            <input type="range" id="range-usia" min="0" max="59" value="24" class="slider-usia" oninput="syncUsia(this.value)">
           </div>
 
           <div class="baris-input-ganda grup-form">
@@ -241,7 +169,7 @@
               <input type="number" step="0.1" id="in-lila" class="input-text" value="14.5">
             </div>
             <div>
-              <label for="in-air">Sumber Air Minum Utama</label>
+              <label for="in-air">Sumber Air Keluarga</label>
               <select id="in-air" class="pilihan">
                 <option value="Sumur Karst Kapur">Sumur Karst Kapur</option>
                 <option value="PAH Air Hujan">PAH (Air Hujan)</option>
@@ -249,351 +177,328 @@
               </select>
             </div>
           </div>
+        </div>
 
-          <div class="grup-form" style="background:#f8fafc; padding:0.9rem; border-radius:var(--radius-sm); border:1px solid var(--garis);">
-            <div style="font-size:0.8rem; font-weight:700; color:var(--teks-redup); text-transform:uppercase; margin-bottom:0.5rem;">Faktor Risiko Perinatal & Sanitasi</div>
+        <!-- 3. Riwayat Tumbuh Kembang & Sanitasi -->
+        <div class="seksi-form">
+          <div class="judul-seksi-form">3. Faktor Risiko Perinatal & Pola Asuh</div>
+          <div class="kotak-faktor">
             <label class="kotak-centang">
               <input type="checkbox" id="in-bblr">
               <span>Riwayat Bayi Berat Lahir Rendah / BBLR (&lt; 2.500 gram)</span>
             </label>
             <label class="kotak-centang">
               <input type="checkbox" id="in-asi" checked>
-              <span>Mendapatkan ASI Eksklusif (0 - 6 bulan)</span>
+              <span>Mendapatkan ASI Eksklusif (0–6 bulan pertama)</span>
             </label>
             <label class="kotak-centang">
               <input type="checkbox" id="in-jamban" checked>
-              <span>Memiliki Akses Jamban Sehat Leher Angsa</span>
+              <span>Keluarga memiliki akses jamban sehat leher angsa</span>
             </label>
-          </div>
-
-          <div style="display:flex; gap:0.6rem; margin-top:1.2rem;">
-            <button class="tombol utama" style="flex:1;" onclick="eksekusiPrediksiLive()">🔍 Hitung & Deteksi Risiko</button>
-            <button class="tombol sekunder" onclick="simpanHasilKeRekap()">💾 Simpan ke Database Posyandu</button>
           </div>
         </div>
 
-        <!-- HASIL DETEKSI SECARA LIVE (STICKY CLINICAL CARD) -->
-        <div class="kartu-hasil-sticky">
-          <div class="kartu-hasil-header">
-            <span class="label-sub">Hasil Evaluasi Antropometri & Decision Tree</span>
-            <div id="badge-hasil-risiko" class="badge-hasil-besar Normal">Normal (Optimal)</div>
+        <div class="baris-tombol-form">
+          <button class="tombol utama" style="flex:1;" onclick="eksekusiPrediksiLive()">🔍 Periksa Status Gizi</button>
+          <button class="tombol sekunder" onclick="simpanHasilKeRekap()">💾 Simpan ke Rekam Posyandu</button>
+        </div>
+      </div>
+
+      <!-- SISI KANAN: LEMBAR HASIL EVALUASI KLINIS (CERTIFICATE/REPORT STYLE) -->
+      <div class="area-hasil-skrining">
+        <div class="kartu-laporan-medis" id="lembar-laporan-cetak">
+          <div class="laporan-header">
+            <div class="laporan-instansi">
+              <span class="laporan-title">LEMBAR HASIL SKRINING TUMBUH KEMBANG BALITA</span>
+              <span class="laporan-sub">Posyandu Padukuhan Tepus 3 &bull; Standar Kemenkes RI Permenkes No. 2/2020</span>
+            </div>
+            <div id="badge-hasil-risiko" class="badge-status-klinis Normal">
+              Normal (Optimal)
+            </div>
           </div>
 
-          <dl class="daftar-metrik-hasil">
-            <div>
-              <dt>Z-Score TB/U</dt>
-              <dd id="res-zscore">+0.06 SD</dd>
+          <!-- Metrik Pertumbuhan Utama -->
+          <div class="grid-metrik-laporan">
+            <div class="kartu-metrik-kecil">
+              <span class="judul-metrik">Indeks Z-Score TB/U</span>
+              <strong id="res-zscore" class="nilai-metrik">+0.06 SD</strong>
+              <small id="res-kategori-tb" class="sub-metrik">Normal (Gizi Baik)</small>
             </div>
-            <div>
-              <dt>Status Antropometri</dt>
-              <dd id="res-kategori-tb">Normal (Gizi Baik)</dd>
+            <div class="kartu-metrik-kecil">
+              <span class="judul-metrik">Pita LiLA Balita</span>
+              <strong id="res-lila-status" class="nilai-metrik">Hijau</strong>
+              <small class="sub-metrik">&ge; 12.5 cm (Bebas Wasting)</small>
             </div>
-            <div>
-              <dt>Pita LiLA</dt>
-              <dd id="res-lila-status">Hijau (Gizi Baik)</dd>
+            <div class="kartu-metrik-kecil">
+              <span class="judul-metrik">Tingkat Risiko Gizi</span>
+              <strong id="res-risk-score" class="nilai-metrik" style="color:var(--normal)">Rendah (12%)</strong>
+              <small class="sub-metrik">Pertumbuhan Optimal</small>
             </div>
-            <div>
-              <dt>Probabilitas Risiko</dt>
-              <dd id="res-risk-score">12%</dd>
-            </div>
-          </dl>
-
-          <div style="margin-bottom:0.4rem; font-size:0.82rem; font-weight:700; color:var(--teks-redup); text-transform:uppercase;">
-            Aturan Pohon Keputusan (Decision Rule Terpicu)
-          </div>
-          <div id="res-decision-rule" class="box-rule-tree">
-            RULE-01: IF (Z_TB >= -1.5 AND LiLA >= 12.5cm) THEN 'Normal (Optimal)'
           </div>
 
-          <div class="box-rekomendasi">
-            <h4>Rekomendasi Tindakan Posyandu Tepus 3:</h4>
-            <ul id="list-rekomendasi">
-              <li>Pertahankan pola asuh dan pola makan balita sesuai standar WHO.</li>
-              <li>Timbang rutin setiap bulan di Posyandu Padukuhan Tepus 3.</li>
+          <!-- Penjelasan Analisis Medis (Human-Centered) -->
+          <div class="kotak-interpretasi">
+            <div class="judul-interpretasi">Analisis Tumbuh Kembang:</div>
+            <p id="res-interpretasi" class="teks-interpretasi">
+              Pertumbuhan tinggi badan dan lingkar lengan atas balita berada pada rentang ideal sesuai kurva baku WHO Anthro. 
+              Anak menunjukkan pertumbuhan fisik yang proporsional sesuai usianya tanpa indikasi faltering growth.
+            </p>
+          </div>
+
+          <!-- Rekomendasi Asuhan & Tindak Lanjut -->
+          <div class="kotak-rekomendasi-asuhan">
+            <div class="judul-rekomendasi">Rencana Asuhan & Tindak Lanjut Posyandu:</div>
+            <ul id="list-rekomendasi" class="daftar-rekomendasi">
+              <li>Lanjutkan pola makan gizi seimbang dengan prinsip "Isi Piringku" kaya protein hewani lokal.</li>
+              <li>Lakukan penimbangan rutin setiap bulan di Posyandu Padukuhan Tepus 3.</li>
             </ul>
+          </div>
+
+          <!-- Tombol Cetak / PDF untuk Orang Tua -->
+          <div class="aksi-laporan no-print">
+            <button class="tombol sekunder" style="width:100%;" onclick="cetakLembarHasil()">🖨️ Cetak / Unduh Lembar Hasil Skrining</button>
           </div>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- ================= TAB 3: REKAPITULASI DATA ================= -->
+  <!-- ================= MODUL 2: REKAM MEDIS DATA POSYANDU ================= -->
   <main id="tab-rekap" class="halaman-tab">
+    <div class="kartu-rekap-header">
+      <div>
+        <h2>Data Rekapitulasi Posyandu Padukuhan Tepus 3</h2>
+        <p class="subjudul">Pangkalan data pemantauan tumbuh kembang balita terpadu untuk wilayah RT 01 sampai RT 04.</p>
+      </div>
+      <button class="tombol sekunder" onclick="eksporCSV()">📥 Ekspor Laporan Bulanan (CSV)</button>
+    </div>
+
+    <!-- Ringkasan Statistik Posyandu -->
     <div class="grid-kpi">
       <div class="kpi-card">
         <div class="kpi-judul">Total Balita Terdaftar</div>
         <div id="kpi-total-balita" class="kpi-angka">5</div>
-        <div class="kpi-sub">Posyandu Padukuhan Tepus 3</div>
+        <div class="kpi-sub">Padukuhan Tepus 3</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-judul">Normal (Optimal)</div>
+        <div class="kpi-judul">Status Optimal (Normal)</div>
         <div id="kpi-normal" class="kpi-angka" style="color:var(--normal)">2</div>
-        <div class="kpi-sub">Pertumbuhan sesuai kurva WHO</div>
+        <div class="kpi-sub">Gizi seimbang sesuai kurva</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-judul">Waspada (Faltering)</div>
+        <div class="kpi-judul">Perlu Pantauan (Waspada)</div>
         <div id="kpi-waspada" class="kpi-angka" style="color:var(--waspada)">2</div>
-        <div class="kpi-sub">Perlu intervensi PMT lokal</div>
+        <div class="kpi-sub">Intervensi PMT pangan lokal</div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-judul">Risiko Tinggi (Stunted)</div>
+        <div class="kpi-judul">Prioritas Rujukan (Stunted)</div>
         <div id="kpi-stunted" class="kpi-angka" style="color:var(--stunted)">1</div>
-        <div class="kpi-sub">Prioritas rujukan Bidan Desa</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-judul">Prevalensi Risiko</div>
-        <div id="kpi-prevalensi" class="kpi-angka" style="color:var(--utama)">60%</div>
-        <div class="kpi-sub">Total balita dalam pantauan</div>
+        <div class="kpi-sub">Pemeriksaan Bidan Desa/Pustu</div>
       </div>
     </div>
 
-    <div class="kartu">
+    <!-- Toolbar Pencarian & Filter -->
+    <div class="kartu" style="padding:1.25rem;">
       <div class="filter-bar">
         <div class="filter-kiri">
-          <input type="text" id="in-cari-balita" class="input-text" style="width:230px;" placeholder="Cari nama balita / ibu...">
-          <select id="filter-rt" class="pilihan" style="width:150px;">
+          <input type="text" id="in-cari-balita" class="input-text" style="width:260px;" placeholder="Cari nama anak / ibu...">
+          <select id="filter-rt" class="pilihan" style="width:160px;">
             <option value="ALL">Semua RT</option>
             <option value="RT 01">RT 01</option>
             <option value="RT 02">RT 02</option>
             <option value="RT 03">RT 03</option>
             <option value="RT 04">RT 04</option>
           </select>
-          <select id="filter-status" class="pilihan" style="width:160px;">
-            <option value="ALL">Semua Status</option>
-            <option value="Normal">Normal</option>
-            <option value="Waspada">Waspada</option>
-            <option value="Stunted">Risiko Tinggi</option>
+          <select id="filter-status" class="pilihan" style="width:180px;">
+            <option value="ALL">Semua Status Gizi</option>
+            <option value="Normal">Optimal (Normal)</option>
+            <option value="Waspada">Waspada (Faltering)</option>
+            <option value="Stunted">Prioritas Rujukan</option>
           </select>
         </div>
-        <div style="display:flex; gap:0.5rem;">
-          <button class="tombol sekunder" onclick="eksporCSV()">📥 Unduh Rekap CSV</button>
-          <button class="tombol utama" onclick="gantiTab('prediksi')">+ Tambah Balita</button>
+        <div>
+          <button class="tombol utama" onclick="gantiTab('skrining')">+ Input Balita Baru</button>
         </div>
       </div>
 
+      <!-- Tabel Data Balita -->
       <div class="wadah-tabel">
         <table>
           <thead>
             <tr>
-              <th style="width:40px;">No</th>
-              <th>Nama Balita / Ibu</th>
-              <th>RT</th>
+              <th style="width:45px;">No</th>
+              <th>Nama Balita / Orang Tua</th>
+              <th>Domisili</th>
               <th>Usia</th>
               <th>TB / BB</th>
               <th>LiLA</th>
               <th>Z-Score TB/U</th>
-              <th>Status Risiko</th>
-              <th style="width:80px;">Aksi</th>
+              <th>Status Gizi</th>
+              <th style="width:90px; text-align:center;">Tindakan</th>
             </tr>
           </thead>
           <tbody id="tbody-balita">
-            <!-- Data balita dirender secara dinamis oleh app.js -->
+            <!-- Diisi secara dinamis oleh app.js -->
           </tbody>
         </table>
       </div>
     </div>
-  </main>
 
-  <!-- ================= TAB 4: ANALISIS WILAYAH ================= -->
-  <main id="tab-analisis" class="halaman-tab">
+    <!-- Grafik Distribusi Per RT -->
     <div class="kartu">
-      <h2>Analisis Spasial & Faktor Determinan Padukuhan Tepus 3</h2>
-      <p class="subjudul">
-        Distribusi prevalensi risiko stunting per RT dan korelasi kondisi lingkungan karst (kandungan kalsium air sumur kapur & sistem penampungan air hujan).
+      <h3>Distribusi Status Gizi Balita per RT Padukuhan Tepus 3</h3>
+      <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1.5rem;">
+        Proporsi balita berstatus Normal (Hijau), Waspada Faltering (Kuning), dan Prioritas Rujukan (Merah) di setiap RT.
       </p>
-
-      <div class="dua-kolom">
-        <div>
-          <h3>Persebaran Status Gizi per RT</h3>
-          <p style="font-size:0.88rem; color:var(--teks-redup); margin-bottom:1.5rem;">
-            Batang horizontal menunjukkan proporsi balita berstatus Normal (Hijau), Waspada Faltering (Kuning), dan Risiko Tinggi Stunted (Merah).
-          </p>
-          <div id="wadah-chart-rt">
-            <!-- Dynamic RT charts rendered by app.js -->
-          </div>
-        </div>
-
-        <div>
-          <h3>Karakteristik Wilayah Karst & Solusi Intervensi</h3>
-          <div style="background:#f8fafc; border:1px solid var(--garis); padding:1.2rem; border-radius:var(--radius-md); font-size:0.88rem; margin-bottom:1rem;">
-            <strong style="color:var(--utama); display:block; margin-bottom:0.3rem;">1. Sanitasi Sumber Air Karst</strong>
-            Sebagian besar keluarga memanfaatkan sumur galian batuan kapur karst atau PAH. Kalsium karbonat tinggi dapat mempengaruhi penyerapan zat besi dan zinc jika tidak diendapkan dan direbus sempurna.
-          </div>
-          <div style="background:#f8fafc; border:1px solid var(--garis); padding:1.2rem; border-radius:var(--radius-md); font-size:0.88rem; margin-bottom:1rem;">
-            <strong style="color:var(--utama); display:block; margin-bottom:0.3rem;">2. Pemanfaatan Protein Ikan Pesisir</strong>
-            Letak Kapanewon Tepus yang berbatasan langsung dengan Samudra Hindia (Pantai Pok Tunggal, Indrayanti, Siung) memberikan akses protein hewani tinggi yang murah untuk menu PMT balita.
-          </div>
-          <div style="background:#f8fafc; border:1px solid var(--garis); padding:1.2rem; border-radius:var(--radius-md); font-size:0.88rem;">
-            <strong style="color:var(--utama); display:block; margin-bottom:0.3rem;">3. Jalur Rujukan Kesehatan Desa</strong>
-            Balita dalam kategori merah langsung dirujuk ke Poskesdes Tepus 3 atau Puskesmas Pembantu (Pustu) Tepus untuk verifikasi antropometri oleh Tenaga Pelaksana Gizi (TPG).
-          </div>
-        </div>
+      <div id="wadah-chart-rt">
+        <!-- Dynamic RT bars by app.js -->
       </div>
     </div>
   </main>
 
-  <!-- ================= TAB 5: PANDUAN GIZI PMT ================= -->
+  <!-- ================= MODUL 3: PANDUAN GIZI PMT PANGAN LOKAL ================= -->
   <main id="tab-pmt" class="halaman-tab">
-    <div class="kartu">
-      <h2>Panduan Pemberian Makanan Tambahan (PMT) Berbasis Pangan Lokal</h2>
+    <div class="kartu-pmt-header">
+      <h2>Panduan Pemberian Makanan Tambahan (PMT) Pangan Lokal</h2>
       <p class="subjudul">
-        Formulasi menu PMT pemulihan berbasis potensi pertanian dan perikanan lokal Padukuhan Tepus 3 untuk mengatasi growth faltering pada balita.
+        Formulasi menu PMT pemulihan berbasis kekayaan hasil bumi dan laut Padukuhan Tepus 3 untuk mencegah growth faltering pada 1000 Hari Pertama Kehidupan (HPK).
       </p>
+    </div>
 
-      <div class="kartu-risiko-grid">
-        <div class="kartu" style="border:1px solid var(--garis);">
-          <span class="label-sub">Menu 1 &bull; Pemulihan Energi</span>
-          <h3>Puree Singkong Kelor & Telur</h3>
-          <p style="font-size:0.86rem; color:var(--teks-redup); margin-bottom:0.8rem;">
-            Kombinasi karbohidrat singkong lokal Tepus yang difortifikasi dengan daun kelor (kaya zat besi & vitamin A) dan 1 butir telur ayam rebus lumat.
-          </p>
-          <ul style="font-size:0.84rem; padding-left:1.2rem; margin:0; color:var(--teks);">
-            <li>Singkong kukus lembut: 80 gram</li>
-            <li>Telur ayam lumat: 1 butir</li>
-            <li>Ekstrak air daun kelor: 2 sendok makan</li>
-            <li>Minyak kelapa / santan matang: 1 sdt (penambah kalori)</li>
+    <div class="grid-resep-pmt">
+      <!-- Menu 1 -->
+      <div class="kartu-resep">
+        <div class="tag-resep">Menu 1 &bull; Sumber Energi & Zat Besi</div>
+        <h3>Puree Singkong Kelor & Telur Ayam</h3>
+        <p class="deskripsi-resep">
+          Kombinasi singkong lokal Tepus yang lembut difortifikasi ekstrak daun kelor kaya vitamin A & zat besi, serta protein telur ayam untuk stimulasi pembentukan sel tubuh anak.
+        </p>
+        <div class="komposisi-box">
+          <strong>Komposisi Bahan:</strong>
+          <ul>
+            <li>Singkong kukus lumat halus: 80 gram</li>
+            <li>Telur ayam rebus matang lumat: 1 butir</li>
+            <li>Ekstrak air daun kelor matang: 2 sendok makan</li>
+            <li>Santan kelapa matang / minyak nabati: 1 sendok teh (lemak sehat)</li>
           </ul>
         </div>
+        <div class="anjuran-pemberian">
+          <strong>Anjuran:</strong> Diberikan 1x sehari sebagai kudapan pagi/sore bagi anak usia 6–24 bulan.
+        </div>
+      </div>
 
-        <div class="kartu" style="border:1px solid var(--garis);">
-          <span class="label-sub">Menu 2 &bull; Protein Pesisir</span>
-          <h3>Nugget Ikan Laut Sayur Tepus</h3>
-          <p style="font-size:0.86rem; color:var(--teks-redup); margin-bottom:0.8rem;">
-            Pemanfaatan hasil tangkapan nelayan pesisir Tepus (ikan tongkol/tenggiri) yang kaya asam lemak omega-3 untuk stimulasi pertumbuhan saraf dan tulang.
-          </p>
-          <ul style="font-size:0.84rem; padding-left:1.2rem; margin:0; color:var(--teks);">
-            <li>Daging ikan laut giling: 100 gram</li>
-            <li>Wortel & bayam cincang halus: 30 gram</li>
-            <li>Tepung tapioka: 2 sendok makan</li>
-            <li>Kukus selama 20 menit, potong dadu</li>
+      <!-- Menu 2 -->
+      <div class="kartu-resep">
+        <div class="tag-resep">Menu 2 &bull; Protein Tinggi Pesisir</div>
+        <h3>Nugget Ikan Laut Sayur Tepus</h3>
+        <p class="deskripsi-resep">
+          Pemanfaatan hasil tangkapan nelayan pesisir Kapanewon Tepus (ikan tongkol/tenggiri) kaya asam lemak Omega-3 dan mineral zinc untuk merangsang pertumbuhan tulang dan sel otak.
+        </p>
+        <div class="komposisi-box">
+          <strong>Komposisi Bahan:</strong>
+          <ul>
+            <li>Daging ikan laut segar cincang: 100 gram</li>
+            <li>Wortel & bayam cincang lembut: 30 gram</li>
+            <li>Tepung tapioka / terigu: 2 sendok makan</li>
+            <li>Kukus selama 20 menit, potong dadu siap konsumsi</li>
           </ul>
         </div>
+        <div class="anjuran-pemberian">
+          <strong>Anjuran:</strong> Diberikan 3x seminggu sebagai lauk makan utama anak usia 12–59 bulan.
+        </div>
+      </div>
 
-        <div class="kartu" style="border:1px solid var(--garis);">
-          <span class="label-sub">Menu 3 &bull; Kudapan Padat Kalori</span>
-          <h3>Puding Jagung Manis Santan</h3>
-          <p style="font-size:0.86rem; color:var(--teks-redup); margin-bottom:0.8rem;">
-            Kudapan lembut padat energi untuk balita yang mengalami penurunan nafsu makan (anoreksia) pasca sakit atau infeksi diare perdesaan.
-          </p>
-          <ul style="font-size:0.84rem; padding-left:1.2rem; margin:0; color:var(--teks);">
-            <li>Pipilan jagung manis blender: 1 bonggol</li>
-            <li>Santan kental kelapa: 100 ml</li>
-            <li>Agar-agar tanpa rasa: 1/2 bungkus</li>
-            <li>Gula secukupnya (hindari rasa terlalu manis)</li>
+      <!-- Menu 3 -->
+      <div class="kartu-resep">
+        <div class="tag-resep">Menu 3 &bull; Kudapan Padat Kalori</div>
+        <h3>Puding Jagung Manis Santan Kelapa</h3>
+        <p class="deskripsi-resep">
+          Kudapan lembut padat kalori bagi balita dengan nafsu makan menurun (*anoreksia*) atau pasca sembuh dari diare perdesaan untuk mengejar berat badan ideal.
+        </p>
+        <div class="komposisi-box">
+          <strong>Komposisi Bahan:</strong>
+          <ul>
+            <li>Pipilan jagung manis blender saring: 1 bonggol</li>
+            <li>Santan kental kelapa segar: 100 ml</li>
+            <li>Bubuk agar-agar tanpa perasa: 1/2 bungkus</li>
+            <li>Gula secukupnya (tidak terlalu manis)</li>
           </ul>
+        </div>
+        <div class="anjuran-pemberian">
+          <strong>Anjuran:</strong> Diberikan sebagai kudapan selingan 2x sehari pasca makan utama.
         </div>
       </div>
     </div>
   </main>
 
-  <!-- ================= TAB 6: METODOLOGI CRISP-DM ================= -->
-  <main id="tab-metodologi" class="halaman-tab">
+  <!-- ================= MODUL 4: PROFIL FASKES & TIM PENGEMBANG ================= -->
+  <main id="tab-tentang" class="halaman-tab">
     <div class="kartu">
-      <h2>Landasan Ilmiah CRISP-DM & Algoritma Decision Tree C4.5</h2>
+      <h2>Informasi Layanan & Jejaring Kesehatan Padukuhan Tepus 3</h2>
       <p class="subjudul">
-        Mengapa STUNT-GUARD menggunakan Decision Tree C4.5 dan menolak penggunaan Deep Learning / Black-Box AI untuk diagnosis stunting posyandu.
+        Sistem STUNT-GUARD dikembangkan sebagai Produk Teknologi Tepat Guna (TTG) resmi dalam kerangka 
+        Kuliah Kerja Nyata Tematik (KKNT) Periode 10 Tahun 2026 Universitas Duta Bangsa Surakarta.
       </p>
 
-      <div class="dua-kolom">
+      <div class="dua-kolom" style="margin-top:2rem;">
+        <!-- Kolom Kiri: Jejaring Faskes Rujukan -->
         <div>
-          <h3>Prinsip Akuntabilitas Medis & Explainability</h3>
-          <p style="font-size:0.9rem; color:var(--teks-redup);">
-            Dalam ranah kesehatan anak, sebuah sistem pendukung keputusan (DSS) wajib memiliki sifat <strong>interpretable</strong> (dapat dijelaskan) dan <strong>accountable</strong> (dapat dipertanggungjawabkan).
-          </p>
-          <p style="font-size:0.9rem; color:var(--teks-redup);">
-            Bidan desa dan kader Posyandu tidak boleh diberikan hasil diagnosis tanpa alasan yang logis. Decision Tree C4.5 bekerja dengan menghitung <em>Information Gain Ratio</em> dan <em>Entropy</em> pada setiap simpul keputusan:
-          </p>
-          <div style="background:#1e293b; color:#38bdf8; padding:0.9rem; border-radius:var(--radius-sm); font-family:monospace; font-size:0.82rem; margin:1rem 0;">
-            Entropy(S) = - &sum; p(i) * log2 p(i)<br>
-            Gain(S, A) = Entropy(S) - &sum; (|Sv| / |S|) * Entropy(Sv)
-          </div>
-          <p style="font-size:0.88rem; color:var(--teks);">
-            Hasil pembelahan simpul pohon keputusan langsung bersesuaian dengan ambang batas klinis Z-Score &plusmn;2.0 SD Permenkes No. 2 Tahun 2020.
-          </p>
-        </div>
-
-        <div>
-          <h3>Struktur Aturan Keputusan (Decision Rules)</h3>
-          <div class="box-rule-tree" style="min-height:220px; font-size:0.78rem; line-height:1.6;">
-|--- usia_bulan &lt;= 24.50<br>
-|   |--- zscore_tb &lt; -2.00 : <strong>Risiko Tinggi (Stunted)</strong> [Leaf: 89/0]<br>
-|   |--- zscore_tb &gt;= -2.00<br>
-|   |   |--- zscore_tb &lt; -1.50 : <strong>Waspada (Faltering Growth)</strong> [Leaf: 45/2]<br>
-|   |   |--- zscore_tb &gt;= -1.50 : <strong>Normal (Optimal)</strong> [Leaf: 142/1]<br>
-|--- usia_bulan &gt; 24.50<br>
-|   |--- lila_cm &lt; 11.50 : <strong>Risiko Tinggi (Stunted)</strong> [Leaf: 32/0]<br>
-|   |--- lila_cm &gt;= 11.50<br>
-|   |   |--- zscore_tb &lt; -1.80 : <strong>Risiko Tinggi (Stunted)</strong> [Leaf: 28/1]<br>
-|   |   |--- zscore_tb &gt;= -1.80 : <strong>Normal (Optimal)</strong> [Leaf: 110/3]
-          </div>
-          <p style="font-size:0.82rem; color:var(--teks-redup); margin-top:0.6rem;">
-            *Diekstrak langsung dari artefak model terlatih <code>artifacts/rules_tree.txt</code> dengan akurasi validasi silang 82.00%.
-          </p>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- ================= TAB 7: GLOSARIUM & TIM ================= -->
-  <main id="tab-glosarium" class="halaman-tab">
-    <div class="kartu">
-      <h2>Glosarium Antropometri & Profil Tim Peneliti</h2>
-      <div class="dua-kolom" style="margin-top:1.2rem;">
-        <div>
-          <h3>Glosarium Istilah Antropometri</h3>
-          <dl style="font-size:0.88rem; line-height:1.6;">
-            <dt><strong>Stunting</strong></dt>
-            <dd style="color:var(--teks-redup); margin:0 0 0.8rem;">Kondisi gagal tumbuh pada anak balita akibat kekurangan gizi kronis dan infeksi berulang, ditandai dengan Z-score TB/U &lt; -2.0 SD.</dd>
-            
-            <dt><strong>Growth Faltering</strong></dt>
-            <dd style="color:var(--teks-redup); margin:0 0 0.8rem;">Perlambatan kenaikan berat atau tinggi badan yang tidak sesuai garis pertumbuhan kurva KMS, merupakan fase awal sebelum terjadinya stunting.</dd>
-            
-            <dt><strong>Z-Score (Standar Deviasi)</strong></dt>
-            <dd style="color:var(--teks-redup); margin:0 0 0.8rem;">Nilai deviasi pertumbuhan anak dari nilai median populasi rujukan baku WHO, dihitung dengan rumus: <code>(Nilai Riil - Median WHO) / SD WHO</code>.</dd>
-            
-            <dt><strong>BBLR (Bayi Berat Lahir Rendah)</strong></dt>
-            <dd style="color:var(--teks-redup); margin:0 0 0.8rem;">Kondisi bayi lahir dengan berat badan kurang dari 2.500 gram, menjadi faktor risiko primer stunting.</dd>
-          </dl>
-        </div>
-
-        <div>
-          <h3>Tim Pengembang Kelompok 39 Tim A</h3>
-          <p style="font-size:0.88rem; color:var(--teks-redup); margin-bottom:1rem;">
-            Kuliah Kerja Nyata Tematik (KKNT) Periode 10 Tahun 2026 Universitas Duta Bangsa Surakarta di Padukuhan Tepus 3, Kapanewon Tepus, Kabupaten Gunungkidul.
-          </p>
-
-          <div style="background:#f8fafc; border:1px solid var(--garis); padding:1rem; border-radius:var(--radius-md); font-size:0.88rem; margin-bottom:0.75rem;">
-            <strong style="color:var(--utama); display:block;">Ahmadi Adnan (NIM: 240103264)</strong>
-            <span>Ketua Tim 1 &bull; Software Architect & Machine Learning Engineer (S1 Teknik Informatika)</span>
+          <h3>Alur Rujukan & Faskes Desa</h3>
+          <div class="kotak-faskes-info">
+            <strong>1. Posyandu Balita Padukuhan Tepus 3</strong>
+            <p>Pemeriksaan rutin setiap bulan di Balai Padukuhan Tepus 3 untuk penimbangan, pengukuran tinggi, pemantauan LiLA, dan distribusi PMT lokal.</p>
           </div>
 
-          <div style="background:#f8fafc; border:1px solid var(--garis); padding:1rem; border-radius:var(--radius-md); font-size:0.88rem; margin-bottom:0.75rem;">
-            <strong style="color:var(--utama); display:block;">David Valentino Iskandar (NIM: 240221005)</strong>
+          <div class="kotak-faskes-info">
+            <strong>2. Bidan Desa & Poskesdes Tepus 3</strong>
+            <p>Verifikasi status klinis untuk balita yang terdeteksi dalam kategori waspada atau risiko tinggi oleh kader posyandu.</p>
+          </div>
+
+          <div class="kotak-faskes-info">
+            <strong>3. Puskesmas Pembantu (Pustu) & Puskesmas Tepus II</strong>
+            <p>Fasilitas rujukan medis lanjutan untuk tata laksana gizi buruk terintegrasi dan konsultasi tenaga pelaksana gizi (TPG) Puskesmas.</p>
+          </div>
+        </div>
+
+        <!-- Kolom Kanan: Tim Pengembang Multidisiplin -->
+        <div>
+          <h3>Tim Kolaborasi Interprofesional (Tim 1 / Kelompok 39)</h3>
+          <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1rem;">
+            Kolaborasi mahasiswa rumpun Teknologi Informasi dan Ilmu Kesehatan Universitas Duta Bangsa Surakarta:
+          </p>
+
+          <div class="kartu-anggota">
+            <strong>Ahmadi Adnan (NIM: 240103264)</strong>
+            <span>Ketua Tim &bull; Software Architect & Machine Learning Engineer (S1 Teknik Informatika)</span>
+          </div>
+
+          <div class="kartu-anggota">
+            <strong>David Valentino Iskandar (NIM: 240221005)</strong>
             <span>Sekretaris &bull; Analis Sanitasi Air Karst & Parameter Antropometri (D4 Teknologi Laboratorium Medis)</span>
           </div>
 
-          <div style="background:#f8fafc; border:1px solid var(--garis); padding:1rem; border-radius:var(--radius-md); font-size:0.88rem; margin-bottom:0.75rem;">
-            <strong style="color:var(--utama); display:block;">Salfina Etisia Syaharani (NIM: 240209033)</strong>
+          <div class="kartu-anggota">
+            <strong>Salfina Etisia Syaharani (NIM: 240209033)</strong>
             <span>Divisi Farmasi &bull; Formulasi Gizi Mikro & Edukasi Nutrisi PMT Balita (S1 Farmasi)</span>
           </div>
 
-          <div style="background:#f8fafc; border:1px solid var(--garis); padding:1rem; border-radius:var(--radius-md); font-size:0.88rem; margin-bottom:0.75rem;">
-            <strong style="color:var(--utama); display:block;">Renita Ramadhany (NIM: 240101081)</strong>
+          <div class="kartu-anggota">
+            <strong>Renita Ramadhany (NIM: 240101081)</strong>
             <span>Divisi Sistem Informasi &bull; Analisis Kebutuhan Sistem & Manajemen Basis Data Posyandu (S1 Sistem Informasi)</span>
           </div>
 
-          <div style="background:#f8fafc; border:1px solid var(--garis); padding:1rem; border-radius:var(--radius-md); font-size:0.88rem; margin-bottom:0.75rem;">
-            <strong style="color:var(--utama); display:block;">Ananda Syakia Musyarofah (NIM: 240217004)</strong>
+          <div class="kartu-anggota">
+            <strong>Ananda Syakia Musyarofah (NIM: 240217004)</strong>
             <span>Divisi Administrasi &bull; Alur Rujukan Puskesmas & Tata Kelola Rekam Posyandu (S1 Administrasi Rumah Sakit)</span>
           </div>
 
-          <div style="background:#f8fafc; border:1px solid var(--garis); padding:1rem; border-radius:var(--radius-md); font-size:0.88rem; margin-bottom:0.75rem;">
-            <strong style="color:var(--utama); display:block;">Denik Listiana Eka Saputri (NIM: 240208048) & Happy Natarina Indarto (NIM: 240208126)</strong>
-            <span>Divisi Keperawatan &bull; Pengukuran Antropometri Klinis (TB, BB, LiLA) & Konseling Pola Asuh (S1 Keperawatan)</span>
+          <div class="kartu-anggota">
+            <strong>Denik Listiana Eka Saputri (NIM: 240208048) & Happy Natarina Indarto (NIM: 240208126)</strong>
+            <span>Divisi Keperawatan &bull; Pemeriksaan Antropometri Posyandu & Edukasi 1000 HPK (S1 Keperawatan)</span>
           </div>
 
-          <div style="background:#eff6ff; border:1px solid #bfdbfe; padding:1rem; border-radius:var(--radius-md); font-size:0.88rem;">
-            <strong style="color:#1d4ed8; display:block;">Dosen Pembimbing Lapangan (DPL):</strong>
+          <div class="kartu-dpl">
+            <strong>Dosen Pembimbing Lapangan (DPL):</strong>
             <span>Aprilisa Arum Sari, S.T., M.Kom. (Fakultas Ilmu Komputer UDB)</span>
           </div>
         </div>
@@ -601,13 +506,13 @@
     </div>
   </main>
 
-  <!-- FOOTER -->
+  <!-- FOOTER RESMI -->
   <footer>
     <div>
-      <strong>STUNT-GUARD TEPUS 3</strong> &bull; Produk TTG Inovasi KKNT Periode 10 UDB 2026
+      <strong>STUNT-GUARD TEPUS 3</strong> &bull; Layanan Deteksi Dini & Antropometri Posyandu Terpadu
     </div>
     <div>
-      Fakultas Ilmu Komputer &bull; Universitas Duta Bangsa Surakarta &bull; Balai Dusun Tepus 3, Gunungkidul
+      Padukuhan Tepus 3, Kalurahan Tepus, Kapanewon Tepus, Kabupaten Gunungkidul &bull; Universitas Duta Bangsa Surakarta
     </div>
   </footer>
 </div>

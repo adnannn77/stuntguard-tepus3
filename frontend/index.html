@@ -30,30 +30,57 @@
 </head>
 <body>
 
-<div class="kerangka">
-  <!-- HEADER & NAVIGASI UTAMA -->
-  <header>
+<!-- STICKY TOP HEADER FULL-WIDTH (RELASI CONSULTING STYLE) -->
+<header id="main-header" class="header-utama">
+  <div class="wadah-header">
     <div class="merek" onclick="gantiTab('beranda')">
-      <span class="tanda">SG</span>
-      <span class="nama">
-        <strong>STUNT-GUARD TEPUS 3</strong>
-        <small>Sistem Deteksi Dini & Antropometri Balita · Posyandu Tepus 3</small>
-      </span>
+      <div class="emblem-logo">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="44" height="44" rx="12" fill="url(#brandGrad)" />
+          <!-- Medical Shield Contour -->
+          <path d="M22 8L33 13V23C33 30 27.5 35.5 22 37.5C16.5 35.5 11 30 11 23V13L22 8Z" fill="rgba(255,255,255,0.18)" />
+          <!-- White Medical Cross -->
+          <path d="M22 15V27M16 21H28" stroke="#ffffff" stroke-width="3" stroke-linecap="round" />
+          <!-- Pulse line -->
+          <path d="M13 29L17 29L19.5 25L22 32L24.5 26.5L27 29L31 29" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          <defs>
+            <linearGradient id="brandGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#0f766e" />
+              <stop offset="0.6" stop-color="#0d9488" />
+              <stop offset="1" stop-color="#0284c7" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="nama-merek">
+        <div class="judul-merek">
+          <strong>STUNT-GUARD</strong>
+          <span class="badge-wilayah">TEPUS 3</span>
+        </div>
+        <small>Sistem Antropometri & Deteksi Dini Stunting WHO Anthro</small>
+      </div>
     </div>
-    <nav>
-      <button id="btn-beranda" class="aktif" onclick="gantiTab('beranda')">Beranda</button>
-      <button id="btn-prediksi" onclick="gantiTab('prediksi')">Prediksi & Skrining</button>
-      <button id="btn-rekap" onclick="gantiTab('rekap')">Rekapitulasi Data</button>
-      <button id="btn-analisis" onclick="gantiTab('analisis')">Analisis Wilayah</button>
-      <button id="btn-pmt" onclick="gantiTab('pmt')">Panduan PMT</button>
-      <button id="btn-metodologi" onclick="gantiTab('metodologi')">CRISP-DM</button>
-      <button id="btn-glosarium" onclick="gantiTab('glosarium')">Glosarium & Tim</button>
-    </nav>
-  </header>
 
+    <!-- NAVIGASI PILL DENGAN SCROLL HALUS DI MOBILE -->
+    <div class="wadah-nav-scroll">
+      <nav id="nav-tabs">
+        <button id="btn-beranda" class="aktif" onclick="gantiTab('beranda')">Beranda</button>
+        <button id="btn-prediksi" onclick="gantiTab('prediksi')">Prediksi & Skrining</button>
+        <button id="btn-rekap" onclick="gantiTab('rekap')">Rekapitulasi Data</button>
+        <button id="btn-analisis" onclick="gantiTab('analisis')">Analisis Wilayah</button>
+        <button id="btn-pmt" onclick="gantiTab('pmt')">Panduan PMT</button>
+        <button id="btn-metodologi" onclick="gantiTab('metodologi')">CRISP-DM</button>
+        <button id="btn-glosarium" onclick="gantiTab('glosarium')">Glosarium & Tim</button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<div class="kerangka">
   <!-- BADGE STATUS KONEKSI BACKEND FASTAPI -->
   <div id="badge-koneksi-api" class="badge-status">
-    🔵 Memeriksa status koneksi backend FastAPI...
+    <span class="dot-status"></span>
+    <span id="teks-status-koneksi">Memeriksa status koneksi backend FastAPI...</span>
   </div>
 
   <!-- ================= TAB 1: BERANDA ================= -->
@@ -245,8 +272,8 @@
           </div>
         </div>
 
-        <!-- HASIL DETEKSI SECARA LIVE -->
-        <div class="kartu" style="margin:0; border-top: 4px solid var(--utama);">
+        <!-- HASIL DETEKSI SECARA LIVE (STICKY CLINICAL CARD) -->
+        <div class="kartu-hasil-sticky">
           <div class="kartu-hasil-header">
             <span class="label-sub">Hasil Evaluasi Antropometri & Decision Tree</span>
             <div id="badge-hasil-risiko" class="badge-hasil-besar Normal">Normal (Optimal)</div>

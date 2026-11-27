@@ -199,7 +199,11 @@ function gantiTab(tabId) {
   const targetBtn = document.getElementById("btn-" + tabId);
 
   if (targetTab) targetTab.classList.add("aktif");
-  if (targetBtn) targetBtn.classList.add("aktif");
+  if (targetBtn) {
+    targetBtn.classList.add("aktif");
+    // Geser otomatis pill navigation ke tengah saat diklik di layar HP
+    targetBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
 
   if (tabId === "rekap") renderTabelBalita();
   if (tabId === "analisis") renderAnalisisWilayah();
@@ -507,10 +511,13 @@ async function cekKoneksiBackend() {
     if (res.ok) {
       appState.isBackendConnected = true;
       if (badgeKoneksi) {
-        badgeKoneksi.innerHTML = `🟢 <strong>FastAPI Backend Aktif</strong> (Decision Tree & Artefak Model Terhubung)`;
-        badgeKoneksi.style.background = "var(--normal-muda)";
-        badgeKoneksi.style.color = "var(--normal)";
-        badgeKoneksi.style.borderColor = "var(--normal-border)";
+        badgeKoneksi.innerHTML = `
+          <span class="dot-status" style="background:#10b981;"></span>
+          <span><strong>FastAPI Backend Aktif</strong> &bull; Decision Tree & Artefak Model Terhubung</span>
+        `;
+        badgeKoneksi.style.background = "#ffffff";
+        badgeKoneksi.style.color = "#0f172a";
+        badgeKoneksi.style.borderColor = "var(--border-light)";
       }
       // Ambil data terbaru dari backend
       const dataRes = await fetch(API_BASE_URL + "/api/balita");
@@ -527,10 +534,13 @@ async function cekKoneksiBackend() {
 
   appState.isBackendConnected = false;
   if (badgeKoneksi) {
-    badgeKoneksi.innerHTML = `🔵 <strong>Mode Mandiri (Stand-Alone Offline)</strong> · Mesin Antropometri WHO Anthro Aktif`;
-    badgeKoneksi.style.background = "var(--utama-muda)";
-    badgeKoneksi.style.color = "var(--utama)";
-    badgeKoneksi.style.borderColor = "#99f6e4";
+    badgeKoneksi.innerHTML = `
+      <span class="dot-status" style="background:#0284c7;"></span>
+      <span><strong>Mode Mandiri (Stand-Alone Offline)</strong> &bull; Mesin Antropometri WHO Anthro Aktif</span>
+    `;
+    badgeKoneksi.style.background = "#ffffff";
+    badgeKoneksi.style.color = "#0f172a";
+    badgeKoneksi.style.borderColor = "var(--border-light)";
   }
 }
 
@@ -540,6 +550,18 @@ document.addEventListener("DOMContentLoaded", () => {
   eksekusiPrediksiLive();
   renderTabelBalita();
   updateKPICards();
+
+  // Dynamic Header Elevation on Scroll (Relasi Consulting Style)
+  const mainHeader = document.getElementById("main-header");
+  window.addEventListener("scroll", () => {
+    if (mainHeader) {
+      if (window.scrollY > 15) {
+        mainHeader.classList.add("scrolled");
+      } else {
+        mainHeader.classList.remove("scrolled");
+      }
+    }
+  }, { passive: true });
 
   // Event Listeners Form Inputs
   const liveInputs = [

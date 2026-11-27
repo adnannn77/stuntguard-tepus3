@@ -325,6 +325,11 @@ def serve_root_css():
 def serve_root_js():
     return FileResponse(FRONTEND_DIR / "app.js")
 
+# Mount assets lokal
+assets_dir = FRONTEND_DIR / "assets"
+if assets_dir.exists():
+    app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
 @app.get("/favicon.svg", include_in_schema=False)
 @app.get("/favicon.ico", include_in_schema=False)
 def serve_favicon():

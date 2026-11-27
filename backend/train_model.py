@@ -4,7 +4,7 @@ STUNT-GUARD TEPUS 3 - MODEL TRAINING & CRISP-DM PIPELINE
 Sistem Deteksi Dini & Klasifikasi Risiko Stunting Berbasis Decision Tree C4.5
 Lokasi Penelitian: Posyandu Padukuhan Tepus 3, Kalurahan Tepus, Gunungkidul
 Institusi: Universitas Duta Bangsa Surakarta (Fakultas Ilmu Komputer)
-Pengembang: Kelompok 39 Tim A KKNT UDB 2026 (Ahmadi Adnan, David V.I., Renita R., dkk.)
+Pengembang: Kelompok 39 Tim 1 KKNT UDB 2026 (Ahmadi Adnan, David V.I., Salfina E.S., Renita R., dkk.)
 DPL: Aprilisa Arum Sari, S.T., M.Kom.
 """
 

@@ -5,7 +5,7 @@
 Kuliah Kerja Nyata Tematik (KKNT) Periode 10 Tahun 2026 Universitas Duta Bangsa Surakarta  
 **Lokasi**: Posyandu Padukuhan Tepus 3, Kalurahan Tepus, Kapanewon Tepus, Kabupaten Gunungkidul, D.I. Yogyakarta  
 **Dosen Pembimbing Lapangan (DPL)**: Aprilisa Arum Sari, S.T., M.Kom.  
-**Tim Pengembang**: Kelompok 39 Tim A (Ahmadi Adnan, David Vicky Irwansyah, Renita R., Fatikhah, Nofa, Aditia, Muhammad Zaidan)
+**Tim Pengembang**: Kelompok 39 Tim 1 (Ahmadi Adnan, David Valentino Iskandar, Salfina Etisia Syaharani, Renita Ramadhany, Ananda Syakia Musyarofah, Denik Listiana Eka Saputri, Happy Natarina Indarto)
 
 ---
 

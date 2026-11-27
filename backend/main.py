@@ -7,7 +7,7 @@ Sistem Prediksi Risiko Stunting & Antropometri Balita Berbasis Decision Tree
 Institusi   : Universitas Duta Bangsa Surakarta - Fakultas Ilmu Komputer
 Program     : KKNT Periode 10 Tahun 2026 - Kapanewon Tepus, Gunungkidul
 Lokasi      : Balai Padukuhan Tepus 3, Kalurahan Tepus
-Tim Peneliti: Kelompok 39 Tim A (Ahmadi Adnan, David V.I., Renita R., dkk.)
+Tim Peneliti: Kelompok 39 Tim 1 (Ahmadi Adnan, David V.I., Salfina E.S., Renita R., Ananda S.M., Denik L.E.S., Happy N.I.)
 DPL         : Aprilisa Arum Sari, S.T., M.Kom.
 =============================================================================
 """

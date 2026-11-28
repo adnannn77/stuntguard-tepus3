@@ -78,7 +78,7 @@ def get_who_median_sd(usia_bulan: float, gender: str):
     return med, sd
 
 def init_sqlite_db():
-    """Inisialisasi tabel SQLite relasional dan data awal Posyandu Tepus 3."""
+    """Inisialisasi tabel SQLite relasional Posyandu Tepus 3 (tabel bersih tanpa dummy)."""
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     cur.execute("""
@@ -103,25 +103,6 @@ def init_sqlite_db():
         )
     """)
     conn.commit()
-
-    # Cek jika tabel kosong, isi data seeding 5 balita Tepus 3
-    cur.execute("SELECT COUNT(*) FROM balita")
-    if cur.fetchone()[0] == 0:
-        seed_data = [
-            ("Aditia Pratama", "Siti Aminah", "RT 01", 18, "L", 82.5, 10.8, 14.5, "Sumur Karst Kapur", 0, 1, 1, 0.25, "Normal (Optimal)", 0.10, "2026-11-20"),
-            ("Aulia Rahmawati", "Sri Wahyuni", "RT 02", 24, "P", 81.2, 9.4, 12.0, "Sumur Karst Kapur", 1, 0, 1, -1.63, "Waspada (Faltering Growth)", 0.58, "2026-11-21"),
-            ("Bima Sakti", "Kustini", "RT 03", 36, "L", 84.5, 10.1, 11.2, "PAH Air Hujan", 1, 0, 1, -3.18, "Risiko Tinggi (Stunted)", 0.89, "2026-11-22"),
-            ("Citra Kirana", "Wulandari", "RT 04", 12, "P", 74.5, 9.2, 14.0, "PAM Desa", 0, 1, 1, 0.19, "Normal (Optimal)", 0.08, "2026-11-23"),
-            ("Dafa Alfarizi", "Nurjanah", "RT 02", 30, "L", 86.0, 10.8, 12.2, "Sumur Karst Kapur", 0, 1, 1, -1.72, "Waspada (Faltering Growth)", 0.45, "2026-11-24")
-        ]
-        cur.executemany("""
-            INSERT INTO balita (
-                nama_balita, nama_ibu, rt_wilayah, usia_bulan, gender, tinggi_cm,
-                berat_kg, lila_cm, sumber_air, riwayat_bblr, asi_eksklusif,
-                jamban_sehat, zscore_tb, status_risiko, risk_score, tanggal_periksa
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, seed_data)
-        conn.commit()
     conn.close()
 
 def get_db():
@@ -176,6 +157,7 @@ class BalitaInput(BaseModel):
 
 class PredictionResponse(BaseModel):
     nama_balita: str
+    nama_ibu: Optional[str] = "-"
     rt_wilayah: str
     usia_bulan: int
     gender: str
@@ -272,6 +254,7 @@ def run_decision_tree_engine(inp: BalitaInput):
         
     return {
         "nama_balita": inp.nama_balita,
+        "nama_ibu": inp.nama_ibu or "-",
         "rt_wilayah": inp.rt_wilayah,
         "usia_bulan": inp.usia_bulan,
         "gender": inp.gender,

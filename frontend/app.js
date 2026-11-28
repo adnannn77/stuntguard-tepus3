@@ -23,106 +23,10 @@ const WHO_CURVES = {
   }
 };
 
-// State Pangkalan Data Posyandu
+// State Pangkalan Data Posyandu (Dimulai Bersih / Tanpa Data Dummy)
 let appState = {
   isBackendConnected: false,
-  balitaData: [
-    {
-      id: 1,
-      nama_balita: "Aditia Pratama",
-      nama_ibu: "Siti Aminah",
-      rt_wilayah: "RT 01",
-      usia_bulan: 18,
-      gender: "L",
-      tinggi_cm: 82.5,
-      berat_kg: 10.8,
-      lila_cm: 14.5,
-      sumber_air: "Sumur Karst Kapur",
-      riwayat_bblr: false,
-      asi_eksklusif: true,
-      jamban_sehat: true,
-      zscore_tb: 0.25,
-      status_risiko: "Normal (Optimal)",
-      risk_score: 0.10,
-      tanggal_periksa: "2026-11-20"
-    },
-    {
-      id: 2,
-      nama_balita: "Aulia Rahmawati",
-      nama_ibu: "Sri Wahyuni",
-      rt_wilayah: "RT 02",
-      usia_bulan: 24,
-      gender: "P",
-      tinggi_cm: 81.2,
-      berat_kg: 9.4,
-      lila_cm: 12.0,
-      sumber_air: "Sumur Karst Kapur",
-      riwayat_bblr: true,
-      asi_eksklusif: false,
-      jamban_sehat: true,
-      zscore_tb: -1.63,
-      status_risiko: "Waspada (Faltering Growth)",
-      risk_score: 0.58,
-      tanggal_periksa: "2026-11-21"
-    },
-    {
-      id: 3,
-      nama_balita: "Bima Sakti",
-      nama_ibu: "Kustini",
-      rt_wilayah: "RT 03",
-      usia_bulan: 36,
-      gender: "L",
-      tinggi_cm: 84.5,
-      berat_kg: 10.1,
-      lila_cm: 11.2,
-      sumber_air: "PAH Air Hujan",
-      riwayat_bblr: true,
-      asi_eksklusif: false,
-      jamban_sehat: true,
-      zscore_tb: -3.18,
-      status_risiko: "Risiko Tinggi (Stunted)",
-      risk_score: 0.89,
-      tanggal_periksa: "2026-11-22"
-    },
-    {
-      id: 4,
-      nama_balita: "Citra Kirana",
-      nama_ibu: "Wulandari",
-      rt_wilayah: "RT 04",
-      usia_bulan: 12,
-      gender: "P",
-      tinggi_cm: 74.5,
-      berat_kg: 9.2,
-      lila_cm: 14.0,
-      sumber_air: "PAM Desa",
-      riwayat_bblr: false,
-      asi_eksklusif: true,
-      jamban_sehat: true,
-      zscore_tb: 0.19,
-      status_risiko: "Normal (Optimal)",
-      risk_score: 0.08,
-      tanggal_periksa: "2026-11-23"
-    },
-    {
-      id: 5,
-      nama_balita: "Dafa Alfarizi",
-      nama_ibu: "Nurjanah",
-      rt_wilayah: "RT 02",
-      usia_bulan: 30,
-      gender: "L",
-      tinggi_cm: 86.0,
-      berat_kg: 10.8,
-      lila_cm: 12.2,
-      sumber_air: "Sumur Karst Kapur",
-      riwayat_bblr: false,
-      asi_eksklusif: true,
-      jamban_sehat: true,
-      zscore_tb: -1.72,
-      status_risiko: "Waspada (Faltering Growth)",
-      risk_score: 0.45,
-      tanggal_periksa: "2026-11-24"
-    }
-  ],
+  balitaData: [],
   filterRT: "ALL",
   filterStatus: "ALL",
   searchQuery: ""
@@ -307,6 +211,16 @@ async function eksekusiPrediksiLive() {
       ...payload,
       ...fb
     };
+  } else {
+    // Pastikan identitas nama balita & ibu selalu terjaga penuh
+    resData.nama_balita = nama;
+    resData.nama_ibu = ibu;
+    resData.rt_wilayah = rt;
+    resData.gender = selectedGender;
+    resData.usia_bulan = usia;
+    resData.tinggi_cm = tinggi;
+    resData.berat_kg = berat;
+    resData.lila_cm = lila;
   }
 
   // Perbarui UI Lembar Hasil Skrining
@@ -373,13 +287,20 @@ async function eksekusiPrediksiLive() {
 // Simpan Data Baru ke Rekapitulasi
 async function simpanHasilKeRekap() {
   const currentResult = await eksekusiPrediksiLive();
-  const namaInput = document.getElementById("in-nama-balita");
-  const nama = namaInput ? namaInput.value.trim() : "";
+  const elNama = document.getElementById("in-nama-balita");
+  const elIbu = document.getElementById("in-nama-ibu");
+  const nama = elNama ? elNama.value.trim() : "";
+  const ibu = elIbu ? (elIbu.value.trim() || "-") : "-";
+
   if (!nama) {
     alert("Silakan masukkan Nama Balita terlebih dahulu sebelum menyimpan data.");
-    if (namaInput) namaInput.focus();
+    if (elNama) elNama.focus();
     return;
   }
+
+  // Pastikan payload lengkap menyertakan nama_ibu
+  currentResult.nama_balita = nama;
+  currentResult.nama_ibu = ibu;
 
   if (appState.isBackendConnected) {
     try {
@@ -391,7 +312,7 @@ async function simpanHasilKeRekap() {
       if (resp.ok) {
         const saved = await resp.json();
         appState.balitaData.unshift(saved.record);
-        alert(`Data balita ${nama} berhasil disimpan ke Rekam Medis Posyandu Tepus 3!`);
+        alert(`Data balita ${nama} (Ibu: ${ibu}) berhasil disimpan ke Rekam Medis Posyandu Tepus 3!`);
         updateKPICards();
         gantiTab("rekap");
         return;
@@ -406,10 +327,12 @@ async function simpanHasilKeRekap() {
   const localRecord = {
     id: newId,
     ...currentResult,
+    nama_balita: nama,
+    nama_ibu: ibu,
     tanggal_periksa: new Date().toISOString().split("T")[0]
   };
   appState.balitaData.unshift(localRecord);
-  alert(`Data balita ${nama} berhasil disimpan ke Rekapitulasi Posyandu (Penyimpanan Lokal)!`);
+  alert(`Data balita ${nama} (Ibu: ${ibu}) berhasil disimpan ke Rekapitulasi Posyandu (Penyimpanan Lokal)!`);
   updateKPICards();
   gantiTab("rekap");
 }
@@ -461,7 +384,7 @@ function renderTabelBalita() {
   tbody.innerHTML = "";
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding: 2rem; color: var(--text-muted);">Tidak ada data balita yang sesuai filter pencarian.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="9" style="text-align:center; padding: 2.5rem 1rem; color: var(--text-muted); font-size:0.92rem;">Belum ada data pemeriksaan balita.<br><small style="color:var(--text-light); font-size:0.82rem;">Silakan buka menu Layanan Skrining untuk memasukkan data balita baru.</small></td></tr>`;
     return;
   }
 
@@ -531,7 +454,7 @@ function renderAnalisisWilayah() {
         <span>${totalRT} Balita (${pctRisk}% Berisiko: ${stuntedRT} Prioritas, ${waspadaRT} Waspada)</span>
       </div>
       <div style="height:12px; background:#ebdcd4; border-radius:99px; overflow:hidden; display:flex;">
-        <div style="width:${totalRT > 0 ? (normalRT/totalRT*100) : 100}%; background:var(--normal);" title="Normal: ${normalRT}"></div>
+        <div style="width:${totalRT > 0 ? (normalRT/totalRT*100) : 0}%; background:var(--normal);" title="Normal: ${normalRT}"></div>
         <div style="width:${totalRT > 0 ? (waspadaRT/totalRT*100) : 0}%; background:var(--waspada);" title="Waspada: ${waspadaRT}"></div>
         <div style="width:${totalRT > 0 ? (stuntedRT/totalRT*100) : 0}%; background:var(--stunted);" title="Stunted: ${stuntedRT}"></div>
       </div>

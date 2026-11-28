@@ -296,6 +296,18 @@ body {
   background: var(--stunted-bg);
 }
 
+.tombol-pill.bahaya-solid {
+  background: var(--stunted);
+  color: #ffffff;
+  border: 1px solid var(--stunted);
+}
+
+.tombol-pill.bahaya-solid:hover {
+  background: #963127;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(173, 62, 51, 0.3);
+}
+
 /* ================= Kontainer Konten ================= */
 .kerangka {
   width: 100%;
@@ -1623,6 +1635,262 @@ tr:hover td {
   .grup-filter-kiri input, .grup-filter-kiri select {
     width: 100% !important;
   }
+}
+
+/* Placeholder Skrining Sebelum Diperiksa */
+.kartu-placeholder-skrining {
+  background: #ffffff;
+  border: 2px dashed var(--border-cream);
+  border-radius: var(--radius-xl);
+  padding: 3.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.ikon-placeholder-medis {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--sage-light);
+  color: var(--pine-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.kartu-placeholder-skrining h4 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--pine-deep);
+  margin: 0 0 0.65rem;
+}
+
+.kartu-placeholder-skrining p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 38ch;
+  margin: 0;
+}
+
+/* Animasi Muncul Lembar Hasil */
+.kartu-sertifikat-medis.muncul {
+  animation: sertifikatReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes sertifikatReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ================= TOAST NOTIFICATION SYSTEM ================= */
+.wadah-toast {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+  max-width: 420px;
+  width: calc(100% - 3rem);
+}
+
+.toast-item {
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  box-shadow: 0 12px 32px -4px rgba(22, 57, 48, 0.16), 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-cream);
+  border-left: 4px solid var(--normal);
+  animation: toastMasuk 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transition: all 0.25s ease;
+}
+
+.toast-item.sukses {
+  border-left-color: var(--normal);
+}
+
+.toast-item.peringatan {
+  border-left-color: var(--waspada);
+}
+
+.toast-item.bahaya {
+  border-left-color: var(--stunted);
+}
+
+.toast-item.keluar {
+  animation: toastKeluar 0.25s ease forwards;
+}
+
+@keyframes toastMasuk {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toastKeluar {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.92);
+  }
+}
+
+.toast-ikon-lingkar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.toast-item.sukses .toast-ikon-lingkar {
+  background: var(--normal-bg);
+  color: var(--normal);
+}
+
+.toast-item.peringatan .toast-ikon-lingkar {
+  background: var(--waspada-bg);
+  color: var(--waspada);
+}
+
+.toast-item.bahaya .toast-ikon-lingkar {
+  background: var(--stunted-bg);
+  color: var(--stunted);
+}
+
+.toast-teks-wrap {
+  flex: 1;
+}
+
+.toast-judul {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--pine-deep);
+  margin-bottom: 0.15rem;
+}
+
+.toast-pesan {
+  font-size: 0.82rem;
+  color: var(--text-body);
+  line-height: 1.45;
+}
+
+.toast-tutup-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0.2rem;
+  border-radius: 4px;
+  transition: color var(--trans-fast);
+}
+
+.toast-tutup-btn:hover {
+  color: var(--pine-deep);
+}
+
+/* ================= MODAL KONFIRMASI PROFESIONAL ================= */
+.backdrop-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 45, 38, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.backdrop-modal.aktif {
+  opacity: 1;
+  visibility: visible;
+}
+
+.kartu-modal {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  max-width: 440px;
+  width: 100%;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.22);
+  border: 1px solid var(--border-cream);
+  text-align: center;
+  transform: scale(0.92);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.backdrop-modal.aktif .kartu-modal {
+  transform: scale(1);
+}
+
+.modal-ikon-danger {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--stunted-bg);
+  color: var(--stunted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.modal-judul {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--pine-deep);
+  margin: 0 0 0.5rem;
+}
+
+.modal-deskripsi {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 1.75rem;
+}
+
+.modal-aksi-baris {
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
 }
 
 /* ================= CETAK / PRINT STYLESHEET ================= */

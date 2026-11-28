@@ -122,6 +122,9 @@ function gantiTab(tabId) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+// State Flag Sertifikat
+let isCertificateRevealed = false;
+
 // Pilih Gender Balita
 let selectedGender = "L";
 function setGender(g) {
@@ -130,7 +133,9 @@ function setGender(g) {
   const btnP = document.getElementById("btn-gender-p");
   if (btnL) btnL.classList.toggle("aktif", g === "L");
   if (btnP) btnP.classList.toggle("aktif", g === "P");
-  eksekusiPrediksiLive();
+  if (isCertificateRevealed) {
+    eksekusiPrediksiLive();
+  }
 }
 
 // Sinkronisasi Usia Slider & Input
@@ -142,7 +147,133 @@ function syncUsia(val) {
   if (inUsia) inUsia.value = val;
   if (rngUsia) rngUsia.value = val;
   if (lblUsia) lblUsia.innerText = val + " Bulan";
-  eksekusiPrediksiLive();
+  if (isCertificateRevealed) {
+    eksekusiPrediksiLive();
+  }
+}
+
+// ================= SISTEM NOTIFIKASI TOAST PROFESIONAL =================
+function tampilkanToast(judul, pesan, tipe = "sukses") {
+  const container = document.getElementById("wadah-toast");
+  if (!container) return;
+
+  const toast = document.createElement("div");
+  toast.className = `toast-item ${tipe}`;
+
+  let ikonSVG = "";
+  if (tipe === "sukses") {
+    ikonSVG = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
+  } else if (tipe === "peringatan") {
+    ikonSVG = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`;
+  } else {
+    ikonSVG = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>`;
+  }
+
+  toast.innerHTML = `
+    <div class="toast-ikon-lingkar">${ikonSVG}</div>
+    <div class="toast-teks-wrap">
+      <div class="toast-judul">${judul}</div>
+      <div class="toast-pesan">${pesan}</div>
+    </div>
+    <button class="toast-tutup-btn" onclick="this.parentElement.remove()" title="Tutup">&times;</button>
+  `;
+
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add("keluar");
+    setTimeout(() => {
+      if (toast.parentElement) toast.remove();
+    }, 250);
+  }, 4000);
+}
+
+// ================= MODAL KONFIRMASI HAPUS PROFESIONAL =================
+let pendingHapusId = null;
+let pendingHapusNama = "";
+
+function bukaModalKonfirmasiHapus(id, nama) {
+  pendingHapusId = id;
+  pendingHapusNama = nama;
+  const modal = document.getElementById("modal-konfirmasi");
+  const desc = document.getElementById("modal-hapus-deskripsi");
+  const btn = document.getElementById("btn-eksekusi-hapus");
+
+  if (desc) {
+    desc.innerText = `Data balita ${nama} akan dihapus permanen dari rekam medis Posyandu Tepus 3. Tindakan ini tidak dapat dibatalkan.`;
+  }
+  if (btn) {
+    btn.onclick = eksekusiHapusDariModal;
+  }
+  if (modal) {
+    modal.classList.add("aktif");
+  }
+}
+
+function tutupModalHapus() {
+  const modal = document.getElementById("modal-konfirmasi");
+  if (modal) modal.classList.remove("aktif");
+  pendingHapusId = null;
+  pendingHapusNama = "";
+}
+
+async function eksekusiHapusDariModal() {
+  const id = pendingHapusId;
+  const nama = pendingHapusNama;
+  tutupModalHapus();
+
+  if (appState.isBackendConnected && id) {
+    try {
+      await fetch(`${API_BASE_URL}/api/balita/${id}`, { method: "DELETE" });
+    } catch (err) {
+      console.warn("Gagal menghapus dari backend:", err);
+    }
+  }
+
+  appState.balitaData = appState.balitaData.filter(b => b.id !== id);
+  renderTabelBalita();
+  updateKPICards();
+  renderAnalisisWilayah();
+
+  tampilkanToast("Data Berhasil Dihapus", `Data balita ${nama || 'terpilih'} telah dihapus dari rekam medis.`, "sukses");
+}
+
+function hapusBalita(id) {
+  const b = appState.balitaData.find(item => item.id === id);
+  const nama = b ? b.nama_balita : "Balita";
+  bukaModalKonfirmasiHapus(id, nama);
+}
+
+// Tombol Periksa Status Gizi Diklik (Menerbitkan Lembar Hasil)
+async function tombolPeriksaDiklik() {
+  const elNama = document.getElementById("in-nama-balita");
+  const nama = elNama ? elNama.value.trim() : "";
+
+  if (!nama) {
+    tampilkanToast("Nama Balita Belum Diisi", "Silakan masukkan nama lengkap balita sebelum memeriksa status gizi.", "peringatan");
+    if (elNama) elNama.focus();
+    return;
+  }
+
+  isCertificateRevealed = true;
+  const placeholder = document.getElementById("placeholder-skrining");
+  const cert = document.getElementById("lembar-laporan-cetak");
+
+  if (placeholder) placeholder.style.display = "none";
+  if (cert) {
+    cert.style.display = "block";
+    cert.classList.remove("muncul");
+    void cert.offsetWidth;
+    cert.classList.add("muncul");
+  }
+
+  await eksekusiPrediksiLive();
+
+  tampilkanToast("Evaluasi Klinis Terbit", `Lembar hasil evaluasi klinis balita ${nama} berhasil diterbitkan.`, "sukses");
+
+  if (window.innerWidth <= 1024 && cert) {
+    cert.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 
 // Eksekusi Prediksi & Skrining Real-Time
@@ -286,19 +417,28 @@ async function eksekusiPrediksiLive() {
 
 // Simpan Data Baru ke Rekapitulasi
 async function simpanHasilKeRekap() {
-  const currentResult = await eksekusiPrediksiLive();
   const elNama = document.getElementById("in-nama-balita");
   const elIbu = document.getElementById("in-nama-ibu");
   const nama = elNama ? elNama.value.trim() : "";
   const ibu = elIbu ? (elIbu.value.trim() || "-") : "-";
 
   if (!nama) {
-    alert("Silakan masukkan Nama Balita terlebih dahulu sebelum menyimpan data.");
+    tampilkanToast("Nama Balita Kosong", "Silakan masukkan nama lengkap balita sebelum menyimpan data ke rekam medis.", "peringatan");
     if (elNama) elNama.focus();
     return;
   }
 
-  // Pastikan payload lengkap menyertakan nama_ibu
+  // Jika sertifikat belum terbit, terbitkan terlebih dahulu
+  isCertificateRevealed = true;
+  const placeholder = document.getElementById("placeholder-skrining");
+  const cert = document.getElementById("lembar-laporan-cetak");
+  if (placeholder) placeholder.style.display = "none";
+  if (cert) {
+    cert.style.display = "block";
+    cert.classList.add("muncul");
+  }
+
+  const currentResult = await eksekusiPrediksiLive();
   currentResult.nama_balita = nama;
   currentResult.nama_ibu = ibu;
 
@@ -312,9 +452,9 @@ async function simpanHasilKeRekap() {
       if (resp.ok) {
         const saved = await resp.json();
         appState.balitaData.unshift(saved.record);
-        alert(`Data balita ${nama} (Ibu: ${ibu}) berhasil disimpan ke Rekam Medis Posyandu Tepus 3!`);
+        tampilkanToast("Tersimpan ke Rekam Medis", `Data balita ${nama} (Ibu: ${ibu}) berhasil disimpan ke Rekam Medis Posyandu Tepus 3.`, "sukses");
         updateKPICards();
-        gantiTab("rekap");
+        setTimeout(() => gantiTab("rekap"), 1200);
         return;
       }
     } catch (err) {
@@ -332,27 +472,9 @@ async function simpanHasilKeRekap() {
     tanggal_periksa: new Date().toISOString().split("T")[0]
   };
   appState.balitaData.unshift(localRecord);
-  alert(`Data balita ${nama} (Ibu: ${ibu}) berhasil disimpan ke Rekapitulasi Posyandu (Penyimpanan Lokal)!`);
+  tampilkanToast("Tersimpan ke Rekapitulasi", `Data balita ${nama} (Ibu: ${ibu}) berhasil disimpan ke penyimpanan lokal posyandu.`, "sukses");
   updateKPICards();
-  gantiTab("rekap");
-}
-
-// Hapus Catatan Balita
-async function hapusBalita(id) {
-  if (!confirm("Apakah Anda yakin ingin menghapus data pemeriksaan balita ini?")) return;
-
-  if (appState.isBackendConnected) {
-    try {
-      await fetch(`${API_BASE_URL}/api/balita/${id}`, { method: "DELETE" });
-    } catch (err) {
-      console.warn("Gagal menghapus dari backend:", err);
-    }
-  }
-
-  appState.balitaData = appState.balitaData.filter(b => b.id !== id);
-  renderTabelBalita();
-  updateKPICards();
-  renderAnalisisWilayah();
+  setTimeout(() => gantiTab("rekap"), 1200);
 }
 
 // Render Tabel Balita
@@ -528,7 +650,6 @@ async function cekKoneksiBackend() {
 // Inisialisasi saat Halaman Dimuat
 document.addEventListener("DOMContentLoaded", () => {
   cekKoneksiBackend();
-  eksekusiPrediksiLive();
   renderTabelBalita();
   updateKPICards();
   renderAnalisisWilayah();
@@ -545,13 +666,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }, { passive: true });
 
-  // Event Listeners Form Pengukuran (Live Calculation)
+  // Event Listeners Form Pengukuran (Live Calculation hanya jika hasil sudah terbit)
   const liveInputs = [
     "in-tinggi", "in-berat", "in-lila", "in-air", "in-bblr", "in-asi", "in-jamban"
   ];
   liveInputs.forEach(id => {
     const el = document.getElementById(id);
-    if (el) el.addEventListener("input", eksekusiPrediksiLive);
+    if (el) {
+      el.addEventListener("input", () => {
+        if (isCertificateRevealed) {
+          eksekusiPrediksiLive();
+        }
+      });
+    }
   });
 
   // Filter Listeners

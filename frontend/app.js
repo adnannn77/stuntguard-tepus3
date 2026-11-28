@@ -485,9 +485,9 @@ async function simpanHasilKeRekap() {
       if (resp.ok) {
         const saved = await resp.json();
         appState.balitaData.unshift(saved.record);
-        tampilkanToast("Tersimpan ke Rekam Medis", `Data balita ${nama} (Ibu: ${ibu}) berhasil disimpan ke Rekam Medis Posyandu Tepus 3.`, "sukses");
+        tampilkanToast("Tersimpan ke Rekam Medis", `Data balita ${nama} (Ibu: ${ibu}) berhasil disimpan ke Rekam Medis Posyandu Tepus 3. Formulir telah di-reset siap untuk balita berikutnya.`, "sukses");
         updateKPICards();
-        setTimeout(() => gantiTab("rekap"), 1200);
+        resetFormSkrining();
         return;
       }
     } catch (err) {
@@ -505,9 +505,73 @@ async function simpanHasilKeRekap() {
     tanggal_periksa: new Date().toISOString().split("T")[0]
   };
   appState.balitaData.unshift(localRecord);
-  tampilkanToast("Tersimpan ke Rekapitulasi", `Data balita ${nama} (Ibu: ${ibu}) berhasil disimpan ke penyimpanan lokal posyandu.`, "sukses");
+  tampilkanToast("Tersimpan ke Rekapitulasi", `Data balita ${nama} (Ibu: ${ibu}) berhasil disimpan ke rekam medis lokal. Formulir telah di-reset siap untuk balita berikutnya.`, "sukses");
   updateKPICards();
-  setTimeout(() => gantiTab("rekap"), 1200);
+  resetFormSkrining();
+}
+
+// Reset Formulir Skrining ke Kondisi Awal Bersih
+function resetFormSkrining() {
+  const elNama = document.getElementById("in-nama-balita");
+  const elIbu = document.getElementById("in-nama-ibu");
+  const elRT = document.getElementById("in-rt");
+  const elTinggi = document.getElementById("in-tinggi");
+  const elBerat = document.getElementById("in-berat");
+  const elLila = document.getElementById("in-lila");
+  const elAir = document.getElementById("in-air");
+  const elBblr = document.getElementById("in-bblr");
+  const elAsi = document.getElementById("in-asi");
+  const elJamban = document.getElementById("in-jamban");
+  const placeholder = document.getElementById("placeholder-skrining");
+  const cert = document.getElementById("lembar-laporan-cetak");
+
+  // Kosongkan identitas
+  if (elNama) elNama.value = "";
+  if (elIbu) elIbu.value = "";
+  if (elRT) elRT.value = "RT 02";
+
+  // Reset gender ke default Laki-laki
+  setGender("L");
+
+  // Reset usia ke 24 bulan
+  syncUsia(24);
+
+  // Reset nilai antropometri ke baseline standar
+  if (elTinggi) elTinggi.value = "88.0";
+  if (elBerat) elBerat.value = "12.0";
+  if (elLila) elLila.value = "14.5";
+  if (elAir) elAir.value = "PAM Desa";
+
+  // Reset faktor sanitasi & pola asuh
+  if (elBblr) elBblr.checked = false;
+  if (elAsi) elAsi.checked = true;
+  if (elJamban) elJamban.checked = true;
+
+  // Kembalikan lembar hasil skrining ke mode placeholder
+  isCertificateRevealed = false;
+  if (cert) {
+    cert.style.display = "none";
+    cert.classList.remove("muncul");
+  }
+  if (placeholder) {
+    placeholder.style.display = "block";
+  }
+
+  // Gulir halus kembali ke awal form & fokus ke input nama balita
+  if (window.lenis) {
+    window.lenis.scrollTo('#in-nama-balita', { offset: -140, duration: 0.6 });
+  } else {
+    if (elNama) elNama.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+  setTimeout(() => {
+    if (elNama) elNama.focus();
+  }, 350);
+}
+
+// Reset Formulir Skrining secara Manual oleh Kader
+function resetFormSkriningManual() {
+  resetFormSkrining();
+  tampilkanToast("Formulir Direset", "Formulir pengukuran telah dikosongkan dan siap untuk balita berikutnya.", "peringatan");
 }
 
 // Render Tabel Balita

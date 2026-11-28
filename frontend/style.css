@@ -166,16 +166,24 @@ body {
 }
 
 .badge-wilayah {
-  display: inline-block;
-  background: var(--sage-light);
-  color: var(--pine-deep);
-  border: 1px solid var(--sage-border);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  padding: 0.12rem 0.5rem;
-  border-radius: var(--radius-pill);
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: var(--sage-herbal);
+  border: none;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 0;
   text-transform: uppercase;
+}
+
+.badge-wilayah::before {
+  content: "•";
+  margin-right: 0.35rem;
+  color: var(--sage-border);
+  font-weight: 900;
+  font-size: 0.85rem;
 }
 
 .nama-merek small {
@@ -316,20 +324,20 @@ body {
   padding: 1.5rem 1.5rem 5rem;
 }
 
-/* Status Koneksi Subtle Pill */
+/* Status Koneksi Subtle Minimalist */
 .badge-status-koneksi {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
-  background: #ffffff;
-  color: var(--text-dark);
-  border: 1px solid var(--border-cream);
-  padding: 0.38rem 0.95rem;
-  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  padding: 0;
+  border-radius: 0;
   font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 2rem;
-  box-shadow: var(--shadow-subtle);
+  box-shadow: none;
 }
 
 .dot-status-live {
@@ -949,8 +957,8 @@ html.lenis, html.lenis body {
 }
 
 .badge-status-triage {
-  padding: 0.5rem 1.15rem;
-  border-radius: var(--radius-pill);
+  padding: 0.4rem 0.95rem;
+  border-radius: var(--radius-sm);
   font-size: 0.86rem;
   font-weight: 800;
   letter-spacing: -0.01em;
@@ -1190,7 +1198,7 @@ tr:hover td {
 .badge-status-tabel {
   display: inline-block;
   padding: 0.22rem 0.65rem;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   font-size: 0.75rem;
   font-weight: 700;
   white-space: nowrap;
@@ -1424,14 +1432,16 @@ tr:hover td {
 }
 
 .founder-role {
-  display: inline-block;
-  background: var(--sage-light);
-  color: var(--pine-deep);
-  border: 1px solid var(--sage-border);
+  display: block;
+  background: transparent;
+  color: var(--sage-herbal);
+  border: none;
   font-size: 0.74rem;
   font-weight: 700;
-  padding: 0.25rem 0.65rem;
-  border-radius: var(--radius-pill);
+  letter-spacing: 0.03em;
+  padding: 0;
+  margin-top: 0.35rem;
+  text-transform: uppercase;
 }
 
 /* ================= TAB 6: KONTAK & JEJARING (IMAGE 3 STYLE) ================= */

@@ -339,24 +339,41 @@ body {
   background: var(--normal);
 }
 
-/* ================= TAB SYSTEM & TRANSISI ================= */
+/* ================= SMOOTH SCROLL (LENIS MOMENTUM ENGINE) ================= */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ================= TAB SYSTEM & TRANSISI (RELASI CONSULTING CALIBER) ================= */
 .halaman-tab {
   display: none;
 }
 
 .halaman-tab.aktif {
   display: block;
-  animation: tabFadeUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: tabSmoothFadeUp 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-@keyframes tabFadeUp {
-  from {
+@keyframes tabSmoothFadeUp {
+  0% {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(14px) scale(0.994);
   }
-  to {
+  100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 

@@ -5,6 +5,31 @@
  * Kelompok 39 Tim 1 KKNT UDB 2026
  */
 
+// ==========================================
+// INISIALISASI LENIS SMOOTH SCROLL (INERTIA MOMENTUM)
+// Terinspirasi dari dinamika visual Relasi Consulting
+// ==========================================
+let lenisInstance = null;
+if (typeof Lenis !== "undefined") {
+  lenisInstance = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential decay curve
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 1.05,
+    touchMultiplier: 1.8,
+    infinite: false,
+  });
+
+  function raf(time) {
+    lenisInstance.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+  window.lenis = lenisInstance;
+}
+
 // Auto-detect API Base URL:
 // - Hosting Vercel / server web: gunakan relative path ""
 // - Localhost file:/// fallback: "http://localhost:8000"
@@ -119,7 +144,11 @@ function gantiTab(tabId) {
     renderAnalisisWilayah();
   }
 
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (window.lenis) {
+    window.lenis.scrollTo(0, { duration: 0.65 });
+  } else {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 }
 
 // State Flag Sertifikat
@@ -272,7 +301,11 @@ async function tombolPeriksaDiklik() {
   tampilkanToast("Evaluasi Klinis Terbit", `Lembar hasil evaluasi klinis balita ${nama} berhasil diterbitkan.`, "sukses");
 
   if (window.innerWidth <= 1024 && cert) {
-    cert.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (window.lenis) {
+      window.lenis.scrollTo(cert, { offset: -80, duration: 0.85 });
+    } else {
+      cert.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   }
 }
 
@@ -656,15 +689,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Dynamic Header Elevation on Scroll (Relasi Consulting Style)
   const mainHeader = document.getElementById("main-header");
-  window.addEventListener("scroll", () => {
+  const handleScrollElevation = (scrollY) => {
     if (mainHeader) {
-      if (window.scrollY > 15) {
+      if (scrollY > 15) {
         mainHeader.classList.add("scrolled");
       } else {
         mainHeader.classList.remove("scrolled");
       }
     }
-  }, { passive: true });
+  };
+
+  if (window.lenis) {
+    window.lenis.on("scroll", (e) => handleScrollElevation(e.scroll));
+  } else {
+    window.addEventListener("scroll", () => handleScrollElevation(window.scrollY), { passive: true });
+  }
 
   // Event Listeners Form Pengukuran (Live Calculation hanya jika hasil sudah terbit)
   const liveInputs = [

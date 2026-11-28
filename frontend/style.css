@@ -1480,27 +1480,29 @@ tr:hover td {
 .social-links-pills {
   display: flex;
   gap: 0.65rem;
+  align-items: center;
 }
 
 .social-pill-btn {
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: #ffffff;
-  border: 1px solid var(--border-cream);
+  background: var(--pine-deep); /* #163930 - Warna Dasar Deep Forest Pine Web */
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--pine-deep);
-  font-size: 0.95rem;
+  color: #ffffff;
   text-decoration: none;
   transition: all var(--trans-smooth);
+  box-shadow: 0 4px 10px rgba(22, 57, 48, 0.18);
 }
 
 .social-pill-btn:hover {
-  background: var(--pine-deep);
+  background: var(--pine-surface); /* #1a4338 */
   color: #ffffff;
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(22, 57, 48, 0.32);
 }
 
 .footer-col-nav h4 {

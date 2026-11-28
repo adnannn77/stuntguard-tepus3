@@ -36,22 +36,28 @@
 <!-- STICKY TOP HEALTHCARE HEADER -->
 <header id="main-header" class="header-utama">
   <div class="wadah-header">
-    <!-- Brand Logo Deep Forest Pine -->
-    <div class="merek" onclick="gantiTab('beranda')">
-      <div class="emblem-logo">
-        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="44" height="44" rx="12" fill="#163930" />
-          <path d="M22 8L33 13V23C33 30 27.5 35.5 22 37.5C16.5 35.5 11 30 11 23V13L22 8Z" fill="rgba(255,255,255,0.18)" />
-          <path d="M22 15V27M16 21H28" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" />
-          <path d="M13 29L17 29L19.5 25L22 32L24.5 26.5L27 29L31 29" stroke="#7dd3b6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </div>
-      <div class="nama-merek">
-        <div class="judul-merek">
-          <strong>STUNT-GUARD</strong>
-          <span class="badge-wilayah">TEPUS 3</span>
+    <!-- Brand Logo Deep Forest Pine with University & KKN Co-Branding -->
+    <div class="merek-kontainer-kiri">
+      <div class="merek" onclick="gantiTab('beranda')">
+        <div class="emblem-logo">
+          <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="44" height="44" rx="12" fill="#163930" />
+            <path d="M22 8L33 13V23C33 30 27.5 35.5 22 37.5C16.5 35.5 11 30 11 23V13L22 8Z" fill="rgba(255,255,255,0.18)" />
+            <path d="M22 15V27M16 21H28" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" />
+            <path d="M13 29L17 29L19.5 25L22 32L24.5 26.5L27 29L31 29" stroke="#7dd3b6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
         </div>
-        <small>Posyandu Balita &bull; Kalurahan Tepus, Gunungkidul</small>
+        <div class="nama-merek">
+          <div class="judul-merek">
+            <strong>STUNT-GUARD</strong>
+            <span class="badge-wilayah">TEPUS 3</span>
+          </div>
+          <small>Posyandu Balita &bull; Kalurahan Tepus, Gunungkidul</small>
+        </div>
+      </div>
+      <div class="header-partner-badge" title="KKNT Periode 10 Universitas Duta Bangsa Surakarta">
+        <img src="assets/logo-udb.png" alt="Universitas Duta Bangsa Surakarta" class="logo-instansi-header" title="Universitas Duta Bangsa Surakarta">
+        <img src="assets/logo-kkn.png" alt="KKNT Periode 10 UDB" class="logo-instansi-header" title="KKNT Periode 10 UDB 2026">
       </div>
     </div>
 
@@ -131,8 +137,9 @@
         <!-- Card 1 -->
         <div class="kartu-krem-pine" onclick="gantiTab('skrining')">
           <div class="kartu-krem-top">
-            <div class="ikon-lingkar-pine">📏</div>
-            <div class="tombol-arrow-circle">↗</div>
+            <div class="tombol-arrow-circle">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1.5 12.5L12.5 1.5M12.5 1.5H3.5M12.5 1.5V10.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
           </div>
           <h3>Indeks Z-Score TB/U</h3>
           <p>Kalkulasi standar deviasi tinggi badan menurut umur balita terhadap baku WHO Anthro untuk mendeteksi stunting secara presisi.</p>
@@ -141,8 +148,9 @@
         <!-- Card 2 -->
         <div class="kartu-krem-pine" onclick="gantiTab('skrining')">
           <div class="kartu-krem-top">
-            <div class="ikon-lingkar-pine">🎗️</div>
-            <div class="tombol-arrow-circle">↗</div>
+            <div class="tombol-arrow-circle">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1.5 12.5L12.5 1.5M12.5 1.5H3.5M12.5 1.5V10.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
           </div>
           <h3>Pita Ukur LiLA Balita</h3>
           <p>Skrining lingkar lengan atas berkala (hijau/kuning/merah) guna mendeteksi dini risiko malnutrisi akut dan wasting pada balita.</p>
@@ -151,8 +159,9 @@
         <!-- Card 3 -->
         <div class="kartu-krem-pine" onclick="gantiTab('pmt')">
           <div class="kartu-krem-top">
-            <div class="ikon-lingkar-pine">🍲</div>
-            <div class="tombol-arrow-circle">↗</div>
+            <div class="tombol-arrow-circle">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1.5 12.5L12.5 1.5M12.5 1.5H3.5M12.5 1.5V10.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
           </div>
           <h3>Nutrisi PMT Lokal</h3>
           <p>Formulasi makanan tambahan padat kalori & kaya protein hewani berbasis pangan lokal (singkong, kelor, dan ikan laut Tepus).</p>
@@ -161,8 +170,9 @@
         <!-- Card 4 -->
         <div class="kartu-krem-pine" onclick="gantiTab('profil')">
           <div class="kartu-krem-top">
-            <div class="ikon-lingkar-pine">🏥</div>
-            <div class="tombol-arrow-circle">↗</div>
+            <div class="tombol-arrow-circle">
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none"><path d="M1.5 12.5L12.5 1.5M12.5 1.5H3.5M12.5 1.5V10.5" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
           </div>
           <h3>Jejaring Rujukan Desa</h3>
           <p>Alur rujukan terkoordinasi dari kader Posyandu ke Bidan Desa Poskesdes hingga Puskesmas Pembantu dan Puskesmas Tepus II.</p>
@@ -550,6 +560,18 @@
       </p>
     </div>
 
+    <!-- Official Academic Strip (UDB & KKN) -->
+    <div class="profil-partner-strip">
+      <div class="profil-partner-logos">
+        <img src="assets/logo-udb.png" alt="Universitas Duta Bangsa Surakarta" class="profil-partner-logo">
+        <img src="assets/logo-kkn.png" alt="KKN Tematik Periode 10" class="profil-partner-logo">
+      </div>
+      <div class="profil-partner-text">
+        <strong>Kuliah Kerja Nyata Tematik (KKNT) Periode 10 Tahun 2026</strong>
+        <span>Universitas Duta Bangsa Surakarta &bull; Kelompok 39 Tim 1 (Kelompok Kecil A Padukuhan Tepus 3)</span>
+      </div>
+    </div>
+
     <!-- Section: Our Founders / Team Members (Image 2 Cursive Accent) -->
     <div class="seksi-founders-wrap">
       <h3 class="founders-script-title">Tim Pengembang & Kolaborasi Interprofesional</h3>
@@ -776,10 +798,33 @@
         <p>
           Platform digital deteksi dini stunting dan pemantauan antropometri balita Posyandu Padukuhan Tepus 3, Kapanewon Tepus, Gunungkidul.
         </p>
+        <!-- Institutional Co-Branding Badges -->
+        <div class="footer-mitra-row">
+          <div class="mitra-item">
+            <img src="assets/logo-udb.png" alt="Universitas Duta Bangsa Surakarta" class="footer-logo-img">
+            <div>
+              <strong style="display:block; font-size:0.78rem; color:var(--pine-deep); line-height:1.2;">Univ. Duta Bangsa</strong>
+              <small style="color:var(--text-muted); font-size:0.7rem;">Surakarta</small>
+            </div>
+          </div>
+          <div class="mitra-item">
+            <img src="assets/logo-kkn.png" alt="KKN Tematik Periode 10" class="footer-logo-img">
+            <div>
+              <strong style="display:block; font-size:0.78rem; color:var(--pine-deep); line-height:1.2;">KKNT Periode 10</strong>
+              <small style="color:var(--text-muted); font-size:0.7rem;">Kelompok 39</small>
+            </div>
+          </div>
+        </div>
         <div class="social-links-pills">
-          <a href="https://instagram.com" target="_blank" class="social-pill-btn" title="Instagram">📷</a>
-          <a href="https://wa.me" target="_blank" class="social-pill-btn" title="WhatsApp">💬</a>
-          <a href="https://youtube.com" target="_blank" class="social-pill-btn" title="YouTube">▶️</a>
+          <a href="https://instagram.com" target="_blank" class="social-pill-btn" title="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg>
+          </a>
+          <a href="https://tiktok.com" target="_blank" class="social-pill-btn" title="TikTok">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.34-6.34V9.11a8.16 8.16 0 004.76 1.52v-3.4a4.85 4.85 0 01-1-.54z"/></svg>
+          </a>
+          <a href="https://t.me" target="_blank" class="social-pill-btn" title="Telegram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012.056 0h-.112zM17.2 7.46l-1.97 9.3c-.15.67-.54.83-1.1.52l-3.03-2.24-1.46 1.41c-.16.16-.3.3-.61.3l.22-3.08 5.6-5.06c.24-.22-.05-.34-.38-.13l-6.92 4.36-2.98-.93c-.65-.2-.66-.65.14-.96l11.65-4.49c.54-.2 1.01.13.84.96z"/></svg>
+          </a>
         </div>
       </div>
 

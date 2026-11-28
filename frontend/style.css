@@ -534,34 +534,24 @@ body {
 
 .kartu-krem-top {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-bottom: 1.25rem;
 }
 
-.ikon-lingkar-pine {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--sage-light);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.35rem;
-}
-
 .tombol-arrow-circle {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: var(--pine-deep);
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   font-weight: 800;
   transition: transform var(--trans-fast);
+  flex-shrink: 0;
 }
 
 .kartu-krem-pine:hover .tombol-arrow-circle {
@@ -1471,24 +1461,25 @@ tr:hover td {
 }
 
 .social-pill-btn {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: #ffffff;
-  border: 1px solid var(--border-cream);
+  background: #d4a898;
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--pine-deep);
+  color: #ffffff;
   font-size: 0.95rem;
   text-decoration: none;
   transition: all var(--trans-smooth);
 }
 
 .social-pill-btn:hover {
-  background: var(--pine-deep);
+  background: #c4917f;
   color: #ffffff;
   transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 168, 152, 0.4);
 }
 
 .footer-col-nav h4 {
@@ -1558,7 +1549,101 @@ tr:hover td {
   }
 }
 
+/* Header Partner Badge */
+.merek-kontainer-kiri {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.header-partner-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding-left: 1.15rem;
+  border-left: 1.5px solid var(--border-cream);
+}
+
+.logo-instansi-header {
+  height: 34px;
+  width: auto;
+  object-fit: contain;
+  transition: transform var(--trans-fast);
+}
+
+.logo-instansi-header:hover {
+  transform: scale(1.08);
+}
+
+/* Profil Partner Strip */
+.profil-partner-strip {
+  display: flex;
+  align-items: center;
+  gap: 1.35rem;
+  background: #ffffff;
+  border: 1px solid var(--border-cream);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.75rem;
+  margin-bottom: 2.75rem;
+  box-shadow: var(--shadow-subtle);
+}
+
+.profil-partner-logos {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-shrink: 0;
+}
+
+.profil-partner-logo {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+}
+
+.profil-partner-text strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--pine-deep);
+  font-weight: 800;
+}
+
+.profil-partner-text span {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+/* Footer Partner Row */
+.footer-mitra-row {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  margin: 1rem 0 1.35rem;
+  padding: 0.65rem 0.85rem;
+  background: #ffffff;
+  border: 1px solid var(--border-cream);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-subtle);
+}
+
+.mitra-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.footer-logo-img {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
 @media (max-width: 768px) {
+  .header-partner-badge {
+    display: none;
+  }
+}
+
   .wadah-header {
     flex-direction: column;
     align-items: stretch;
